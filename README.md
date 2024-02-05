@@ -1,6 +1,6 @@
-## Cloud PostgreSQL Flexible Server Setup with Terraform and Bash
+## Cloud PostgreSQL Server Setup with Terraform and Bash
 
-This project automates the deployment of a PostgreSQL Flexible Server on both Azure and AWS and configures its parameters for optimal performance. It utilizes Terraform for infrastructure provisioning and a Bash script for post-deployment database configuration.
+This project automates the deployment of a PostgreSQL Server on both Azure and AWS and configures its parameters for optimal performance. It utilizes Terraform for infrastructure provisioning and a Bash script for post-deployment database configuration.
 
 ### Prerequisites
 
