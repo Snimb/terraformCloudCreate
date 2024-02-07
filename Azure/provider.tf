@@ -16,16 +16,8 @@ terraform {
 provider "azurerm" {
 
   features {} # Required block for Azure provider, even if empty, to specify provider-specific features.
-  depends_on=[null_resource.tf_var]
   subscription_id = var.subscription_id
   tenant_id       = var.tenant_id
   # client_id = "<service_principal_appid>"
   # client_secret = "<service_principal_password>"
-}
-
-resource "null_resource" "tf_var" {
-
-  provisioner "local-exec" {
-    command = "bash ${path.module}/enviroment-variables.sh"
-  }
 }
