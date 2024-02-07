@@ -5,7 +5,11 @@ variable "name_prefix" {
 
 variable "location" {
   default     = "West Europe" # Default location for all resources.
-  description = "Location of the resource."
+  description = "Location of the resource - primary location."
 }
 
 # This file defines variables used throughout the Terraform configuration, providing default values and descriptions.
+
+variable "subscription_id" {}
+
+variable "tenant_id" {}
