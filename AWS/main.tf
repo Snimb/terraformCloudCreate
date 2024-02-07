@@ -70,8 +70,8 @@ resource "aws_db_instance" "free_tier_postgresql_instance" {
   storage_type          = "gp2"
   engine                = "postgres"
   engine_version        = "14.2"  # Change to your preferred version
-  instance_class        = "db.t2.micro"  # Free tier eligible instance
-  name                  = "yourdbname"
+  instance_class        = "db.t3.micro"  # Free tier eligible instance
+  db_name               = "new_db"
   username              = "postgres"
   password              = "P4ssw0rd!"
   parameter_group_name  = "default.postgres14"  # Adjust to your preferred parameter group
