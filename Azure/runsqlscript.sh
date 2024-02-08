@@ -5,7 +5,7 @@ SERVER_FQDN=$1
 ADMIN_PASSWORD=$2
 DB_NAME=$3
 ADMIN_USER=$4
-SQL_FILE="path/to/file"  # Add a path to the SQL file
+SQL_FILE="path/to/file" # Add a path to the SQL file
 
 # Connection parameters
 export PGHOST=$SERVER_FQDN
