@@ -20,16 +20,6 @@ variable "total_memory_mb" {
   default     = 4096 # Example value, adjust as needed.
 }
 
-/*variable "total_memory_kb" {
-  description = "Total memory in KB for the PostgreSQL server"
-  default     = 4096 * 1024 # Converts the default value to KB. Adjust as needed.
-}
-
-variable "total_memory_8kb" {
-  description = "Total memory in KB for the PostgreSQL server"
-  default     = 4096 * 1024 / 8 # Converts the default value to KB. Adjust as needed.
-}*/
-
 variable "cpu_cores" {
   description = "Number of CPU cores for the PostgreSQL server"
   default     = 2 # Example value, adjust as needed.
