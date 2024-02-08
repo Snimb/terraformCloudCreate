@@ -81,14 +81,13 @@ resource "azurerm_private_dns_zone_virtual_network_link" "default" {
   private_dns_zone_name = azurerm_private_dns_zone.default.name
   virtual_network_id    = azurerm_virtual_network.default.id
   resource_group_name   = azurerm_resource_group.default.name
-
 }
 
 # Generates a random password for use with the PostgreSQL server, enhancing security by avoiding hardcoded or weak passwords.
 resource "random_password" "pass" {
   length           = 20
   special          = true
-  override_special = "!#%+:=?@"
+  override_special = "!#%+:=?@"  
 }
 
 # Provisions an Azure PostgreSQL Flexible Server with specified configurations like version, storage, and admin credentials.

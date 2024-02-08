@@ -10,7 +10,6 @@ resource "azurerm_private_endpoint" "default" {
   # Associates the private endpoint with a specific subnet within a Virtual Network.
   subnet_id = azurerm_subnet.default.id
 
-
   # Configures the connection to a specific service, in this case, the PostgreSQL Flexible Server.
   private_service_connection {
     # Unique name for the private service connection.
@@ -18,11 +17,10 @@ resource "azurerm_private_endpoint" "default" {
 
     # The ID of the Azure PostgreSQL Flexible Server to which the private endpoint connects.
     private_connection_resource_id = azurerm_postgresql_flexible_server.default.id
-
     subresource_names = ["postgresqlServer"]
+
     # Automatically approves the connection without manual intervention.
     is_manual_connection = false
-
   }
 
   # Groups related private DNS zones to the private endpoint for name resolution within the VNet.

@@ -54,3 +54,19 @@ resource "azurerm_postgresql_flexible_server_configuration" "effective_io_concur
   server_id = azurerm_postgresql_flexible_server.default.id
   value     = local.effective_io_concurrency
 }
+
+# 'azure.accepted_password_auth_method' specifies the allowed password authentication methods for the server.
+# Sets the allowed password authentication methods to both MD5 and SCRAM-SHA-256. This configuration enables the server to support clients using either MD5 or SCRAM-SHA-256 for password hashing during authentication.
+resource "azurerm_postgresql_flexible_server_configuration" "scram_authentication" {
+  name      = "azure.accepted_password_auth_method"
+  server_id = azurerm_postgresql_flexible_server.default.id
+  value     = "MD5,SCRAM-SHA-256"
+}
+
+# 'password_encryption' determines the method used for encrypting the database passwords.
+# Sets the password encryption method to 'SCRAM-SHA-256'. This ensures that passwords stored in the server are hashed using the SCRAM-SHA-256 algorithm, enhancing security by providing better resistance against rainbow table attacks compared to MD5.
+resource "azurerm_postgresql_flexible_server_configuration" "scram_password" {
+  name      = "password_encryption"
+  server_id = azurerm_postgresql_flexible_server.default.id
+  value     = "SCRAM-SHA-256"
+}

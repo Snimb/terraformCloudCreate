@@ -14,7 +14,7 @@ variable "tenant_id" {}
 # variable "client_id" {}
 # variable "client_secret" {}
 
-# Recommended settings based on system resources.
+# System resources:
 variable "total_memory_mb" {
   description = "Total memory in MB for the PostgreSQL server"
   default     = 4096 # Example value, adjust as needed.

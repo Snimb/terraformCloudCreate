@@ -14,7 +14,6 @@ terraform {
 }
 
 provider "azurerm" {
-
   features {} # Required block for Azure provider, even if empty, to specify provider-specific features.
   subscription_id = var.subscription_id
   tenant_id       = var.tenant_id
