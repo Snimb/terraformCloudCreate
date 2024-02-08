@@ -1,3 +1,4 @@
+
 resource "random_pet" "name_prefix" {
   prefix = var.name_prefix # Generates a random name prefix to ensure resource names are unique.
   length = 1               # Specifies the number of words in the generated name.
@@ -37,11 +38,12 @@ resource "azurerm_network_security_group" "default" {
 
 # Creates a subnet within the virtual network. This subnet includes a delegation for Azure PostgreSQL Flexible Servers, enabling them to be associated with this subnet.
 resource "azurerm_subnet" "default" {
-  name                 = "${random_pet.name_prefix.id}-subnet"
-  virtual_network_name = azurerm_virtual_network.default.name
-  resource_group_name  = azurerm_resource_group.default.name
-  address_prefixes     = ["10.0.2.0/24"]
-  service_endpoints    = ["Microsoft.Storage"]
+  name                                      = "${random_pet.name_prefix.id}-subnet"
+  virtual_network_name                      = azurerm_virtual_network.default.name
+  resource_group_name                       = azurerm_resource_group.default.name
+  address_prefixes                          = ["10.0.2.0/24"]
+  private_endpoint_network_policies_enabled = false
+  service_endpoints                         = ["Microsoft.Storage"]
 
   # The delegation block allows the subnet to be dedicated for specific Azure services, in this case, Azure Database for PostgreSQL. 
   # This setup permits the PostgreSQL service to integrate deeply with the subnet, enhancing network security and performance by enabling direct service connections. 
@@ -79,11 +81,14 @@ resource "azurerm_private_dns_zone_virtual_network_link" "default" {
   private_dns_zone_name = azurerm_private_dns_zone.default.name
   virtual_network_id    = azurerm_virtual_network.default.id
   resource_group_name   = azurerm_resource_group.default.name
+
 }
 
 # Generates a random password for use with the PostgreSQL server, enhancing security by avoiding hardcoded or weak passwords.
 resource "random_password" "pass" {
-  length = 20
+  length           = 20
+  special          = true
+  override_special = "!#%+:=?@"
 }
 
 # Provisions an Azure PostgreSQL Flexible Server with specified configurations like version, storage, and admin credentials.
@@ -103,13 +108,3 @@ resource "azurerm_postgresql_flexible_server" "default" {
 
   depends_on = [azurerm_private_dns_zone_virtual_network_link.default]
 }
-
-# Utilizes a null resource to run a local script after the PostgreSQL server is provisioned. This script can configure the database or perform initial setup tasks.
-resource "null_resource" "db_init" {
-  depends_on = [azurerm_postgresql_flexible_server.default]
-
-  provisioner "local-exec" {
-    command = "bash ${path.module}/auto-edit-db-configs.sh '${azurerm_postgresql_flexible_server.default.fqdn}' '${random_password.pass.result}' '${azurerm_postgresql_flexible_server_database.default.name}'"
-  }
-}
-

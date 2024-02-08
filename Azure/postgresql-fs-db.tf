@@ -3,4 +3,9 @@ resource "azurerm_postgresql_flexible_server_database" "default" {
   server_id = azurerm_postgresql_flexible_server.default.id # Links the database to the created PostgreSQL server.
   collation = "en_US.utf8"                                  # Sets the database collation.
   charset   = "UTF8"                                        # Sets the database character set.
+
+  # prevent the possibility of accidental data loss
+  /*lifecycle {
+    prevent_destroy = true
+  }*/
 }

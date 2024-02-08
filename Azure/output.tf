@@ -11,7 +11,6 @@ output "postgresql_flexible_server_database_name" {
   value = azurerm_postgresql_flexible_server_database.default.name # Output the name of the PostgreSQL Flexible Server Database
 }
 
-
 # This password may be needed for administrative access or configuration changes to the database.
 output "postgresql_flexible_server_admin_password" {
   sensitive = true                                                              # Marked as sensitive to prevent it from being displayed in logs or console output, ensuring security
