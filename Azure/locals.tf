@@ -9,3 +9,7 @@ locals {
   total_memory_kb          = var.total_memory_mb * 1024     # total memory in kb
   total_memory_8kb         = var.total_memory_mb * 1024 / 8 # total memory in 8kb
 }
+
+locals {
+  environment = terraform.workspace != "default" ? terraform.workspace : ""
+}
