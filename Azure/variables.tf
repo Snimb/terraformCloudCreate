@@ -34,6 +34,32 @@ variable "cpu_cores" {
   default     = 2 # Example value, adjust as needed.
 }
 
+### NETWORK ###
+variable "address_space" {
+  type    = string
+  default = "10.0.0.0/16"
+  description = "The address space for the virtual network."
+}
+
+
+# Variable for defining NSG security rules
+variable "nsg_security_rules" {
+  description = "List of security rules for the Network Security Group."
+  type = list(object({
+    name                       = string
+    priority                   = number
+    direction                  = string
+    access                     = string
+    protocol                   = string
+    source_port_range          = string
+    destination_port_range     = string
+    source_address_prefix      = string
+    destination_address_prefix = string
+  }))
+  # The default is set to an empty list because the actual rules will be defined in the tfvars file.
+  default = []
+}
+
 ### POSTGRESQL ###
 variable "psql_sku_name" {
   description = "(Optional) The SKU Name for the PostgreSQL Flexible Server. The name of the SKU, follows the tier + name pattern (e.g. B_Standard_B1ms, GP_Standard_D2s_v3, MO_Standard_E4s_v3). "
@@ -112,10 +138,14 @@ variable "postgresql_configurations" {
   }
 }
 
+variable "postgresql_extensions" {
+  description = "List of PostgreSQL extensions to enable on the Azure Flexible Server."
+  type        = string
+  default     = "CITEXT,BTREE_GIST"
+}
 
 
 
-/*
 ### LOG ANALYTICS ###
 variable "log_analytics_workspace_rg_name" {
   description = "(Required) Specifies the resource group name of the log analytics workspace"
@@ -138,19 +168,15 @@ variable "log_analytics_workspace_location" {
 variable "log_analytics_workspace_sku" {
   description = "(Optional) Specifies the sku of the log analytics workspace"
   type        = string
-  default     = "PerGB2018"
-
-  validation {
-    condition     = contains(["Free", "Standalone", "PerNode", "PerGB2018"], var.log_analytics_workspace_sku)
-    error_message = "The log analytics sku is incorrect."
-  }
+  default     = "Free"
 }
 
 variable "solution_plan_map" {
   description = "(Required) Specifies solutions to deploy to log analytics workspace"
   type        = map(any)
   default = {
-    ContainerInsight product = "OMSGallery/ContainerInsights"
+    ContainerInsight = {
+      product   = "OMSGallery/ContainerInsights"
       publisher = "Microsoft"
     }
   }
@@ -166,4 +192,13 @@ variable "log_analytics_tags" {
   description = "(Optional) Specifies the tags of the log analytics"
   type        = map(any)
   default     = {}
-}*/
+}
+
+variable "default_tags" {
+  type = map(any)
+  default = {
+    "Project"   = "Project-1"
+    "Owner"     = "sinwi"
+    "CreatedBy" = "sinwi"
+  }
+}

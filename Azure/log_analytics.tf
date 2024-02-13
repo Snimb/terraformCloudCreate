@@ -1,5 +1,5 @@
 # Create the resource group
-/*resource "azurerm_resource_group" "workspace" {
+resource "azurerm_resource_group" "workspace" {
   name     = lower("${var.rg_prefix}-${var.log_analytics_workspace_rg_name}-${local.environment}")
   location = var.log_analytics_workspace_location
   tags     = merge(local.default_tags, var.log_analytics_tags)
@@ -63,4 +63,3 @@ resource "azurerm_management_lock" "rg_workspace_lock" {
     azurerm_log_analytics_solution.workspace_solution,
   ]
 }
-*/

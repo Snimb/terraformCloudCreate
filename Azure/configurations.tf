@@ -5,7 +5,7 @@
 resource "azurerm_postgresql_flexible_server_configuration" "azure_extensions" {
   name      = "azure.extensions"
   server_id = azurerm_postgresql_flexible_server.default.id
-  value     = "CITEXT,BTREE_GIST"
+  value     = var.postgresql_extensions
 }
 
 # Configures the amount of memory PostgreSQL should use for shared memory buffers.

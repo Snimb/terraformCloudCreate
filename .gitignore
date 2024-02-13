@@ -41,8 +41,8 @@ Azure/environments/*
 # Ignore the tfplan
 *.tfplan
 tfplan
-*/dev-plan
-*/destroy-plan
+dev-plan
+destroy-plan
 
 
 # terraform scripts
