@@ -36,10 +36,14 @@ terraform.rc
 
 # Ignore enviroment files
 environment-variables.env
-environment/*
+Azure/environments/*
 
 # Ignore the tfplan
+*.tfplan
 tfplan
+*/dev-plan
+*/destroy-plan
+
 
 # terraform scripts
 Azure/shellscripts/*

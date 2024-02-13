@@ -19,5 +19,5 @@ provider "azurerm" {
   tenant_id       = var.sp-tenant-id
   # client_secret = "var.sp-client-secret"
   # client_id     = "var.sp-client-id"
-  
+
 }
