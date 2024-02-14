@@ -1,0 +1,213 @@
+## NOTE: Rename the file so it ends on .tfvars
+
+### IDs for provider block ###
+sp-subscription-id = "test8774-c12t-test-4j67-l08z94345test"
+sp-tenant-id       = "test6a32-test-2j32-test-t12132gtest"
+sp-client-secret   = "test~oFskcGH6bno8kS~test"
+sp-client-id       = "test-f87d-46ad-b4be-test"
+
+### Location and name prefix ###
+location    = "West Europe"
+name_prefix = "postgresqlfs"
+
+### Virtual Network Configuration ###
+address_space  = "10.0.0.0/16" # Defines the overall address space for the virtual network.
+address_prefix = "10.0.2.0/24" # Specifies the address prefix for a subnet within the virtual network.
+
+## Network Security Group (NSG) Rules Configuration
+nsg_security_rules = [{
+  name                       = "test123"
+  priority                   = 100
+  direction                  = "Inbound"
+  access                     = "Allow"
+  protocol                   = "Tcp"
+  source_port_range          = "*"
+  destination_port_range     = "*"
+  source_address_prefix      = "*"
+  destination_address_prefix = "*"
+  }
+  /*{
+    name                       = "AllowSSH"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = "YOUR_MANAGEMENT_IP/32" # Replace with your actual management IP.
+    destination_address_prefix = "*"                     # Applies to any destination within the NSG's scope.
+    ## Allows SSH access from a specified management IP address.
+  },
+  {
+    name                       = "AllowPostgreSQL"
+    priority                   = 110
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "5432"
+    source_address_prefix      = "APPLICATION_SUBNET_OR_IP" # Replace with your app subnet or specific IPs.
+    destination_address_prefix = "*"
+    ## Permits traffic to the PostgreSQL server from your application subnet or specific IPs.
+  },
+  {
+    name                       = "DenyAllInboundInternet"
+    priority                   = 400
+    direction                  = "Inbound"
+    access                     = "Deny"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "Internet"
+    destination_address_prefix = "*"
+    ## Blocks all inbound traffic from the internet.
+
+  },
+  {
+    name                       = "AllowOutboundInternetHttps"
+    priority                   = 100
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443"
+    source_address_prefix      = "*"
+    destination_address_prefix = "Internet"
+    ## Allows outbound internet access over HTTPS.
+  },
+  {
+    name                       = "DenyAllOutboundToInternetExceptHttpHttps"
+    priority                   = 300
+    direction                  = "Outbound"
+    access                     = "Deny"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "Internet"
+    ## Denies all outbound traffic to the internet except on ports 80 and 443.
+  },
+  {
+    name                       = "AllowVNetToVNet"
+    priority                   = 200
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "VirtualNetwork"
+    destination_address_prefix = "VirtualNetwork"
+    ## Enables free communication between resources within the virtual network.
+  },
+  {
+    name                       = "AllowAzureLoadBalancerProbe"
+    priority                   = 105
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "80"
+    source_address_prefix      = "AzureLoadBalancer"
+    destination_address_prefix = "*"
+    ## Permits health probe checks from the Azure Load Balancer.
+  },
+  {
+    name                       = "DenyAllInbound"
+    priority                   = 4096
+    direction                  = "Inbound"
+    access                     = "Deny"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+    ## Deny all other in bound traffic
+  },
+  {
+    name                       = "DenyAllOutbound"
+    priority                   = 4096
+    direction                  = "Outbound"
+    access                     = "Deny"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+    ## Deny all other out bound traffic
+  }*/
+]
+
+## Compute size of the database change it to reflect the SKU name of the PostgreSQL database
+cpu_cores       = 1    # Options include: 1, 2, 4, 8, etc.
+total_memory_mb = 2048 # Options include: 2048 ,4096, 8192, 16384, 32768, etc.
+## Note: Ensure that the values for cpu_cores and total_memory_mb align with the specifications of the SKU you choose for your PostgreSQL Flexible Server. The SKU's name indicates the tier, CPU, and memory configuration. Adjust these variables accordingly to reflect your chosen SKU's resources accurately.
+
+### PostgreSQL ###
+psql_sku_name = "B_Standard_B1ms" # Options include: B_Standard_B1ms, GP_Standard_D2s_v3, MO_Standard_E4s_v3 etc.
+## The SKU name format generally follows the pattern "{Tier}_{Family}_{Size}", where:
+## - {Tier} could be "B" (Basic), "GP" (General Purpose), or "MO" (Memory Optimized).
+## - {Family} indicates the VM family, such as "Standard".
+## - {Size} indicates the specific size within the tier and family, like "D2s_v3".
+## It's important to select a SKU that matches your application's performance needs and budget. The chosen SKU impacts the server's performance characteristics, including CPU, memory, and I/O throughput.
+## Remember: The availability of certain SKUs and their specifications can vary by Azure region and over time. Always refer to the official Azure documentation for the most current information on PostgreSQL Flexible Server SKUs, capabilities, and pricing.
+psql_admin_login             = "postgres" # Admin username of the PostgreSQL server
+psql_version                 = "16"       # The version of PostgreSQL Flexible Server
+psql_storage_mb              = "32768"    # The max storage allowed for the PostgreSQL Flexible Server. Possible values are 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4193280, 4194304, 8388608, 16777216 and 33553408
+auto_grow_enabled            = false      # Specifies whether the server's storage should automatically grow as needed, preventing out-of-space errors. 
+zone                         = "1"        # The availability zone where the server will be placed. Use "1", "2", or "3" for specific zones, or leave empty for no specific zone.
+backup_retention_days        = 7          # The number of days backups are retained. Azure allows a minimum of 7 and a maximum of 35 days for backup retention.
+geo_redundant_backup_enabled = false      # Enabled provides additional data resiliency by storing backups in a secondary region
+## Configures the high availability (HA) settings for the PostgreSQL server to enhance fault tolerance and ensure service continuity. 
+## Options include: ZoneRedundant and SameZone
+# high_availability_mode       = "ZoneRedundant" # this is out-commented in the postgresql.tf aswell
+## when you prefer maintenance to occur. Azure uses this information to schedule maintenance operations, such as updates and patches, minimizing impact on your service.
+maintenance_window = {
+  day_of_week  = 0
+  start_hour   = 4
+  start_minute = 0
+}
+
+### PostgreSQL Extensions Configuration ###
+postgresql_configurations = {
+  # "pgbouncer.enabled" = "true" # NOTE: is out-commented in variables.tf. Enable pgBouncer for connection pooling. Not supported with Burstable server compute tier.
+  "azure.extensions" = "CITEXT,BTREE_GIST,PG_STAT_STATEMENTS,PG_TRGM"
+}
+## Other available extensions (SELECT * FROM pg_available_extensions;) 
+## This list is not exhaustive and availability might depend on your PostgreSQL version:
+## "uuid-ossp" - Provides functions to generate UUIDs.
+## "pgcrypto" - Offers cryptographic functions.
+## "postgis" - Enables support for geographic objects.
+## "pg_stat_statements" - Tracks execution statistics of SQL statements.
+## "pg_buffercache" - Allows inspection of the shared buffer cache.
+## "pg_partman" - Automates partitioning of tables.
+## "hstore" - Adds support for storing sets of key/value pairs.
+## "dblink" - Supports connections to other PostgreSQL databases.
+## "plpgsql" - Offers support for the PL/pgSQL procedural language.
+## "plpythonu" - Allows writing functions in Python.
+## "plr" - Enables writing functions in R.
+## "timescaledb" - Provides time-series database capabilities.
+## "pg_trgm" - Provides text similarity measurement and index searching based on trigram matching.
+## "btree_gin" - Provides support for storing hash indexes.
+## "btree_gist" - Allows B-tree-like indexes and search structures.
+## "intarray" - Adds additional functions and operators for manipulating integer arrays.
+## "ltree" - Supports data structures for representing labels of data stored in a hierarchical tree-like structure.
+## "citext" - Offers case-insensitive character string types.
+## "pg_visibility" - Provides a means to inspect the visibility map (VM) and page-level visibility info.
+## "pg_hint_plan" - Allows you to control the query planner more precisely.
+
+### Log analytics ###
+log_analytics_retention_days = 31 # Possible values are between 31 and 730
+log_analytics_workspace_sku  = "PerGB2018"
+## Other SKU options for Azure Log Analytics Workspace:
+## "Free" - Offers limited data ingestion and retention capabilities. Suitable for small or trial environments.
+## "PerGB2018" - Charges based on the volume of data ingested. Offers flexible data retention settings and access to all Log Analytics features. Recommended for most production environments.
+## "Premium" - Offers the highest level of capabilities, including more extended data retention. Suitable for enterprises with extensive logging and monitoring needs.
+## "CapacityReservation" - Provides a reserved capacity pricing model, offering cost savings for predictable logging volumes. Ideal for large-scale deployments where logging volume can be accurately predicted.
+## "Standalone" - Allows for independent Log Analytics workspace usage without dependency on Azure Monitor. This SKU is designed for specific use cases where Log Analytics is used as a standalone service.
+## Note: The availability and names of SKUs can change. Always refer to the official Azure documentation for the latest information on Log Analytics
+
+### key vault ###
+/*kv_name            = "keyvault1"
+kv_sku_name        = "standard"
+kv_owner_object_id = "d0abdc5c-2ba6-4868-8387-d700969c7111"
+*/

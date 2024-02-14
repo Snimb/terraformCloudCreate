@@ -19,7 +19,6 @@ output "postgresql_flexible_server_admin_password" {
 
 
 ### LOG ANALYTICS ###
-
 output "log_analytics_workspace_id" {
   value       = azurerm_log_analytics_workspace.workspace.id
   description = "Specifies the resource id of the log analytics workspace"
