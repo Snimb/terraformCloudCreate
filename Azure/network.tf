@@ -31,12 +31,13 @@ resource "azurerm_network_security_group" "default" {
 
 # Creates a subnet within the virtual network. This subnet includes a delegation for Azure PostgreSQL Flexible Servers, enabling them to be associated with this subnet.
 resource "azurerm_subnet" "default" {
-  name                                      = "${random_pet.name_prefix.id}-subnet"
-  virtual_network_name                      = azurerm_virtual_network.default.name
-  resource_group_name                       = azurerm_resource_group.default.name
-  address_prefixes                          = [var.address_prefix]
-  private_endpoint_network_policies_enabled = false
-  service_endpoints                         = ["Microsoft.Storage"]
+  name                                          = "${random_pet.name_prefix.id}-subnet"
+  virtual_network_name                          = azurerm_virtual_network.default.name
+  resource_group_name                           = azurerm_resource_group.default.name
+  address_prefixes                              = [var.address_prefix]
+  private_endpoint_network_policies_enabled     = false
+  private_link_service_network_policies_enabled = false
+  service_endpoints                             = ["Microsoft.Storage"]
 
   # The delegation block allows the subnet to be dedicated for specific Azure services, in this case, Azure Database for PostgreSQL. 
   # This setup permits the PostgreSQL service to integrate deeply with the subnet, enhancing network security and performance by enabling direct service connections. 

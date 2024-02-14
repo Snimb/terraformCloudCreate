@@ -3,9 +3,11 @@
 # Enables specified PostgreSQL extensions on the Azure Flexible Server.
 # Extensions like CITEXT for case-insensitive text data types, BTREE_GIST for GiST index operator classes,
 resource "azurerm_postgresql_flexible_server_configuration" "azure_extensions" {
-  name      = "azure.extensions"
+  for_each = var.postgresql_configurations
+
+  name      = each.key
   server_id = azurerm_postgresql_flexible_server.default.id
-  value     = var.postgresql_extensions
+  value     = each.value
 }
 
 # Configures the amount of memory PostgreSQL should use for shared memory buffers.

@@ -36,8 +36,8 @@ variable "cpu_cores" {
 
 ### NETWORK ###
 variable "address_space" {
-  type    = string
-  default = "10.0.0.0/16"
+  type        = string
+  default     = "10.0.0.0/16"
   description = "The address space for the virtual network."
 }
 
@@ -133,42 +133,16 @@ variable "postgresql_configurations" {
   description = "PostgreSQL configurations to enable."
   type        = map(string)
   default = {
-    "pgbouncer.enabled" = "true",
-    "azure.extensions"  = "PG_TRGM"
+    # "pgbouncer.enabled" = "true",
+    "azure.extensions"  = "CITEXT,BTREE_GIST,PG_TRGM"
   }
 }
 
-variable "postgresql_extensions" {
-  description = "List of PostgreSQL extensions to enable on the Azure Flexible Server."
-  type        = string
-  default     = "CITEXT,BTREE_GIST"
-}
-
-
-
 ### LOG ANALYTICS ###
-variable "log_analytics_workspace_rg_name" {
-  description = "(Required) Specifies the resource group name of the log analytics workspace"
-  type        = string
-  default     = "rg-workspace-dev"
-}
-
-variable "log_analytics_workspace_name" {
-  description = "(Required) Specifies the name of the log analytics workspace"
-  type        = string
-  default     = "workspace-workspace1-dev"
-}
-
-variable "log_analytics_workspace_location" {
-  description = "(Required) Specifies the location of the log analytics workspace"
-  type        = string
-  default     = "West Europe"
-}
-
 variable "log_analytics_workspace_sku" {
   description = "(Optional) Specifies the sku of the log analytics workspace"
   type        = string
-  default     = "Free"
+  default     = "PerGB2018"
 }
 
 variable "solution_plan_map" {
@@ -183,22 +157,7 @@ variable "solution_plan_map" {
 }
 
 variable "log_analytics_retention_days" {
-  description = " (Optional) Specifies the workspace data retention in days. Possible values are either 7 (Free Tier only) or range between 30 and 730."
+  description = " (Optional) Specifies the workspace data retention in days. Range between 31 and 730."
   type        = number
-  default     = 7
-}
-
-variable "log_analytics_tags" {
-  description = "(Optional) Specifies the tags of the log analytics"
-  type        = map(any)
-  default     = {}
-}
-
-variable "default_tags" {
-  type = map(any)
-  default = {
-    "Project"   = "Project-1"
-    "Owner"     = "sinwi"
-    "CreatedBy" = "sinwi"
-  }
+  default     = 31
 }

@@ -9,15 +9,9 @@ resource "random_pet" "name_prefix" {
 }
 
 variable "address_prefix" {
-  type    = string
-  default = "10.0.2.0/24"
-  description = "The address prefix for the subnet within the virtual network."
-}
-
-variable "rg_prefix" {
   type        = string
-  default     = "rg"
-  description = "Prefix of the resource group name that's combined with name of the resource group."
+  default     = "10.0.2.0/24"
+  description = "The address prefix for the subnet within the virtual network."
 }
 
 variable "log_analytics_workspace_prefix" {
