@@ -14,34 +14,27 @@ variable "sp-tenant-id" {
   description = "Tenant Id of the azure account."
   type        = string
 }
-/*variable "sp-client-id" {
+
+variable "sp-client-id" {
   description = "Client Id of A Service Principal or Azure Active Directory application registration used for provisioning azure resources."
   type        = string
 }
+
 variable "sp-client-secret" {
   description = "Secret of A Service Principal or Azure Active Directory application registration used for provisioning azure resources."
   type        = string
-*/
+}
 
 # System resources:
 variable "total_memory_mb" {
   description = "Total memory in MB for the PostgreSQL server"
-  default     = 4096 # Example value, adjust as needed.
 }
 
 variable "cpu_cores" {
   description = "Number of CPU cores for the PostgreSQL server"
-  default     = 2 # Example value, adjust as needed.
 }
 
 ### NETWORK ###
-variable "address_space" {
-  type        = string
-  default     = "10.0.0.0/16"
-  description = "The address space for the virtual network."
-}
-
-
 # Variable for defining NSG security rules
 variable "nsg_security_rules" {
   description = "List of security rules for the Network Security Group."
@@ -59,6 +52,111 @@ variable "nsg_security_rules" {
   # The default is set to an empty list because the actual rules will be defined in the tfvars file.
   default = []
 }
+
+variable "hub_gateway_subnet_name" {
+  description = "Specifies the name of the gateway subnet"
+  default     = "HubGateway"
+  type        = string
+}
+
+variable "hub_vnet_address_space" {
+  description = "Specifies the address space of the hub virtual virtual network"
+  type        = list(string)
+}
+
+variable "hub_bastion_subnet_name" {
+  description = "Specifies the name of the hub vnet AzureBastion subnet"
+  default     = "AzureBastionSubnet"
+  type        = string
+}
+
+variable "hub_bastion_subnet_address_prefixes" {
+  description = "Specifies the address prefix of the hub bastion host subnet"
+  type        = list(string)
+}
+
+variable "hub_firewall_subnet_name" {
+  description = "Specifies the name of the azure firewall subnet"
+  type        = string
+  default     = "AzureFirewallSubnet"
+}
+
+variable "hub_firewall_subnet_address_prefixes" {
+  description = "Specifies the address prefix of the azure firewall subnet"
+  type        = list(string)
+}
+
+variable "hub_vnet_name" {
+  description = "Specifies the name of the hub virtual virtual network"
+  default     = "vnet-hub"
+  type        = string
+}
+
+variable "spoke_vnet_name" {
+  description = "Specifies the name of the spoke virtual virtual network"
+  type        = string
+  default     = "vnet-spoke"
+}
+
+variable "spoke_vnet_address_space" {
+  description = "Specifies the address space of the spoke virtual virtual network"
+  type        = list(string)
+}
+
+variable "jumpbox_subnet_name" {
+  description = "Specifies the name of the jumpbox subnet"
+  default     = "snet-jumpbox"
+  type        = string
+}
+
+variable "psql_name" {
+  description = "(Required) The name which should be used for this PostgreSQL Flexible Server."
+  type        = string
+  default     = "psql-server"
+}
+
+variable "jumpbox_subnet_address_prefix" {
+  description = "Specifies the address prefix of the jumbox subnet"
+  type        = list(string)
+}
+
+variable "appgtw_subnet_name" {
+  description = "Specifies the name of the application gateway subnet"
+  type        = string
+  default     = "appgtw"
+}
+
+variable "appgtw_address_prefixes" {
+  description = "Specifies the address prefix of the application gateway"
+  type        = list(string)
+}
+
+variable "psql_subnet_name" {
+  description = "Specifies the name of the PostgreSQL server subnet"
+  type        = string
+  default     = "psqlSubnet"
+}
+
+variable "psql_address_prefixes" {
+  description = "Specifies the address prefix of the postgreSQL server"
+  type        = list(string)
+
+}
+
+variable "vnet_log_analytics_retention_days" {
+  description = "Specifies the number of days of the retention policy"
+  type        = number
+  default     = 31
+}
+
+variable "gateway_address_prefixes" {
+  type = list(string)
+}
+
+variable "gatewaysubnet_address_prefixes" {
+  type = list(string)
+}
+
 
 ### POSTGRESQL ###
 variable "psql_sku_name" {
@@ -134,7 +232,7 @@ variable "postgresql_configurations" {
   type        = map(string)
   default = {
     # "pgbouncer.enabled" = "true",
-    "azure.extensions"  = "CITEXT,BTREE_GIST,PG_TRGM"
+    "azure.extensions" = "CITEXT,BTREE_GIST,PG_TRGM"
   }
 }
 
@@ -160,4 +258,225 @@ variable "log_analytics_retention_days" {
   description = " (Optional) Specifies the workspace data retention in days. Range between 31 and 730."
   type        = number
   default     = 31
+}
+
+// ========================== Key Vault ==========================
+data "azurerm_client_config" "current" {}
+
+variable "kv_name" {
+  description = "(Required) Specifies the name of the key vault."
+  type        = string
+  default     = "azurekeyvault"
+}
+
+variable "kv_owner_object_id" {
+  description = "(Required) object ids of the key vault owners who needs access to key vault."
+  type        = string
+  default     = "d0abdc5c-2ba6-4868-8387-d700969c786f"
+}
+
+variable "kv_sku_name" {
+  description = "(Required) The Name of the SKU used for this Key Vault. Possible values are standard and premium."
+  type        = string
+  default     = "standard"
+
+  validation {
+    condition     = contains(["standard", "premium"], var.kv_sku_name)
+    error_message = "The value of the sku name property of the key vault is invalid."
+  }
+}
+
+variable "enabled_for_deployment" {
+  description = "(Optional) Boolean flag to specify whether Azure Virtual Machines are permitted to retrieve certificates stored as secrets from the key vault. Defaults to false."
+  type        = bool
+  default     = false
+}
+
+variable "enabled_for_disk_encryption" {
+  description = " (Optional) Boolean flag to specify whether Azure Disk Encryption is permitted to retrieve secrets from the vault and unwrap keys. Defaults to false."
+  type        = bool
+  default     = false
+}
+
+variable "enabled_for_template_deployment" {
+  description = "(Optional) Boolean flag to specify whether Azure Resource Manager is permitted to retrieve secrets from the key vault. Defaults to false."
+  type        = bool
+  default     = false
+}
+
+variable "enable_rbac_authorization" {
+  description = "(Optional) Boolean flag to specify whether Azure Key Vault uses Role Based Access Control (RBAC) for authorization of data actions. Defaults to false."
+  type        = bool
+  default     = false
+}
+
+variable "purge_protection_enabled" {
+  description = "(Optional) Is Purge Protection enabled for this Key Vault? Defaults to false."
+  type        = bool
+  default     = false
+}
+
+variable "soft_delete_retention_days" {
+  description = "(Optional) The number of days that items should be retained for once soft-deleted. This value can be between 7 and 90 (the default) days."
+  type        = number
+  default     = 30
+}
+
+variable "bypass" {
+  description = "(Required) Specifies which traffic can bypass the network rules. Possible values are AzureServices and None."
+  type        = string
+  default     = "AzureServices"
+
+  validation {
+    condition     = contains(["AzureServices", "None"], var.bypass)
+    error_message = "The valut of the bypass property of the key vault is invalid."
+  }
+}
+
+variable "kv_default_action" {
+  description = "(Required) The Default Action to use when no rules match from ip_rules / virtual_network_subnet_ids. Possible values are Allow and Deny."
+  type        = string
+  default     = "Allow"
+
+  validation {
+    condition     = contains(["Allow", "Deny"], var.kv_default_action)
+    error_message = "The value of the default action property of the key vault is invalid."
+  }
+}
+
+variable "kv_ip_rules" {
+  description = "(Optional) One or more IP Addresses, or CIDR Blocks which should be able to access the Key Vault."
+  default     = []
+}
+
+variable "kv_virtual_network_subnet_ids" {
+  description = "(Optional) One or more Subnet ID's which should be able to access this Key Vault."
+  default     = [] # use this if virtual networking provisioned separately
+}
+
+variable "kv_key_permissions_full" {
+  type        = list(string)
+  description = "List of full key permissions, must be one or more from the following: backup, create, decrypt, delete, encrypt, get, import, list, purge, recover, restore, sign, unwrapKey, update, verify and wrapKey."
+  default     = ["Backup", "Create", "Decrypt", "Delete", "Encrypt", "Get", "Import", "List", "Purge", "Recover", "Restore", "Sign", "UnwrapKey", "Update", "Verify", "WrapKey", "Release", "Rotate", "GetRotationPolicy", "SetRotationPolicy"]
+}
+
+variable "kv_secret_permissions_full" {
+  type        = list(string)
+  description = "List of full secret permissions, must be one or more from the following: backup, delete, get, list, purge, recover, restore and set"
+  default     = ["Backup", "Delete", "Get", "List", "Purge", "Recover", "Restore", "Set"]
+
+}
+
+variable "kv_certificate_permissions_full" {
+  type        = list(string)
+  description = "List of full certificate permissions, must be one or more from the following: backup, create, delete, deleteissuers, get, getissuers, import, list, listissuers, managecontacts, manageissuers, purge, recover, restore, setissuers and update"
+  default     = ["Backup", "Create", "Delete", "DeleteIssuers", "Get", "GetIssuers", "Import", "List", "ListIssuers", "ManageContacts", "ManageIssuers", "Purge", "Recover", "Restore", "SetIssuers", "Update"]
+}
+
+variable "kv_storage_permissions_full" {
+  type        = list(string)
+  description = "List of full storage permissions, must be one or more from the following: backup, delete, deletesas, get, getsas, list, listsas, purge, recover, regeneratekey, restore, set, setsas and update"
+  default     = ["Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update", ]
+}
+
+
+### storage account variables ###
+variable "storage_name" {
+  description = "(Required) Specifies the name of the storage account"
+  default     = "storage1"
+  type        = string
+}
+variable "storage_account_kind" {
+  description = "(Optional) Specifies the account kind of the storage account"
+  default     = "StorageV2"
+  type        = string
+
+  validation {
+    condition     = contains(["Storage", "StorageV2", "BlobStorage", "BlockBlobStorage", "FileStorage"], var.storage_account_kind)
+    error_message = "The account kind of the storage account is invalid."
+  }
+}
+variable "storage_access_tier" {
+  description = "(Optional) Defines the access tier for BlobStorage, FileStorage and StorageV2 accounts. Valid options are Hot and Cool, defaults to Hot."
+  default     = "Hot"
+  type        = string
+
+  validation {
+    condition     = contains(["Hot", "Cool"], var.storage_access_tier)
+    error_message = "The access tier of the storage account is invalid."
+  }
+}
+variable "storage_account_tier" {
+  description = "(Optional) Specifies the account tier of the storage account"
+  default     = "Standard"
+  type        = string
+
+  validation {
+    condition     = contains(["Standard", "Premium"], var.storage_account_tier)
+    error_message = "The account tier of the storage account is invalid."
+  }
+}
+variable "storage_allow_blob_public_access" {
+  description = "(Optional) Specifies the public access type for blob storage"
+  default     = false
+  type        = bool
+}
+variable "storage_replication_type" {
+  description = "(Optional) Specifies the replication type of the storage account"
+  default     = "LRS"
+  type        = string
+
+  validation {
+    condition     = contains(["LRS", "GRS", "RAGRS", "ZRS", "GZRS", "RAGZRS"], var.storage_replication_type)
+    error_message = "The replication type of the storage account is invalid."
+  }
+}
+variable "storage_is_hns_enabled" {
+  description = "(Optional) Specifies the replication type of the storage account"
+  default     = false
+  type        = bool
+}
+variable "storage_default_action" {
+  description = "Allow or disallow public access to all blobs or containers in the storage accounts. The default interpretation is true for this property."
+  default     = "Allow"
+  type        = string
+}
+variable "storage_ip_rules" {
+  description = "Specifies IP rules for the storage account"
+  default     = []
+  type        = list(string)
+}
+variable "storage_virtual_network_subnet_ids" {
+  description = "Specifies a list of resource ids for subnets"
+  default     = []
+  type        = list(string)
+}
+variable "storage_kind" {
+  description = "(Optional) Specifies the kind of the storage account"
+  default     = ""
+}
+variable "storage_container_name" {
+  description = " (Required) The name of the Container within the Blob Storage Account where kafka messages should be captured"
+  type        = string
+  default     = "container1"
+}
+variable "storage_file_share_name" {
+  description = " (Required) The name of the File Share within the Storage Account where Files should be stored"
+  type        = string
+  default     = "file-share-1"
+}
+variable "storage_tags" {
+  description = "(Optional) Specifies the tags of the storage account"
+  type        = map(any)
+  default     = {}
+}
+variable "pe_blob_subresource_names" {
+  description = "(Optional) Specifies a subresource names which the Private Endpoint is able to connect to Blob."
+  type        = list(string)
+  default     = ["blob"]
+}
+variable "pe_blob_private_dns_zone_group_name" {
+  description = "(Required) Specifies the Name of the Private DNS Zone Group for Blob. "
+  type        = string
+  default     = "BlobPrivateDnsZoneGroup"
 }
