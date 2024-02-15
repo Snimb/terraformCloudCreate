@@ -157,35 +157,6 @@ catch {
 Write-Host "SUCCESS!" -ForegroundColor 'Green'
 
 
-# # New Storage Container
-# if(Get-AzStorageContainer -Name $storageContainerName -ErrorAction SilentlyContinue)  
-# {  
-#     Write-Host -ForegroundColor Magenta $storageContainerName "- Storage Container already exists."  
-# }  
-# else  
-# {
-#     Write-Host "`nCreating Storage Container: [$storageContainerName]..."
-#     try {
-#         $azStorageContainerParams = @{
-#             Name        = $storageContainerName
-#             Permission  = 'Off'
-#             # ErrorAction = 'Stop'
-#             Verbose     = $VerbosePreference
-#         }
-
-#         $storageAccountKey = (Get-AzStorageAccountKey -ResourceGroupName $resourceGroupName -Name $storageAccountName)[0].Value
-#         $storageContext = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey
-
-#         New-AzStorageContainer @azStorageContainerParams -Context $storageContext | Out-String | Write-Verbose
-#     } catch {
-#         Write-Host "ERROR!" -ForegroundColor 'Red'
-#         throw $_
-#     }
-#     Write-Host "SUCCESS!" -ForegroundColor 'Green'
-# }
-
-# New KeyVault
-
 Write-Host "`nCreating Key Vault for terraform secrets: [$vaultName]..."
 if (Get-AzKeyVault -Name $vaultName -ErrorAction SilentlyContinue) {  
     Write-Host -ForegroundColor Magenta $vaultName "- Key Vault already exists."  

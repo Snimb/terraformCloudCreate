@@ -1,4 +1,3 @@
-# Creates a virtual network with a predefined address space. This network will contain all other network-related resources.
 resource "azurerm_virtual_network" "hub_vnet" {
   name                = lower("${var.hub_vnet_name}-${random_pet.name_prefix.id}-${local.environment}")
   location            = azurerm_resource_group.default.location

@@ -1,3 +1,11 @@
+# Azure resources
+variable "rg_name" {
+  description = "Name of the main resource group name for project-1"
+  type        = string
+  default = "project-1"
+}
+
+
 # variable for location
 variable "location" {
   default     = "West Europe" # Default location for all resources.
@@ -143,11 +151,11 @@ variable "psql_address_prefixes" {
 
 }
 
-variable "vnet_log_analytics_retention_days" {
+/*variable "vnet_log_analytics_retention_days" {
   description = "Specifies the number of days of the retention policy"
   type        = number
   default     = 31
-}
+}*/
 
 variable "gateway_address_prefixes" {
   type = list(string)
@@ -406,6 +414,13 @@ variable "storage_access_tier" {
     error_message = "The access tier of the storage account is invalid."
   }
 }
+
+variable "storage_account_retention_days" {
+  type        = number
+  description = "The number of days to retain logs and metrics in the storage account."
+
+}
+
 variable "storage_account_tier" {
   description = "(Optional) Specifies the account tier of the storage account"
   default     = "Standard"

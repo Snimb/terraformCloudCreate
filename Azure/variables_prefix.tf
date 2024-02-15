@@ -1,3 +1,9 @@
+variable "rg_prefix" {
+  type        = string
+  default     = "rg"
+  description = "Prefix of the resource group name that's combined with name of the resource group."
+}
+
 variable "name_prefix" {
   default     = "postgresqlfs" # Default prefix for resource names to ensure uniqueness.
   description = "Prefix of the resource name."
