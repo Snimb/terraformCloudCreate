@@ -1,10 +1,8 @@
-/*
 terraform {
   backend "azurerm" {
-    resource_group_name  = "rg-tf-mgmt-project1"
-    storage_account_name = "sttfstatesdev"
-    container_name       = "terraformstates"
+    resource_group_name  = "rg-tfmgmt-dev"
+    storage_account_name = "storageacctfstatesdev"
+    container_name       = "tfmgmtstates"
     key                  = "project1-state-"
   }
 }
-*/

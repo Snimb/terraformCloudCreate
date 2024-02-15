@@ -2,7 +2,7 @@
 variable "rg_name" {
   description = "Name of the main resource group name for project-1"
   type        = string
-  default = "project-1"
+  default     = "project-1"
 }
 
 
@@ -274,7 +274,7 @@ data "azurerm_client_config" "current" {}
 variable "kv_name" {
   description = "(Required) Specifies the name of the key vault."
   type        = string
-  default     = "azurekeyvault"
+  default     = "azurekv"
 }
 
 variable "kv_owner_object_id" {

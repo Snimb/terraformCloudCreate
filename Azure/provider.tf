@@ -19,7 +19,7 @@ provider "azurerm" {
   features {} # Required block for Azure provider, even if empty, to specify provider-specific features.
   subscription_id = var.sp-subscription-id
   tenant_id       = var.sp-tenant-id
-  # client_secret = "var.sp-client-secret"
-  # client_id     = "var.sp-client-id"
+  client_secret   = var.sp-client-secret
+  client_id       = var.sp-client-id
 
 }

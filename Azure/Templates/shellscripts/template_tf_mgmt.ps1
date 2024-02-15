@@ -259,3 +259,15 @@ catch {
     throw $_
 }
 Write-Host "SUCCESS!" -ForegroundColor 'Green'
+
+# Create Storage Container
+Write-Host "`nCreating Storage Container: [$storageContainerName] in the Storage Account: [$storageAccountName]..."
+try {
+    $storageContext = New-AzStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccessKey
+    New-AzStorageContainer -Name $storageContainerName -Context $storageContext -ErrorAction Stop | Out-String | Write-Verbose
+    Write-Host "SUCCESS!" -ForegroundColor 'Green'
+}
+catch {
+    Write-Host "ERROR creating storage container:" -ForegroundColor 'Red'
+    throw $_
+}

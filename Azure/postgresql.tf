@@ -75,6 +75,13 @@ resource "azurerm_postgresql_flexible_server_database" "default" {
 
 
 # Set a user or group as the AD administrator for a PostgreSQL Flexible Server.
+resource "azuread_group" "psql_admin_group" {
+  display_name     = "psql-admin-group"
+  security_enabled = true
+  description      = "Group for PostgreSQL admin users"
+}
+
+
 data "azuread_group" "azuread_psql_admin_group" {
   display_name     = "psql-admin-group"
   security_enabled = true
