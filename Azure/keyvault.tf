@@ -24,9 +24,12 @@ resource "azurerm_key_vault" "kv" {
     secret_permissions      = var.kv_secret_permissions_full
     storage_permissions     = var.kv_storage_permissions_full
   }
+
   network_acls {
-    default_action = "Allow"
-    bypass         = "AzureServices"
+    default_action             = "Allow"
+    bypass                     = "AzureServices"
+    ip_rules                   = var.kv_ip_rules
+    virtual_network_subnet_ids = var.kv_virtual_network_subnet_ids
   }
   depends_on = [
     azurerm_resource_group.default,
@@ -68,6 +71,7 @@ resource "azurerm_private_endpoint" "pe_kv" {
   private_service_connection {
     name                           = "pe-${azurerm_key_vault.kv.name}"
     private_connection_resource_id = azurerm_key_vault.kv.id
+    subresource_names              = ["vault"]
     is_manual_connection           = false
   }
 
@@ -119,7 +123,7 @@ resource "azurerm_key_vault_secret" "secret_3" {
 }
 
 # Create key vault secret for storage account accesskey
-resource "azurerm_key_vault_secret" "secret_4" {
+/*resource "azurerm_key_vault_secret" "secret_4" {
   name         = "storage-account-accesskey"
   value        = azurerm_storage_account.st.primary_access_key
   key_vault_id = azurerm_key_vault.kv.id
@@ -128,4 +132,4 @@ resource "azurerm_key_vault_secret" "secret_4" {
     azurerm_key_vault.kv,
     azurerm_storage_account.st
   ]
-}
+}*/

@@ -8,6 +8,18 @@ resource "azurerm_virtual_network" "hub_vnet" {
   ]
 }
 
+# Create spoke virtual network
+resource "azurerm_virtual_network" "vnet" {
+  name                = lower("${var.spoke_vnet_name}-${random_pet.name_prefix.id}-${local.environment}")
+  address_space       = var.spoke_vnet_address_space
+  resource_group_name = azurerm_resource_group.default.name
+  location            = azurerm_resource_group.default.location
+  depends_on = [
+    azurerm_resource_group.default,
+  ]
+}
+
+
 # Defines a network security group with a generic rule to allow all inbound TCP traffic. Adjust the rules based on your security requirements.
 resource "azurerm_network_security_group" "default" {
   name                = lower("${var.nsg_prefix}-${random_pet.name_prefix.id}-${local.environment}")
@@ -32,7 +44,7 @@ resource "azurerm_network_security_group" "default" {
 
 # Creates a subnet within the virtual network. This subnet includes a delegation for Azure PostgreSQL Flexible Servers, enabling them to be associated with this subnet.
 resource "azurerm_subnet" "psql" {
-  name                                          = lower("${var.subnet_prefix}-${random_pet.name_prefix.id}-${var.psql_subnet_name}")
+  name                                          = lower("${random_pet.name_prefix.id}-${var.psql_subnet_name}")
   resource_group_name                           = azurerm_resource_group.default.name
   virtual_network_name                          = azurerm_virtual_network.vnet.name
   address_prefixes                              = var.psql_address_prefixes
@@ -56,8 +68,6 @@ resource "azurerm_subnet" "psql" {
     azurerm_virtual_network.vnet
   ]
 }
-
-
 
 # Associates the previously defined network security group with the subnet. This applies the security group's rules to the subnet.
 resource "azurerm_subnet_network_security_group_association" "default" {
@@ -84,7 +94,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "default" {
 
 // jumpm VM server subnet
 resource "azurerm_subnet" "jumpbox" {
-  name                                          = lower("${var.subnet_prefix}-${random_pet.name_prefix.id}-${var.jumpbox_subnet_name}")
+  name                                          = lower("${random_pet.name_prefix.id}-${var.jumpbox_subnet_name}")
   resource_group_name                           = azurerm_virtual_network.vnet.resource_group_name
   virtual_network_name                          = azurerm_virtual_network.vnet.name
   address_prefixes                              = var.jumpbox_subnet_address_prefix
@@ -144,18 +154,6 @@ resource "azurerm_subnet" "firewall" {
     azurerm_virtual_network.hub_vnet
   ]
 }
-
-# Create spoke virtual network
-resource "azurerm_virtual_network" "vnet" {
-  name                = lower("${var.spoke_vnet_name}-${random_pet.name_prefix.id}-${local.environment}")
-  address_space       = var.spoke_vnet_address_space
-  resource_group_name = azurerm_resource_group.default.name
-  location            = azurerm_resource_group.default.location
-  depends_on = [
-    azurerm_resource_group.default,
-  ]
-}
-
 
 // gateway subnet
 resource "azurerm_subnet" "gateway" {

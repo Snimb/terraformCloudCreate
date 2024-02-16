@@ -1,11 +1,3 @@
-# Azure resources
-variable "rg_name" {
-  description = "Name of the main resource group name for project-1"
-  type        = string
-  default     = "project-1"
-}
-
-
 # variable for location
 variable "location" {
   default     = "West Europe" # Default location for all resources.
@@ -65,6 +57,11 @@ variable "hub_gateway_subnet_name" {
   description = "Specifies the name of the gateway subnet"
   default     = "HubGateway"
   type        = string
+}
+
+variable "hub_gateway_subnet_address_prefixes" {
+  description = "Specifies the address prefix of the hub gateway subnet"
+  type        = list(string)
 }
 
 variable "hub_vnet_address_space" {
@@ -151,12 +148,6 @@ variable "psql_address_prefixes" {
 
 }
 
-/*variable "vnet_log_analytics_retention_days" {
-  description = "Specifies the number of days of the retention policy"
-  type        = number
-  default     = 31
-}*/
-
 variable "gateway_address_prefixes" {
   type = list(string)
 }
@@ -170,7 +161,6 @@ variable "gatewaysubnet_address_prefixes" {
 variable "psql_sku_name" {
   description = "(Optional) The SKU Name for the PostgreSQL Flexible Server. The name of the SKU, follows the tier + name pattern (e.g. B_Standard_B1ms, GP_Standard_D2s_v3, MO_Standard_E4s_v3). "
   type        = string
-  default     = "B_Standard_B1ms"
 }
 
 variable "psql_admin_login" {
@@ -182,19 +172,16 @@ variable "psql_admin_login" {
 variable "psql_version" {
   description = "(Optional) The version of PostgreSQL Flexible Server to use. Required when create_mode is Default."
   type        = string
-  default     = "15"
 }
 
 variable "psql_storage_mb" {
   description = "(Optional) The max storage allowed for the PostgreSQL Flexible Server. Possible values are 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4193280, 4194304, 8388608, 16777216 and 33553408."
   type        = string
-  default     = "32768"
 }
 
 variable "backup_retention_days" {
   description = "The number of days backups are retained. Azure allows a minimum of 7 and a maximum of 35 days for backup retention."
   type        = string
-  default     = "7"
 }
 
 variable "geo_redundant_backup_enabled" {
@@ -212,7 +199,6 @@ variable "auto_grow_enabled" {
 variable "zone" {
   description = "The availability zone in which to deploy the Azure PostgreSQL Flexible Server"
   type        = string
-  default     = "1"
 }
 
 variable "maintenance_window" {
@@ -251,7 +237,7 @@ variable "log_analytics_workspace_sku" {
   default     = "PerGB2018"
 }
 
-variable "solution_plan_map" {
+/*variable "solution_plan_map" {
   description = "(Required) Specifies solutions to deploy to log analytics workspace"
   type        = map(any)
   default = {
@@ -260,12 +246,22 @@ variable "solution_plan_map" {
       publisher = "Microsoft"
     }
   }
+}*/
+
+variable "solution_plan_map" {
+  description = "(Required) Specifies solutions to deploy to log analytics workspace"
+  type        = map(any)
+  default = {
+    ContainerInsight = {
+      product   = "Microsoft.ContainerService/ContainerInsights"
+      publisher = "Microsoft"
+    }
+  }
 }
 
 variable "log_analytics_retention_days" {
   description = " (Optional) Specifies the workspace data retention in days. Range between 31 and 730."
   type        = number
-  default     = 31
 }
 
 // ========================== Key Vault ==========================
@@ -389,14 +385,13 @@ variable "kv_storage_permissions_full" {
 
 
 ### storage account variables ###
-variable "storage_name" {
+/*variable "storage_name" {
   description = "(Required) Specifies the name of the storage account"
-  default     = "storage1"
   type        = string
 }
+
 variable "storage_account_kind" {
   description = "(Optional) Specifies the account kind of the storage account"
-  default     = "StorageV2"
   type        = string
 
   validation {
@@ -404,9 +399,9 @@ variable "storage_account_kind" {
     error_message = "The account kind of the storage account is invalid."
   }
 }
+
 variable "storage_access_tier" {
   description = "(Optional) Defines the access tier for BlobStorage, FileStorage and StorageV2 accounts. Valid options are Hot and Cool, defaults to Hot."
-  default     = "Hot"
   type        = string
 
   validation {
@@ -418,12 +413,10 @@ variable "storage_access_tier" {
 variable "storage_account_retention_days" {
   type        = number
   description = "The number of days to retain logs and metrics in the storage account."
-
 }
 
 variable "storage_account_tier" {
   description = "(Optional) Specifies the account tier of the storage account"
-  default     = "Standard"
   type        = string
 
   validation {
@@ -431,14 +424,9 @@ variable "storage_account_tier" {
     error_message = "The account tier of the storage account is invalid."
   }
 }
-variable "storage_allow_blob_public_access" {
-  description = "(Optional) Specifies the public access type for blob storage"
-  default     = false
-  type        = bool
-}
+
 variable "storage_replication_type" {
   description = "(Optional) Specifies the replication type of the storage account"
-  default     = "LRS"
   type        = string
 
   validation {
@@ -446,52 +434,49 @@ variable "storage_replication_type" {
     error_message = "The replication type of the storage account is invalid."
   }
 }
+
 variable "storage_is_hns_enabled" {
   description = "(Optional) Specifies the replication type of the storage account"
-  default     = false
   type        = bool
 }
+
 variable "storage_default_action" {
   description = "Allow or disallow public access to all blobs or containers in the storage accounts. The default interpretation is true for this property."
-  default     = "Allow"
   type        = string
 }
+
 variable "storage_ip_rules" {
   description = "Specifies IP rules for the storage account"
   default     = []
   type        = list(string)
 }
+
 variable "storage_virtual_network_subnet_ids" {
   description = "Specifies a list of resource ids for subnets"
   default     = []
   type        = list(string)
 }
-variable "storage_kind" {
-  description = "(Optional) Specifies the kind of the storage account"
-  default     = ""
-}
-variable "storage_container_name" {
-  description = " (Required) The name of the Container within the Blob Storage Account where kafka messages should be captured"
-  type        = string
-  default     = "container1"
-}
+
 variable "storage_file_share_name" {
   description = " (Required) The name of the File Share within the Storage Account where Files should be stored"
   type        = string
-  default     = "file-share-1"
 }
-variable "storage_tags" {
-  description = "(Optional) Specifies the tags of the storage account"
-  type        = map(any)
-  default     = {}
-}
+
 variable "pe_blob_subresource_names" {
   description = "(Optional) Specifies a subresource names which the Private Endpoint is able to connect to Blob."
   type        = list(string)
   default     = ["blob"]
 }
+
 variable "pe_blob_private_dns_zone_group_name" {
   description = "(Required) Specifies the Name of the Private DNS Zone Group for Blob. "
   type        = string
   default     = "BlobPrivateDnsZoneGroup"
+}
+*/
+
+### Management VM ###
+variable "admin_username" {
+  description = "The username of the VM"
+  type        = string
 }

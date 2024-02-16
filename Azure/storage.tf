@@ -1,4 +1,4 @@
-# create azure storage account
+/*# create azure storage account
 resource "azurerm_storage_account" "st" {
   name                     = "st${var.storage_name}${local.environment}"
   resource_group_name      = azurerm_resource_group.default.name
@@ -87,3 +87,25 @@ resource "azurerm_private_endpoint" "pe_blob" {
     azurerm_private_dns_zone.pdz_blob
   ]
 }
+
+# Storage Management Policy for Storage Account
+resource "azurerm_storage_management_policy" "st_mgmt_policy" {
+  storage_account_id = azurerm_storage_account.st.id
+
+  rule {
+    name    = "retention-policy"
+    enabled = true
+    filters {
+      blob_types   = ["blockBlob"]
+      prefix_match = ["logs/", "metrics/"]
+    }
+    actions {
+      base_blob {
+        delete_after_days_since_modification_greater_than = var.storage_account_retention_days
+      }
+      snapshot {
+        delete_after_days_since_creation_greater_than = var.storage_account_retention_days
+      }
+    }
+  }
+}*/

@@ -1,7 +1,3 @@
-output "resource_group_name_rg" {
-  value = azurerm_resource_group.rg.name
-}
-
 output "resource_group_name_default" {
   value = azurerm_resource_group.default.name # Outputs the name of the created resource group.
 }
