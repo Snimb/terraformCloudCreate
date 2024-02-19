@@ -1,69 +1,32 @@
-/*
-resource "azurerm_linux_virtual_machine" "mag_vm" {
-  name                  = "${random_pet.name_prefix.id}-vm"
-  resource_group_name   = azurerm_resource_group.default.name
-  location              = azurerm_resource_group.default.location
-  computer_name         = "Management VM"
-  size                  = "Standard_DS1_v2"
-  admin_username        = var.admin_username
-  network_interface_ids = [azurerm_network_interface.vm_nic.id]
-  admin_ssh_key {
-    username   = "azureuser"
-    public_key = file("C:\\Users\\sinwi\\.ssh\\id_rsa.pub")
-  }
-  custom_data = filebase64("shellscripts/init-vm-script.sh") # Optional, use if you have a cloud-init script
-  os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Premium_LRS"
-  }
-  source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "20.04-LTS"
-    version   = "latest"
-  }
-  admin_password                  = data.azurerm_key_vault_secret.secret_1.value
-  disable_password_authentication = true
-
-  depends_on = [azurerm_key_vault_secret.secret_1]
-}
-
-resource "azurerm_network_interface" "vm_nic" {
-  name                = "${random_pet.name_prefix.id}-nic"
-  location            = azurerm_resource_group.default.location
-  resource_group_name = azurerm_resource_group.default.name
-
-  ip_configuration {
-    name                          = "internal"
-    subnet_id                     = azurerm_subnet.jumpbox.id
-    private_ip_address_allocation = "Dynamic"
-  }
-}
-*/
-
 resource "azurerm_linux_virtual_machine" "mgmt_vm" {
   name                            = lower("${random_pet.name_prefix.id}-vm")
   resource_group_name             = azurerm_resource_group.default.name
   location                        = azurerm_resource_group.default.location
-  size                            = "Standard_DS1_v2"
-  admin_username                  = var.admin_username
+  size                            = var.vm_size
+  admin_username                  = var.vm_admin_username
   network_interface_ids           = [azurerm_network_interface.vm_nic.id]
   disable_password_authentication = true
+
   admin_ssh_key {
-    username   = "sinwi"
-    public_key = file("C:\\Users\\sinwi\\.ssh\\id_rsa.pub") # Ensure this variable is defined in your variables file
+    username   = var.admin_ssh_key_username
+    public_key = file(var.admin_public_key_path) # Ensure this variable is defined in your variables file
   }
 
   os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Premium_LRS"
+    caching              = var.os_disk_caching
+    storage_account_type = var.storage_account_type
+  }
+
+  identity {
+    type         = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.default.id]
   }
 
   source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
-    version   = "latest"
+    publisher = var.image_publisher
+    offer     = var.image_offer
+    sku       = var.image_sku
+    version   = var.image_version
   }
 
 
@@ -92,14 +55,44 @@ data "template_file" "init_script" {
   }
 }
 
-/*resource "azurerm_private_dns_zone" "postgres" {
-  name                = "privatelink.postgres.database.azure.com"
+resource "azurerm_key_vault_access_policy" "vm" {
+  key_vault_id = azurerm_key_vault.kv.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = azurerm_user_assigned_identity.default.principal_id
+
+  secret_permissions = var.kv_secret_permissions_full
+}
+
+resource "azurerm_user_assigned_identity" "default" {
+  location            = azurerm_resource_group.default.location
+  name                = "default"
   resource_group_name = azurerm_resource_group.default.name
 }
 
-resource "azurerm_private_dns_zone_virtual_network_link" "vm_link" {
-  name                  = "vm-link"
-  resource_group_name   = azurerm_resource_group.default.name
-  private_dns_zone_name = azurerm_private_dns_zone.postgres.name
-  virtual_network_id    = azurerm_virtual_network.vnet.id
-}*/
+/*resource "azurerm_virtual_machine_extension" "diag_vm" {
+  name                 = "diag_vm-diagnostics-extension"
+  virtual_machine_id   = azurerm_linux_virtual_machine.mgmt_vm.id
+  publisher            = "Microsoft.Azure.Diagnostics"
+  type                 = "LinuxDiagnostic"
+  type_handler_version = "4.0" # Make sure to use a supported version for your VM's OS
+
+  settings = <<SETTINGS
+{
+  "ladCfg": {
+    "diagnosticMonitorConfiguration": {
+      "metrics": {
+        "resourceId": "${azurerm_linux_virtual_machine.mgmt_vm.id}"
+      }
+    }
+  }
+}
+SETTINGS
+
+  protected_settings = <<PROTECTED_SETTINGS
+{
+  "workspaceId": "${azurerm_log_analytics_workspace.workspace.workspace_id}",
+  "workspaceKey": "${azurerm_log_analytics_workspace.workspace.primary_shared_key}"
+}
+PROTECTED_SETTINGS
+}
+*/

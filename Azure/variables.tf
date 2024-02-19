@@ -69,22 +69,6 @@ variable "nsg_security_rules" {
   default = []
 }
 
-/*variable "hub_gateway_subnet_name" {
-  description = "Specifies the name of the gateway subnet"
-  default     = "HubGateway"
-  type        = string
-}
-
-variable "hub_gateway_subnet_address_prefixes" {
-  description = "Specifies the address prefix of the hub gateway subnet"
-  type        = list(string)
-}*/
-
-/*variable "hub_vnet_address_space" {
-  description = "Specifies the address space of the hub virtual virtual network"
-  type        = list(string)
-}*/
-
 variable "hub_bastion_subnet_name" {
   description = "Specifies the name of the hub vnet AzureBastion subnet"
   default     = "AzureBastionSubnet"
@@ -95,23 +79,6 @@ variable "hub_bastion_subnet_address_prefixes" {
   description = "Specifies the address prefix of the hub bastion host subnet"
   type        = list(string)
 }
-
-/*variable "hub_firewall_subnet_name" {
-  description = "Specifies the name of the azure firewall subnet"
-  type        = string
-  default     = "AzureFirewallSubnet"
-}
-
-variable "hub_firewall_subnet_address_prefixes" {
-  description = "Specifies the address prefix of the azure firewall subnet"
-  type        = list(string)
-}*/
-
-/*variable "hub_vnet_name" {
-  description = "Specifies the name of the hub virtual virtual network"
-  default     = "vnet-hub"
-  type        = string
-}*/
 
 variable "spoke_vnet_name" {
   description = "Specifies the name of the spoke virtual virtual network"
@@ -141,6 +108,50 @@ variable "jumpbox_subnet_address_prefix" {
   type        = list(string)
 }
 
+variable "psql_subnet_name" {
+  description = "Specifies the name of the PostgreSQL server subnet"
+  type        = string
+  default     = "psqlSubnet"
+}
+
+variable "psql_address_prefixes" {
+  description = "Specifies the address prefix of the postgreSQL server"
+  type        = list(string)
+}
+
+/*variable "hub_gateway_subnet_name" {
+  description = "Specifies the name of the gateway subnet"
+  default     = "HubGateway"
+  type        = string
+}
+
+variable "hub_gateway_subnet_address_prefixes" {
+  description = "Specifies the address prefix of the hub gateway subnet"
+  type        = list(string)
+}*/
+
+/*variable "hub_vnet_address_space" {
+  description = "Specifies the address space of the hub virtual virtual network"
+  type        = list(string)
+}*/
+
+/*variable "hub_firewall_subnet_name" {
+  description = "Specifies the name of the azure firewall subnet"
+  type        = string
+  default     = "AzureFirewallSubnet"
+}
+
+variable "hub_firewall_subnet_address_prefixes" {
+  description = "Specifies the address prefix of the azure firewall subnet"
+  type        = list(string)
+}*/
+
+/*variable "hub_vnet_name" {
+  description = "Specifies the name of the hub virtual virtual network"
+  default     = "vnet-hub"
+  type        = string
+}*/
+
 /*variable "appgtw_subnet_name" {
   description = "Specifies the name of the application gateway subnet"
   type        = string
@@ -151,18 +162,6 @@ variable "appgtw_address_prefixes" {
   description = "Specifies the address prefix of the application gateway"
   type        = list(string)
 }*/
-
-variable "psql_subnet_name" {
-  description = "Specifies the name of the PostgreSQL server subnet"
-  type        = string
-  default     = "psqlSubnet"
-}
-
-variable "psql_address_prefixes" {
-  description = "Specifies the address prefix of the postgreSQL server"
-  type        = list(string)
-
-}
 
 /*variable "gateway_address_prefixes" {
   type = list(string)
@@ -212,10 +211,10 @@ variable "auto_grow_enabled" {
   default     = false
 }
 
-/*variable "zone" {
+variable "zone" {
   description = "The availability zone in which to deploy the Azure PostgreSQL Flexible Server"
   type        = string
-}*/
+}
 
 variable "maintenance_window" {
   description = "Maintenance window for Azure PostgreSQL Flexible Server"
@@ -349,11 +348,13 @@ variable "kv_default_action" {
 
 variable "kv_ip_rules" {
   description = "(Optional) One or more IP Addresses, or CIDR Blocks which should be able to access the Key Vault."
+  type        = list(string)
   default     = []
 }
 
 variable "kv_virtual_network_subnet_ids" {
   description = "(Optional) One or more Subnet ID's which should be able to access this Key Vault."
+  type        = list(string)
   default     = [] # use this if virtual networking provisioned separately
 }
 
@@ -475,7 +476,54 @@ variable "pe_blob_private_dns_zone_group_name" {
 */
 
 ### Management VM ###
-variable "admin_username" {
+variable "vm_admin_username" {
   description = "The username of the VM"
   type        = string
+}
+
+variable "admin_ssh_key_username" {
+  description = "The username of the SSH key admin"
+  type        = string
+}
+
+variable "vm_size" {
+  description = "The size og the virtual machine"
+  type        = string
+}
+
+variable "admin_public_key_path" {
+  description = "Path to the public key to be used for SSH access."
+  type        = string
+}
+
+variable "os_disk_caching" {
+  description = "Caching type for the OS Disk."
+  type        = string
+  default     = "ReadWrite"
+}
+
+variable "storage_account_type" {
+  description = "Type of storage account for the OS disk."
+  type        = string
+}
+
+variable "image_publisher" {
+  description = "Publisher of the VM image."
+  type        = string
+}
+
+variable "image_offer" {
+  description = "Offer of the VM image."
+  type        = string
+}
+
+variable "image_sku" {
+  description = "SKU of the VM image."
+  type        = string
+}
+
+variable "image_version" {
+  description = "Version of the VM image."
+  type        = string
+  default     = "latest"
 }

@@ -89,18 +89,19 @@ resource "azurerm_private_endpoint" "pe_kv" {
 
 # Create key vault secret for postgres database password
 resource "azurerm_key_vault_secret" "secret_1" {
-  name         = "${random_pet.name_prefix.id}-db-password"
+  name         = "postgres-db-password"
   value        = random_password.pass.result
   key_vault_id = azurerm_key_vault.kv.id
   tags         = {}
   depends_on = [
     azurerm_key_vault.kv,
+    random_password.pass
   ]
 }
 
 # Create key vault secret for postgres database hostname
 resource "azurerm_key_vault_secret" "secret_2" {
-  name         = "${random_pet.name_prefix.id}-db-hostname"
+  name         = "postgres-db-hostname"
   value        = "${azurerm_postgresql_flexible_server.default.name}.postgres.database.azure.com"
   key_vault_id = azurerm_key_vault.kv.id
   tags         = {}
@@ -111,7 +112,7 @@ resource "azurerm_key_vault_secret" "secret_2" {
 
 # Create key vault secret for database1-connection-string
 resource "azurerm_key_vault_secret" "secret_3" {
-  name         = "${random_pet.name_prefix.id}-db-connection-string"
+  name         = "db-connection-string"
   value        = "User ID=${azurerm_postgresql_flexible_server.default.administrator_login};Password=${azurerm_postgresql_flexible_server.default.administrator_password};Host=${azurerm_postgresql_flexible_server.default.name}.postgres.database.azure.com;database=${azurerm_postgresql_flexible_server_database.default.name};Port=5432;"
   key_vault_id = azurerm_key_vault.kv.id
   tags         = {}
@@ -121,6 +122,8 @@ resource "azurerm_key_vault_secret" "secret_3" {
     azurerm_postgresql_flexible_server_database.default
   ]
 }
+
+
 
 # Create key vault secret for storage account accesskey
 /*resource "azurerm_key_vault_secret" "secret_4" {

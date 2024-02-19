@@ -4,6 +4,5 @@ terraform {
     storage_account_name = "storageacctfstatesdev"
     container_name       = "tfmgmtstates"
     key                  = "project1-state-dev.tfstate"
-    # key = "project1-state-"
   }
 }
