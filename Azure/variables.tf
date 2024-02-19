@@ -1,29 +1,45 @@
 # variable for location
 variable "location" {
-  default     = "West Europe" # Default location for all resources.
   description = "Location of the resource - primary location."
+  type        = string
+
 }
 
 # Variables for the provider block:
 variable "sp-subscription-id" {
   description = "Id of the azure subscription where all resources will be created"
   type        = string
+  sensitive   = true
+
 }
 
 variable "sp-tenant-id" {
   description = "Tenant Id of the azure account."
   type        = string
+  sensitive   = true
+
 }
 
 variable "sp-client-id" {
   description = "Client Id of A Service Principal or Azure Active Directory application registration used for provisioning azure resources."
   type        = string
+  sensitive   = true
+
 }
 
 variable "sp-client-secret" {
   description = "Secret of A Service Principal or Azure Active Directory application registration used for provisioning azure resources."
   type        = string
+  sensitive   = true
+
 }
+
+# Backend storage access key
+/*riable "be_storage_account_access_key" {
+  description = "The access key for the backend Azure Storage Account"
+  type        = string
+  sensitive   = true
+}*/
 
 # System resources:
 variable "total_memory_mb" {
@@ -53,7 +69,7 @@ variable "nsg_security_rules" {
   default = []
 }
 
-variable "hub_gateway_subnet_name" {
+/*variable "hub_gateway_subnet_name" {
   description = "Specifies the name of the gateway subnet"
   default     = "HubGateway"
   type        = string
@@ -62,12 +78,12 @@ variable "hub_gateway_subnet_name" {
 variable "hub_gateway_subnet_address_prefixes" {
   description = "Specifies the address prefix of the hub gateway subnet"
   type        = list(string)
-}
+}*/
 
-variable "hub_vnet_address_space" {
+/*variable "hub_vnet_address_space" {
   description = "Specifies the address space of the hub virtual virtual network"
   type        = list(string)
-}
+}*/
 
 variable "hub_bastion_subnet_name" {
   description = "Specifies the name of the hub vnet AzureBastion subnet"
@@ -80,7 +96,7 @@ variable "hub_bastion_subnet_address_prefixes" {
   type        = list(string)
 }
 
-variable "hub_firewall_subnet_name" {
+/*variable "hub_firewall_subnet_name" {
   description = "Specifies the name of the azure firewall subnet"
   type        = string
   default     = "AzureFirewallSubnet"
@@ -89,13 +105,13 @@ variable "hub_firewall_subnet_name" {
 variable "hub_firewall_subnet_address_prefixes" {
   description = "Specifies the address prefix of the azure firewall subnet"
   type        = list(string)
-}
+}*/
 
-variable "hub_vnet_name" {
+/*variable "hub_vnet_name" {
   description = "Specifies the name of the hub virtual virtual network"
   default     = "vnet-hub"
   type        = string
-}
+}*/
 
 variable "spoke_vnet_name" {
   description = "Specifies the name of the spoke virtual virtual network"
@@ -121,11 +137,11 @@ variable "psql_name" {
 }
 
 variable "jumpbox_subnet_address_prefix" {
-  description = "Specifies the address prefix of the jumbox subnet"
+  description = "Specifies the address prefix of the jumpbox subnet"
   type        = list(string)
 }
 
-variable "appgtw_subnet_name" {
+/*variable "appgtw_subnet_name" {
   description = "Specifies the name of the application gateway subnet"
   type        = string
   default     = "appgtw"
@@ -134,7 +150,7 @@ variable "appgtw_subnet_name" {
 variable "appgtw_address_prefixes" {
   description = "Specifies the address prefix of the application gateway"
   type        = list(string)
-}
+}*/
 
 variable "psql_subnet_name" {
   description = "Specifies the name of the PostgreSQL server subnet"
@@ -148,13 +164,13 @@ variable "psql_address_prefixes" {
 
 }
 
-variable "gateway_address_prefixes" {
+/*variable "gateway_address_prefixes" {
   type = list(string)
 }
 
 variable "gatewaysubnet_address_prefixes" {
   type = list(string)
-}
+}*/
 
 
 ### POSTGRESQL ###
@@ -196,10 +212,10 @@ variable "auto_grow_enabled" {
   default     = false
 }
 
-variable "zone" {
+/*variable "zone" {
   description = "The availability zone in which to deploy the Azure PostgreSQL Flexible Server"
   type        = string
-}
+}*/
 
 variable "maintenance_window" {
   description = "Maintenance window for Azure PostgreSQL Flexible Server"
@@ -237,17 +253,6 @@ variable "log_analytics_workspace_sku" {
   default     = "PerGB2018"
 }
 
-/*variable "solution_plan_map" {
-  description = "(Required) Specifies solutions to deploy to log analytics workspace"
-  type        = map(any)
-  default = {
-    ContainerInsight = {
-      product   = "OMSGallery/ContainerInsights"
-      publisher = "Microsoft"
-    }
-  }
-}*/
-
 variable "solution_plan_map" {
   description = "(Required) Specifies solutions to deploy to log analytics workspace"
   type        = map(any)
@@ -266,12 +271,6 @@ variable "log_analytics_retention_days" {
 
 // ========================== Key Vault ==========================
 data "azurerm_client_config" "current" {}
-
-variable "kv_name" {
-  description = "(Required) Specifies the name of the key vault."
-  type        = string
-  default     = "azurekv"
-}
 
 variable "kv_owner_object_id" {
   description = "(Required) object ids of the key vault owners who needs access to key vault."

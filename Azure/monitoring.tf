@@ -48,9 +48,15 @@ resource "azurerm_monitor_diagnostic_setting" "diag_psql" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.workspace.id
 
   enabled_log {
-    category = "PostgreSQLLogs"
+    category_group = "allLogs"
+
   }
-  # Additional logs and metrics as needed
+
+  metric {
+    category = "AllMetrics"
+    enabled  = true
+  }
+
 
   depends_on = [
     azurerm_postgresql_flexible_server.default,

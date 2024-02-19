@@ -42,7 +42,7 @@ resource "azurerm_network_interface" "vm_nic" {
 */
 
 resource "azurerm_linux_virtual_machine" "mgmt_vm" {
-  name                            = "${random_pet.name_prefix.id}-vm"
+  name                            = lower("${random_pet.name_prefix.id}-vm")
   resource_group_name             = azurerm_resource_group.default.name
   location                        = azurerm_resource_group.default.location
   size                            = "Standard_DS1_v2"
@@ -50,7 +50,7 @@ resource "azurerm_linux_virtual_machine" "mgmt_vm" {
   network_interface_ids           = [azurerm_network_interface.vm_nic.id]
   disable_password_authentication = true
   admin_ssh_key {
-    username   = "azureuser"
+    username   = "sinwi"
     public_key = file("C:\\Users\\sinwi\\.ssh\\id_rsa.pub") # Ensure this variable is defined in your variables file
   }
 
@@ -62,16 +62,17 @@ resource "azurerm_linux_virtual_machine" "mgmt_vm" {
   source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "20.04-LTS"
+    sku       = "18.04-LTS"
     version   = "latest"
   }
+
 
   # Custom Data for installing PostgreSQL client and fetching connection string from Key Vault
   custom_data = base64encode(data.template_file.init_script.rendered)
 }
 
 resource "azurerm_network_interface" "vm_nic" {
-  name                = "${random_pet.name_prefix.id}-nic"
+  name                = lower("${random_pet.name_prefix.id}-nic")
   location            = azurerm_resource_group.default.location
   resource_group_name = azurerm_resource_group.default.name
 
@@ -83,10 +84,22 @@ resource "azurerm_network_interface" "vm_nic" {
 }
 
 data "template_file" "init_script" {
-  template = file("${path.module}/init-vm-script.sh.tpl")
+  template = file("${path.module}/shellscripts/init-vm-script.sh.tpl")
 
   vars = {
     key_vault_name = azurerm_key_vault.kv.name
     secret_name    = azurerm_key_vault_secret.secret_3.name
   }
 }
+
+/*resource "azurerm_private_dns_zone" "postgres" {
+  name                = "privatelink.postgres.database.azure.com"
+  resource_group_name = azurerm_resource_group.default.name
+}
+
+resource "azurerm_private_dns_zone_virtual_network_link" "vm_link" {
+  name                  = "vm-link"
+  resource_group_name   = azurerm_resource_group.default.name
+  private_dns_zone_name = azurerm_private_dns_zone.postgres.name
+  virtual_network_id    = azurerm_virtual_network.vnet.id
+}*/

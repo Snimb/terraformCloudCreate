@@ -3,11 +3,6 @@ variable "name_prefix" {
   description = "Prefix of the resource name."
 }
 
-resource "random_pet" "name_prefix" {
-  prefix = var.name_prefix # Generates a random name prefix to ensure resource names are unique.
-  length = 1               # Specifies the number of words in the generated name.
-}
-
 variable "vnet_prefix" {
   type        = string
   default     = "vnet"

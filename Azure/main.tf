@@ -3,6 +3,11 @@ resource "azurerm_resource_group" "default" {
   location = var.location                                               # The location for the resource group.
 }
 
+resource "random_pet" "name_prefix" {
+  prefix = var.name_prefix # Generates a random name prefix to ensure resource names are unique.
+  length = 1               # Specifies the number of words in the generated name.
+}
+
 # Generates a random password for use with the PostgreSQL server, enhancing security by avoiding hardcoded or weak passwords.
 resource "random_password" "pass" {
   length           = 20

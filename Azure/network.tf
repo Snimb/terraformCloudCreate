@@ -1,14 +1,4 @@
-resource "azurerm_virtual_network" "hub_vnet" {
-  name                = lower("${var.hub_vnet_name}-${random_pet.name_prefix.id}-${local.environment}")
-  location            = azurerm_resource_group.default.location
-  resource_group_name = azurerm_resource_group.default.name
-  address_space       = var.hub_vnet_address_space
-  depends_on = [
-    azurerm_resource_group.default
-  ]
-}
-
-# Create spoke virtual network
+# Create virtual network
 resource "azurerm_virtual_network" "vnet" {
   name                = lower("${var.spoke_vnet_name}-${random_pet.name_prefix.id}-${local.environment}")
   address_space       = var.spoke_vnet_address_space
@@ -18,7 +8,6 @@ resource "azurerm_virtual_network" "vnet" {
     azurerm_resource_group.default,
   ]
 }
-
 
 # Defines a network security group with a generic rule to allow all inbound TCP traffic. Adjust the rules based on your security requirements.
 resource "azurerm_network_security_group" "default" {
@@ -87,10 +76,9 @@ resource "azurerm_private_dns_zone" "default" {
 resource "azurerm_private_dns_zone_virtual_network_link" "default" {
   name                  = "${random_pet.name_prefix.id}-pdzvnetlink.com"
   private_dns_zone_name = azurerm_private_dns_zone.default.name
-  virtual_network_id    = azurerm_virtual_network.hub_vnet.id
+  virtual_network_id    = azurerm_virtual_network.vnet.id
   resource_group_name   = azurerm_resource_group.default.name
 }
-
 
 // jumpm VM server subnet
 resource "azurerm_subnet" "jumpbox" {
@@ -105,8 +93,32 @@ resource "azurerm_subnet" "jumpbox" {
   ]
 }
 
+// Create hub bastion host subnet
+resource "azurerm_subnet" "hub_bastion" {
+  name                                          = var.hub_bastion_subnet_name
+  resource_group_name                           = azurerm_virtual_network.vnet.resource_group_name
+  virtual_network_name                          = azurerm_virtual_network.vnet.name
+  address_prefixes                              = var.hub_bastion_subnet_address_prefixes
+  private_endpoint_network_policies_enabled     = false
+  private_link_service_network_policies_enabled = false
+  depends_on = [
+    azurerm_virtual_network.vnet
+  ]
+}
+
+
+/*resource "azurerm_virtual_network" "hub_vnet" {
+  name                = lower("${var.hub_vnet_name}-${random_pet.name_prefix.id}-${local.environment}")
+  location            = azurerm_resource_group.default.location
+  resource_group_name = azurerm_resource_group.default.name
+  address_space       = var.hub_vnet_address_space
+  depends_on = [
+    azurerm_resource_group.default
+  ]
+}*/
+
 //Create hub vnet gateway subnet
-resource "azurerm_subnet" "hub_gateway" {
+/*resource "azurerm_subnet" "hub_gateway" {
   name                 = var.hub_gateway_subnet_name
   resource_group_name  = azurerm_virtual_network.hub_vnet.resource_group_name
   virtual_network_name = azurerm_virtual_network.hub_vnet.name
@@ -114,23 +126,10 @@ resource "azurerm_subnet" "hub_gateway" {
   depends_on = [
     azurerm_virtual_network.hub_vnet
   ]
-}
-
-// Create hub bastion host subnet
-resource "azurerm_subnet" "hub_bastion" {
-  name                                          = var.hub_bastion_subnet_name
-  resource_group_name                           = azurerm_virtual_network.hub_vnet.resource_group_name
-  virtual_network_name                          = azurerm_virtual_network.hub_vnet.name
-  address_prefixes                              = var.hub_bastion_subnet_address_prefixes
-  private_endpoint_network_policies_enabled     = false
-  private_link_service_network_policies_enabled = false
-  depends_on = [
-    azurerm_virtual_network.hub_vnet
-  ]
-}
+}*/
 
 // Create hub application gateway subnet
-resource "azurerm_subnet" "appgtw" {
+/*resource "azurerm_subnet" "appgtw" {
   name                                          = lower("${var.subnet_prefix}-${random_pet.name_prefix.id}-${var.appgtw_subnet_name}")
   resource_group_name                           = azurerm_virtual_network.hub_vnet.resource_group_name
   virtual_network_name                          = azurerm_virtual_network.hub_vnet.name
@@ -140,10 +139,10 @@ resource "azurerm_subnet" "appgtw" {
   depends_on = [
     azurerm_virtual_network.hub_vnet
   ]
-}
+}*/
 
 // Create hub azure firewall subnet
-resource "azurerm_subnet" "firewall" {
+/*resource "azurerm_subnet" "firewall" {
   name                                          = var.hub_firewall_subnet_name
   resource_group_name                           = azurerm_virtual_network.hub_vnet.resource_group_name
   virtual_network_name                          = azurerm_virtual_network.hub_vnet.name
@@ -153,10 +152,10 @@ resource "azurerm_subnet" "firewall" {
   depends_on = [
     azurerm_virtual_network.hub_vnet
   ]
-}
+}*/
 
 // gateway subnet
-resource "azurerm_subnet" "gateway" {
+/*resource "azurerm_subnet" "gateway" {
   name                 = "gateway"
   resource_group_name  = azurerm_virtual_network.vnet.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
@@ -164,10 +163,10 @@ resource "azurerm_subnet" "gateway" {
   depends_on = [
     azurerm_virtual_network.vnet
   ]
-}
+}*/
 
 // VPN gateway subnet
-resource "azurerm_subnet" "vpn_gateway" {
+/*resource "azurerm_subnet" "vpn_gateway" {
   name                 = "GatewaySubnet"
   resource_group_name  = azurerm_virtual_network.vnet.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
@@ -175,4 +174,4 @@ resource "azurerm_subnet" "vpn_gateway" {
   depends_on = [
     azurerm_virtual_network.vnet
   ]
-}
+}*/

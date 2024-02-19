@@ -25,7 +25,7 @@ resource "azurerm_postgresql_flexible_server" "default" {
   administrator_password = random_password.pass.result
 
   ## The availability zone where the server will be placed. Use "1", "2", or "3" for specific zones, or leave empty for no specific zone.
-  # zone = var.zone
+  zone = 3 # var.zone
 
   ## The amount of storage allocated for the server in megabytes.
   storage_mb = var.psql_storage_mb

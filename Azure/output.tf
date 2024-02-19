@@ -62,14 +62,16 @@ output "vnet_id" {
   value       = azurerm_virtual_network.vnet.id
 }
 
-output "subnet_gateway_id" {
+/*output "subnet_gateway_id" {
   description = "Specifies the resource id of the gateway subnets"
   value       = azurerm_subnet.gateway.id
-}
-output "subnet_appgtw_id" {
+}*/
+
+/*output "subnet_appgtw_id" {
   description = "Specifies the resource id of the appgtw subnets"
   value       = azurerm_subnet.appgtw.id
-}
+}*/
+
 output "subnet_psql_id" {
   description = "Specifies the resource id of the psql subnets"
   value       = azurerm_subnet.psql.id

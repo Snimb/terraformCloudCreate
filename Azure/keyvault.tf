@@ -1,6 +1,6 @@
 # Create Azure Key Vault using terraform
 resource "azurerm_key_vault" "kv" {
-  name                            = lower("${var.kv_prefix}-${var.kv_name}-${local.environment}")
+  name                            = lower("${var.kv_prefix}-${random_pet.name_prefix.id}")
   resource_group_name             = azurerm_resource_group.default.name
   location                        = azurerm_resource_group.default.location
   tenant_id                       = data.azurerm_client_config.current.tenant_id

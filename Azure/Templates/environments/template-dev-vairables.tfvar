@@ -7,12 +7,23 @@ sp-client-secret   = "test~oFskcGH6bno8kS~test"
 sp-client-id       = "test-f87d-46ad-b4be-test"
 
 ### Location and name prefix ###
-location    = "West Europe"
+location    = "Germany West Central"
 name_prefix = "postgresqlfs"
 
+### Management VM ###
+admin_username = "postgresdba"
+
 ### Virtual Network Configuration ###
-address_space  = "10.0.0.0/16" # Defines the overall address space for the virtual network.
-address_prefix = "10.0.2.0/24" # Specifies the address prefix for a subnet within the virtual network.
+hub_vnet_address_space               = ["10.63.0.0/20"]
+hub_gateway_subnet_address_prefixes  = ["10.63.0.0/25"]   # HostMin:   10.63.0.1, HostMax:   10.63.0.126  
+hub_bastion_subnet_address_prefixes  = ["10.63.0.128/28"] # HostMin:   10.63.0.129, HostMax:   10.63.0.142
+appgtw_address_prefixes              = ["10.63.1.0/28"]
+hub_firewall_subnet_address_prefixes = ["10.63.2.0/24"]
+spoke_vnet_address_space             = ["10.64.0.0/16"]
+psql_address_prefixes                = ["10.64.2.0/26"]
+jumpbox_subnet_address_prefix        = ["10.64.3.0/28"]
+gateway_address_prefixes             = ["10.64.0.0/26"]
+gatewaysubnet_address_prefixes       = ["10.64.0.128/28"]
 
 ## Network Security Group (NSG) Rules Configuration
 nsg_security_rules = [{
@@ -150,13 +161,14 @@ psql_sku_name = "B_Standard_B1ms" # Options include: B_Standard_B1ms, GP_Standar
 ## - {Size} indicates the specific size within the tier and family, like "D2s_v3".
 ## It's important to select a SKU that matches your application's performance needs and budget. The chosen SKU impacts the server's performance characteristics, including CPU, memory, and I/O throughput.
 ## Remember: The availability of certain SKUs and their specifications can vary by Azure region and over time. Always refer to the official Azure documentation for the most current information on PostgreSQL Flexible Server SKUs, capabilities, and pricing.
-psql_admin_login             = "postgres" # Admin username of the PostgreSQL server
-psql_version                 = "16"       # The version of PostgreSQL Flexible Server
-psql_storage_mb              = "32768"    # The max storage allowed for the PostgreSQL Flexible Server. Possible values are 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4193280, 4194304, 8388608, 16777216 and 33553408
-auto_grow_enabled            = false      # Specifies whether the server's storage should automatically grow as needed, preventing out-of-space errors. 
-zone                         = "1"        # The availability zone where the server will be placed. Use "1", "2", or "3" for specific zones, or leave empty for no specific zone.
-backup_retention_days        = 7          # The number of days backups are retained. Azure allows a minimum of 7 and a maximum of 35 days for backup retention.
-geo_redundant_backup_enabled = false      # Enabled provides additional data resiliency by storing backups in a secondary region
+psql_admin_login  = "postgres" # Admin username of the PostgreSQL server
+psql_version      = "16"       # The version of PostgreSQL Flexible Server
+psql_storage_mb   = "32768"    # The max storage allowed for the PostgreSQL Flexible Server. Possible values are 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4193280, 4194304, 8388608, 16777216 and 33553408
+auto_grow_enabled = false      # Specifies whether the server's storage should automatically grow as needed, preventing out-of-space errors. 
+## Zone is omitted so that Azure decides the best zone for the instance. Zone is also out-commented in the postgresql.tf code.
+# zone                         = "1"        # The availability zone where the server will be placed. Use "1", "2", or "3" for specific zones, or leave empty for no specific zone.
+backup_retention_days        = 7     # The number of days backups are retained. Azure allows a minimum of 7 and a maximum of 35 days for backup retention.
+geo_redundant_backup_enabled = false # Enabled provides additional data resiliency by storing backups in a secondary region
 ## Configures the high availability (HA) settings for the PostgreSQL server to enhance fault tolerance and ensure service continuity. 
 ## Options include: ZoneRedundant and SameZone
 # high_availability_mode       = "ZoneRedundant" # this is out-commented in the postgresql.tf aswell
@@ -207,7 +219,25 @@ log_analytics_workspace_sku  = "PerGB2018"
 ## Note: The availability and names of SKUs can change. Always refer to the official Azure documentation for the latest information on Log Analytics
 
 ### key vault ###
-/*kv_name            = "keyvault1"
-kv_sku_name        = "standard"
-kv_owner_object_id = "d0abdc5c-2ba6-4868-8387-d700969c7111"
+kv_sku_name                   = "standard"
+kv_owner_object_id            = "d0abdc5c-2ba6-4868-8387-d700969c7111"
+kv_ip_rules                   = ["185.157.132.93"]
+kv_virtual_network_subnet_ids = ["10.64.2.0/26"]
+
+### storage account ###
+/*storage_name                        = "storage1"
+storage_access_tier                 = "Hot"
+storage_account_kind                = "StorageV2"
+## Possible storage_replication_type options: "LRS", "GRS", "RAGRS", "ZRS", "GZRS", "RAGZRS".
+storage_replication_type            = "LRS" 
+storage_account_tier                = "Standard"
+# storage_container_name              = "container1"
+storage_file_share_name             = "file-share-1"
+storage_account_retention_days      = 30
+storage_is_hns_enabled              = false
+storage_default_action              = "Allow"
+pe_blob_subresource_names           = ["blob"]
+pe_blob_private_dns_zone_group_name = "BlobPrivateDnsZoneGroup"
+# storage_ip_rules                    = []
+# storage_virtual_network_subnet_ids  = []
 */
