@@ -1,7 +1,7 @@
 resource "azurerm_linux_virtual_machine" "mgmt_vm" {
-  name                            = lower("${random_pet.name_prefix.id}-vm")
-  resource_group_name             = azurerm_resource_group.default.name
-  location                        = azurerm_resource_group.default.location
+  name                            = lower("${var.vm_prefix}-${var.vm_name}")
+  resource_group_name             = azurerm_resource_group.vm.name
+  location                        = azurerm_resource_group.vm.location
   size                            = var.vm_size
   admin_username                  = var.vm_admin_username
   network_interface_ids           = [azurerm_network_interface.vm_nic.id]
@@ -18,10 +18,8 @@ resource "azurerm_linux_virtual_machine" "mgmt_vm" {
   }
 
   identity {
-    type         = "SystemAssigned, UserAssigned"
+    type         = "UserAssigned"
     identity_ids = [azurerm_user_assigned_identity.default.id]
-    # type = "SystemAssigned"
-
   }
 
   source_image_reference {
@@ -35,9 +33,9 @@ resource "azurerm_linux_virtual_machine" "mgmt_vm" {
 }
 
 resource "azurerm_network_interface" "vm_nic" {
-  name                = lower("${random_pet.name_prefix.id}-nic")
-  location            = azurerm_resource_group.default.location
-  resource_group_name = azurerm_resource_group.default.name
+  name                = lower("${var.vm_prefix}-${var.vm_name}-nic")
+  location            = azurerm_resource_group.vm.location
+  resource_group_name = azurerm_resource_group.vm.name
 
   ip_configuration {
     name                          = "internal"
@@ -52,11 +50,9 @@ data "template_file" "init_script" {
   vars = {
     key_vault_name = azurerm_key_vault.kv.name
     secret_name    = azurerm_key_vault_secret.secret_3.name
-
+    client_id      = azurerm_user_assigned_identity.default.client_id
   }
 }
-
-# client_id      = azurerm_user_assigned_identity.default.client_id
 
 /*resource "azurerm_virtual_machine_extension" "diag_vm" {
   name                 = "diag_vm-diagnostics-extension"
