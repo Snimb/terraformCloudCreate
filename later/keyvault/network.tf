@@ -1,23 +1,23 @@
 # Create private DNS zone for key vault
 resource "azurerm_private_dns_zone" "pdz_kv" {
   name                = "privatelink.vaultcore.azure.net"
-  resource_group_name = azurerm_virtual_network.vnet.resource_group_name
+  resource_group_name = module.vnetwork.vnet.resource_group_name.name
 
   depends_on = [
-    azurerm_virtual_network.vnet
+    module.vnetwork.vnet.id
   ]
 }
 
 # Create private virtual network link to spoke vnet
 resource "azurerm_private_dns_zone_virtual_network_link" "kv_pdz_vnet_link" {
-  name                  = "privatelink_to_${azurerm_virtual_network.vnet.name}"
-  resource_group_name   = azurerm_resource_group.vnet.name
-  virtual_network_id    = azurerm_virtual_network.vnet.id
+  name                  = "privatelink_to_${module.vnetwork.name}"
+  resource_group_name   = module.vnetwork.vnet.resource_group_name.name
+  virtual_network_id    = module.vnetwork.vnet.id
   private_dns_zone_name = azurerm_private_dns_zone.pdz_kv.name
 
   depends_on = [
-    azurerm_resource_group.vnet,
-    azurerm_virtual_network.vnet,
+    module.vnetwork.vnet.resource_group_name,
+    module.vnetwork.vnet.id,
     azurerm_private_dns_zone.pdz_kv
   ]
 }

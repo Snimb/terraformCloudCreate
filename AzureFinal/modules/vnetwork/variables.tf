@@ -5,7 +5,21 @@ variable "vnet_rg_name" {
   default = "virtualnetwork"
 }
 
-variable "location" {}
+# variable for location
+variable "location" {
+  description = "Location of the resource - primary location."
+  type        = string
+}
+
+# Tags:
+variable "default_tags" {
+  type = map(any)
+  default = {
+    "Project"   = "Project-postgres"
+    "Owner"     = "sinwi"
+    "CreatedBy" = "sinwi"
+  }
+}
 
 # Variable for defining NSG security rules
 variable "nsg_security_rules" {
@@ -39,7 +53,7 @@ variable "hub_bastion_subnet_address_prefixes" {
 variable "vnet_name" {
   description = "Specifies the name of the virtual virtual network"
   type        = string
-  default     = "vnet"
+  default     = "main"
 }
 
 variable "vnet_address_space" {

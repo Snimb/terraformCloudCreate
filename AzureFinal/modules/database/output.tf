@@ -12,21 +12,28 @@ output "azurerm_postgresql_flexible_server" {
   value = azurerm_postgresql_flexible_server.psql.name # Outputs the name of the created PostgreSQL Flexible Server.
 }
 
-# This allows you to easily retrieve and use the database name in other parts of your infrastructure or in external tools.
-output "postgresql_flexible_server_database_name" {
-  value = azurerm_postgresql_flexible_server_database.psql.name # Output the name of the PostgreSQL Flexible Server Database
-}
-
 # This password may be needed for administrative access or configuration changes to the database.
 output "postgresql_flexible_server_admin_password" {
   sensitive = true                                                              # Marked as sensitive to prevent it from being displayed in logs or console output, ensuring security
   value     = azurerm_postgresql_flexible_server.psql.administrator_password # Output the admin password for the PostgreSQL Flexible Server
 }
 
-output "postgresql_server_id" {
-  value = azurerm_postgresql_server.db.id
+output "azurerm_postgresql_flexible_server_id" {
+  value = azurerm_postgresql_flexible_server.psql.id 
+  }
+
+output "specific_postgresql_flexible_server_database_name" {
+  value = { for k, db in azurerm_postgresql_flexible_server_database.psqldb : k => db.name }
 }
 
-output "postgresql_db_id" {
-  value = azurerm_postgresql_database.db.id
+output "specific_postgresql_flexible_server_database_id" {
+  value = { for k, db in azurerm_postgresql_flexible_server_database.psqldb : k => db.id }
+}
+
+output "private_dns_zone_id" {
+  value = azurerm_private_dns_zone.psql.id
+}
+
+output "private_dns_zone_virtual_network_link_id" {
+  value = azurerm_private_dns_zone_virtual_network_link.psql.id
 }

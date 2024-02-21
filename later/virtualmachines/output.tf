@@ -27,7 +27,3 @@ output "vm_identity_client_id" {
   value = azurerm_user_assigned_identity.default.client_id
   description = "The client ID of the Virtual Machine's user-assigned managed identity."
 }
-
-output "vm_id" {
-  value = azurerm_linux_virtual_machine.vm.id
-}

@@ -19,7 +19,7 @@ locals {
 }
 
 # Lock the resource group
-resource "azurerm_management_lock" "vnet" {
+/*resource "azurerm_management_lock" "vnet" {
   name       = "CanNotDelete"
   scope      = azurerm_resource_group.vnet.id
   lock_level = "CanNotDelete"
@@ -27,4 +27,4 @@ resource "azurerm_management_lock" "vnet" {
   depends_on = [
     azurerm_resource_group.vnet,
   ]
-}
+}*/

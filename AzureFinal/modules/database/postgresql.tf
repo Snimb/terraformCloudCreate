@@ -16,7 +16,7 @@ resource "azurerm_postgresql_flexible_server" "psql" {
   delegated_subnet_id = azurerm_subnet.psql.id
 
   ## Associates the server with a private DNS zone for resolving the server's hostname within the virtual network.
-  private_dns_zone_id = azurerm_private_dns_zone.default.id
+  private_dns_zone_id = azurerm_private_dns_zone.psql.id
 
   ## The administrator username for the PostgreSQL server.
   administrator_login = var.psql_admin_login
@@ -64,7 +64,16 @@ resource "azurerm_postgresql_flexible_server" "psql" {
   # }
 
 
-  depends_on = [azurerm_private_dns_zone_virtual_network_link.default]
+  depends_on = [azurerm_private_dns_zone_virtual_network_link.psql]
+}
+
+# generate random password for postgreSQL admin password
+resource "random_password" "psql_admin_password" {
+  length           = 20
+  special          = true
+  lower            = true
+  upper            = true
+  override_special = "!#$" //"!#$%&*()-_=+[]{}<>:?"
 }
 
 resource "azurerm_postgresql_flexible_server_database" "psqldb" {
@@ -77,9 +86,9 @@ resource "azurerm_postgresql_flexible_server_database" "psqldb" {
     azurerm_postgresql_flexible_server.psql
   ]
   ## prevent the possibility of accidental data loss
-  lifecycle {
+  /*lifecycle {
     prevent_destroy = true
-  }
+  }*/
 }
 
 ## Create azure ad group for PostgreSQL admin users

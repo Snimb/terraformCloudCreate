@@ -38,8 +38,8 @@ resource "azurerm_subnet" "hub_bastion" {
 # Defines a network security group with a generic rule to allow all inbound TCP traffic. Adjust the rules based on your security requirements.
 resource "azurerm_network_security_group" "default" {
   name                = lower("${var.nsg_prefix}-${var.nsg_name}-${local.environment}")
-  location            = azurerm_resource_group.db.location
-  resource_group_name = azurerm_resource_group.db.name
+  location            = azurerm_resource_group.vnet.location
+  resource_group_name = azurerm_resource_group.vnet.name
 
   dynamic "security_rule" {
     for_each = var.nsg_security_rules

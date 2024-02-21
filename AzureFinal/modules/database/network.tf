@@ -1,8 +1,8 @@
 # Creates a subnet within the virtual network. This subnet includes a delegation for Azure PostgreSQL Flexible Servers, enabling them to be associated with this subnet.
 resource "azurerm_subnet" "psql" {
   name                                          = lower("${var.subnet_prefix}-${var.psql_subnet_name}")
-  resource_group_name                           = azurerm_resource_group.db.name
-  virtual_network_name                          = azurerm_virtual_network.vnet.name
+  resource_group_name                           = var.module_vnet_resource_grp
+  virtual_network_name                          = var.module_vnet_name
   address_prefixes                              = var.psql_address_prefixes
   private_endpoint_network_policies_enabled     = false
   private_link_service_network_policies_enabled = false
@@ -21,20 +21,20 @@ resource "azurerm_subnet" "psql" {
     }
   }
   depends_on = [
-    azurerm_virtual_network.vnet
+   var.module_vnet
   ]
 }
 
 # Associates the previously defined network security group with the subnet. This applies the security group's rules to the subnet.
 resource "azurerm_subnet_network_security_group_association" "psql" {
   subnet_id                 = azurerm_subnet.psql.id
-  network_security_group_id = azurerm_network_security_group.default.id
+  network_security_group_id = var.module_nsg_id
 }
 
 # Establishes a private DNS zone for the PostgreSQL server, ensuring it can be resolved within the virtual network.
 resource "azurerm_private_dns_zone" "psql" {
   name                = lower("${var.pdz_prefix}-${var.private_dns_zone_name}.postgres.database.azure.com")
-  resource_group_name = azurerm_resource_group.db.name
+  resource_group_name = var.module_vnet_resource_grp
 
   depends_on = [azurerm_subnet_network_security_group_association.psql]
 }
@@ -43,7 +43,7 @@ resource "azurerm_private_dns_zone" "psql" {
 resource "azurerm_private_dns_zone_virtual_network_link" "psql" {
   name                  = "${var.pdz_prefix}-${var.private_dns_zone_name}-pdzvnetlink.com"
   private_dns_zone_name = azurerm_private_dns_zone.psql.name
-  virtual_network_id    = azurerm_virtual_network.vnet.id
-  resource_group_name   = azurerm_resource_group.db.name
+  virtual_network_id    = var.module_vnet_id
+  resource_group_name   = var.module_vnet_resource_grp
 }
 

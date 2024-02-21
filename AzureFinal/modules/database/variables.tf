@@ -5,7 +5,27 @@ variable "db_rg_name" {
   default = "postgresql"
 }
 
-variable "location" {}
+# variable for location
+variable "location" {
+  description = "Location of the resource - primary location."
+  type        = string
+}
+
+# Tags:
+variable "default_tags" {
+  type = map(any)
+  default = {
+    "Project"   = "Project-postgres"
+    "Owner"     = "sinwi"
+    "CreatedBy" = "sinwi"
+  }
+}
+
+variable "sp-tenant-id" {
+  description = "Azure service principal tenant ID"
+}
+
+data "azurerm_client_config" "current" {}
 
 ### POSTGRESQL ###
 variable "psql_name" {
@@ -71,11 +91,11 @@ variable "maintenance_window" {
   }
 }
 
-variable "high_availability_mode" {
+/*variable "high_availability_mode" {
   description = "High availability mode for Azure PostgreSQL Flexible Server"
   type        = string
   default     = "ZoneRedundant" # Default to ZoneRedundant. Change to "SameZone" if needed.
-}
+}*/
 
 variable "postgresql_configurations" {
   description = "PostgreSQL configurations to enable."
@@ -119,3 +139,34 @@ variable "private_dns_zone_name" {
   type        = string
   default     = "postgres-server"
 }
+
+variable "module_vnet_id" {
+  description = "ID of the virtual network with module"
+  type        = string
+}
+
+variable "module_vnet_name" {
+  description = "Name of the virtual network with module"
+  type        = string
+}
+
+# In modules/database/variables.tf
+variable "module_nsg_id" {
+  description = "The ID of the Network Security Group"
+  type        = string
+}
+
+variable "module_vnet" {
+  description = "The resource group of the virtual network"
+  type        = object({
+    name = string
+    id = string
+    resource_group_name = string
+  })
+}
+
+variable "module_vnet_resource_grp" {
+  description = "Name of the virtual network resource group with module"
+  type        = string
+}
+

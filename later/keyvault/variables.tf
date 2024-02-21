@@ -5,7 +5,21 @@ variable "kv_rg_name" {
   default = "keyvault"
 }
 
-variable "location" {}
+# variable for location
+variable "location" {
+  description = "Location of the resource - primary location."
+  type        = string
+}
+
+# Tags:
+variable "default_tags" {
+  type = map(any)
+  default = {
+    "Project"   = "Project-postgres"
+    "Owner"     = "sinwi"
+    "CreatedBy" = "sinwi"
+  }
+}
 
 ### Key Vault ###
 data "azurerm_client_config" "current" {}
@@ -120,4 +134,9 @@ variable "kv_storage_permissions_full" {
   type        = list(string)
   description = "List of full storage permissions, must be one or more from the following: backup, delete, deletesas, get, getsas, list, listsas, purge, recover, regeneratekey, restore, set, setsas and update"
   default     = ["Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update", ]
+}
+
+variable "vnetid" {
+  description = "ID of the virtual network"
+  type        = string
 }

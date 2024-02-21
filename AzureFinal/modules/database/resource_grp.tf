@@ -19,7 +19,7 @@ locals {
 }
 
 # Lock the resource group
-resource "azurerm_management_lock" "db" {
+/*resource "azurerm_management_lock" "db" {
   name       = "CanNotDelete"
   scope      = azurerm_resource_group.db.id
   lock_level = "CanNotDelete"
@@ -27,4 +27,4 @@ resource "azurerm_management_lock" "db" {
   depends_on = [
     azurerm_resource_group.db,
   ]
-}
+}*/

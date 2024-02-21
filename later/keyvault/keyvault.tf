@@ -39,15 +39,6 @@ resource "azurerm_key_vault" "kv" {
   ]
 }
 
-# generate random password for postgreSQL admin password
-resource "random_password" "psql_admin_password" {
-  length           = 20
-  special          = true
-  lower            = true
-  upper            = true
-  override_special = "!#$" //"!#$%&*()-_=+[]{}<>:?"
-}
-
 # Create key vault secret for postgres database password
 resource "azurerm_key_vault_secret" "secret_1" {
   name         = "postgres-db-password"

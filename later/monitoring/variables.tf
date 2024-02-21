@@ -5,7 +5,22 @@ variable "diag_rg_name" {
   default = "workspace"
 }
 
-variable "location" {}
+# variable for location
+variable "location" {
+  description = "Location of the resource - primary location."
+  type        = string
+}
+
+# Tags:
+variable "default_tags" {
+  type = map(any)
+  default = {
+    "Project"   = "Project-postgres"
+    "Owner"     = "sinwi"
+    "CreatedBy" = "sinwi"
+  }
+}
+
 
 ### LOG ANALYTICS ###
 variable "log_analytics_workspace_sku" {

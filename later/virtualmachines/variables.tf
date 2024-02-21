@@ -5,7 +5,21 @@ variable "vm_rg_name" {
   default = "managementvm"
 }
 
-variable "location" {}
+# variable for location
+variable "location" {
+  description = "Location of the resource - primary location."
+  type        = string
+}
+
+# Tags:
+variable "default_tags" {
+  type = map(any)
+  default = {
+    "Project"   = "Project-postgres"
+    "Owner"     = "sinwi"
+    "CreatedBy" = "sinwi"
+  }
+}
 
 ### Management VM ###
 variable "vm_admin_username" {

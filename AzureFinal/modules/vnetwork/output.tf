@@ -14,6 +14,11 @@ output "vnet_id" {
   description = "Virtual Network ID"
 }
 
+output "vnet" {
+  value = azurerm_virtual_network.vnet
+  description = "Virtual Network"
+}
+
 output "subnet_jumpbox_id" {
   value = azurerm_subnet.jumpbox.id
   description = "Jumpbox Subnet ID"
@@ -24,3 +29,6 @@ output "subnet_bastion_id" {
   description = "Bastion Subnet ID"
 }
 
+output "nsg_id" {
+  value = azurerm_network_security_group.default.id
+}

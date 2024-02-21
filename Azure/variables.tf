@@ -2,7 +2,6 @@
 variable "location" {
   description = "Location of the resource - primary location."
   type        = string
-
 }
 
 # Variables for the provider block:

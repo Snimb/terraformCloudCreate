@@ -1,7 +1,7 @@
 # Networking - Diagnostic Settings
 resource "azurerm_monitor_diagnostic_setting" "diag_vnet" {
   name                       = "DiagnosticsSettings"
-  target_resource_id         = azurerm_virtual_network.vnet.id
+  target_resource_id         = module.vnetwork.vnet_id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.workspace.id
 
   enabled_log {
@@ -15,7 +15,7 @@ resource "azurerm_monitor_diagnostic_setting" "diag_vnet" {
   }
 
   depends_on = [
-    azurerm_virtual_network.vnet,
+    module.vnetwork.vnet,
     azurerm_log_analytics_workspace.workspace,
   ]
 }
