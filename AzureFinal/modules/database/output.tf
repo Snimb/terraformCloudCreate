@@ -22,3 +22,11 @@ output "postgresql_flexible_server_admin_password" {
   sensitive = true                                                              # Marked as sensitive to prevent it from being displayed in logs or console output, ensuring security
   value     = azurerm_postgresql_flexible_server.psql.administrator_password # Output the admin password for the PostgreSQL Flexible Server
 }
+
+output "postgresql_server_id" {
+  value = azurerm_postgresql_server.db.id
+}
+
+output "postgresql_db_id" {
+  value = azurerm_postgresql_database.db.id
+}

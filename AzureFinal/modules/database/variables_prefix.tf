@@ -21,15 +21,3 @@ variable "pdz_prefix" {
   default     = "pdz"
   description = "Prefix of the private DNS zone name."
 }
-
-variable "kv_prefix" {
-  type        = string
-  default     = "kv"
-  description = "Prefix of the Azure key vault."
-}
-
-variable "private_endpoint_prefix" {
-  type        = string
-  default     = "pe"
-  description = "Prefix of the private endpoint."
-}

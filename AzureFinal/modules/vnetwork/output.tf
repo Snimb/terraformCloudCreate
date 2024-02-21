@@ -10,6 +10,17 @@ output "vnet_name" {
 }
 
 output "vnet_id" {
-  description = "Specifies the resource id of the virtual network"
-  value       = azurerm_virtual_network.vnet.id
+  value = azurerm_virtual_network.vnet.id
+  description = "Virtual Network ID"
 }
+
+output "subnet_jumpbox_id" {
+  value = azurerm_subnet.jumpbox.id
+  description = "Jumpbox Subnet ID"
+}
+
+output "subnet_bastion_id" {
+  value = azurerm_subnet.hub_bastion.id
+  description = "Bastion Subnet ID"
+}
+

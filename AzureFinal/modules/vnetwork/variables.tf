@@ -2,53 +2,10 @@
 variable "vnet_rg_name" {
   description = "Name of the virtual network resource group"
   type        = string
+  default = "virtualnetwork"
 }
 
-# Tags:
-variable "default_tags" {
-  type = map(any)
-  default = {
-    "Project"   = "Project-postgres"
-    "Owner"     = "sinwi"
-    "CreatedBy" = "sinwi"
-  }
-}
-
-# Location:
-variable "location" {
-  description = "Location of the resource - primary location."
-  type        = string
-
-}
-
-# Variables for the provider block:
-variable "sp-subscription-id" {
-  description = "Id of the azure subscription where all resources will be created"
-  type        = string
-  sensitive   = true
-
-}
-
-variable "sp-tenant-id" {
-  description = "Tenant Id of the azure account."
-  type        = string
-  sensitive   = true
-
-}
-
-variable "sp-client-id" {
-  description = "Client Id of A Service Principal or Azure Active Directory application registration used for provisioning azure resources."
-  type        = string
-  sensitive   = true
-
-}
-
-variable "sp-client-secret" {
-  description = "Secret of A Service Principal or Azure Active Directory application registration used for provisioning azure resources."
-  type        = string
-  sensitive   = true
-
-}
+variable "location" {}
 
 # Variable for defining NSG security rules
 variable "nsg_security_rules" {
