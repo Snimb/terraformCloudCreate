@@ -87,22 +87,23 @@ module "monitoring" {
 
 
 module "virtualmachines_dev" {
-  source                                  = "../../modules/virtualmachines"
-  location                                = var.location
-  vm_size                                 = "Standard_DS1_v2"
-  storage_account_type                    = var.storage_account_type
-  image_publisher                         = var.image_publisher
-  admin_ssh_key_username                  = var.admin_ssh_key_username
-  image_sku                               = var.image_sku
-  vm_admin_username                       = var.vm_admin_username
-  image_offer                             = var.image_offer
-  admin_public_key_path                   = var.admin_public_key_path
-  image_version                           = var.image_version
-  os_disk_caching                         = var.os_disk_caching
-  module_jumpbox_subnet_id                = module.vnetwork_dev.subnet_jumpbox_id
-  module_keyvault_name                    = module.keyvault.key_vault_name
-  module_user_assigned_identity_id        = module.keyvault.user_assigned_identity_id
-  module_user_assigned_identity_client_id = module.keyvault.user_assigned_identity_client_id
-  module_secret_connection_string_names   = module.keyvault.db_connection_strings_secret_names
+  source                   = "../../modules/virtualmachines"
+  location                 = var.location
+  vm_size                  = "Standard_DS1_v2"
+  storage_account_type     = var.storage_account_type
+  image_publisher          = var.image_publisher
+  admin_ssh_key_username   = var.admin_ssh_key_username
+  image_sku                = var.image_sku
+  vm_admin_username        = var.vm_admin_username
+  image_offer              = var.image_offer
+  admin_public_key_path    = var.admin_public_key_path
+  image_version            = var.image_version
+  os_disk_caching          = var.os_disk_caching
+  module_jumpbox_subnet_id = module.vnetwork_dev.subnet_jumpbox_id
+  module_keyvault_name     = module.keyvault.key_vault_name
+  # module_user_assigned_identity_id        = module.keyvault.user_assigned_identity_id
+  # module_user_assigned_identity_client_id = module.keyvault.user_assigned_identity_client_id
+  module_secret_connection_string_names = module.keyvault.db_connection_strings_secret_names
+  module_keyvault_id                    = module.keyvault.key_vault_id
 }
 

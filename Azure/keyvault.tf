@@ -140,7 +140,7 @@ resource "azurerm_key_vault_secret" "secret_3" {
   ]
 }*/
 
-resource "azurerm_key_vault_access_policy" "vm" {
+/*resource "azurerm_key_vault_access_policy" "vm" {
   key_vault_id       = azurerm_key_vault.kv.id
   tenant_id          = data.azurerm_client_config.current.tenant_id
   object_id          = azurerm_user_assigned_identity.default.principal_id
@@ -151,4 +151,12 @@ resource "azurerm_user_assigned_identity" "default" {
   location            = azurerm_resource_group.default.location
   name                = "default-user-identity"
   resource_group_name = azurerm_resource_group.default.name
+}
+*/
+
+resource "azurerm_role_assignment" "vm_kv_secrets_user" {
+  scope                = azurerm_key_vault.kv.id
+  role_definition_name = "Key Vault VM Secrets User"
+  principal_id         = azurerm_linux_virtual_machine.mgmt_vm.identity.0.principal_id
+depends_on = [ azurerm_linux_virtual_machine.mgmt_vm ]
 }

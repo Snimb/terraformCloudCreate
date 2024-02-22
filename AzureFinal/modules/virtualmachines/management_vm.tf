@@ -18,8 +18,9 @@ resource "azurerm_linux_virtual_machine" "mgmt_vm" {
   }
 
   identity {
-    type         = "UserAssigned"
-    identity_ids = [var.module_user_assigned_identity_id]
+    type = "SystemAssigned"
+    # type         = "UserAssigned"
+    # identity_ids = [var.module_user_assigned_identity_id]
   }
 
   source_image_reference {
@@ -50,11 +51,22 @@ data "template_file" "init_script" {
   vars = {
     key_vault_name = var.module_keyvault_name
     secret_names   = join(",", [for name in keys(var.module_secret_connection_string_names) : name])
-    client_id      = var.module_user_assigned_identity_client_id
     admin_username = var.vm_admin_username
 
   }
+  depends_on = [ azurerm_role_assignment.vm_kv_secrets_user ]
 }
+    # client_id      = var.module_user_assigned_identity_client_id
+
+
+resource "azurerm_role_assignment" "vm_kv_secrets_user" {
+  scope                = var.module_keyvault_id
+  role_definition_name = "Key Vault VM Secrets User"
+  principal_id         = azurerm_linux_virtual_machine.mgmt_vm.identity.0.principal_id
+depends_on = [ azurerm_linux_virtual_machine.mgmt_vm ]
+}
+
+
 
 /*resource "azurerm_virtual_machine_extension" "diag_vm" {
   name                 = "diag_vm-diagnostics-extension"

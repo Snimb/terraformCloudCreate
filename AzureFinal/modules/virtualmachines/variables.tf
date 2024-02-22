@@ -86,11 +86,10 @@ variable "module_jumpbox_subnet_id" {
   type        = string
 }
 
-variable "module_user_assigned_identity_id" {
-  description = "The ID of the user assigned identity"
+variable "module_keyvault_id" {
+  description = "ID of the Key Vault server with module"
   type        = string
 }
-
 
 variable "module_keyvault_name" {
   description = "Name of the Key Vault with module"
@@ -102,7 +101,12 @@ variable "module_secret_connection_string_names" {
   type        = map(string)
 }
 
-variable "module_user_assigned_identity_client_id" {
+/*variable "module_user_assigned_identity_client_id" {
   description = "The ID of the user assigned identity client ID"
   type        = string
 }
+
+variable "module_user_assigned_identity_id" {
+  description = "The ID of the user assigned identity"
+  type        = string
+}*/

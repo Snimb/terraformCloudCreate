@@ -18,9 +18,9 @@ resource "azurerm_linux_virtual_machine" "mgmt_vm" {
   }
 
   identity {
-    type         = "SystemAssigned, UserAssigned"
-    identity_ids = [azurerm_user_assigned_identity.default.id]
-    # type = "SystemAssigned"
+    # type         = "SystemAssigned, UserAssigned"
+    # identity_ids = [azurerm_user_assigned_identity.default.id]
+    type = "SystemAssigned"
 
   }
 
@@ -54,6 +54,7 @@ data "template_file" "init_script" {
     secret_name    = azurerm_key_vault_secret.secret_3.name
 
   }
+  depends_on = [ azurerm_role_assignment.vm_kv_secrets_user ]
 }
 
 # client_id      = azurerm_user_assigned_identity.default.client_id

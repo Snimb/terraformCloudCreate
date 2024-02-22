@@ -8,7 +8,7 @@ sudo apt-get install -y postgresql-client
 admin_username="${admin_username}"
 key_vault_name="${key_vault_name}"
 IFS=',' read -r -a secret_names_array <<<"${secret_names}"
-client_id="${client_id}"
+# client_id="${client_id}"
 secure_dir="/etc/myapp"
 credentials_file="$secure_dir/credentials"
 
@@ -25,7 +25,7 @@ azure_cli_login() {
     local retries=5
     local wait_time=10
     for ((i = 0; i < retries; i++)); do
-        if az login --identity --username "$client_id"; then
+        if az login --identity; then
             echo "Azure CLI login successful."
             return 0
         else
