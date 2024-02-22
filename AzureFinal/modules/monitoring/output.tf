@@ -34,7 +34,3 @@ output "log_analytics_workspace_primary_shared_key" {
   description = "Specifies the workspace key of the log analytics workspace"
   sensitive   = true
 }
-
-output "monitor_log_profile_id" {
-  value = azurerm_monitor_log_profile.example.id
-}

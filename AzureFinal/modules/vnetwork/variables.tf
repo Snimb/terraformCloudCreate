@@ -63,7 +63,7 @@ variable "vnet_address_space" {
 
 variable "jumpbox_subnet_name" {
   description = "Specifies the name of the jumpbox subnet"
-  default     = "snet-jumpbox"
+  default     = "jumpbox"
   type        = string
 }
 

@@ -19,7 +19,7 @@ resource "azurerm_linux_virtual_machine" "mgmt_vm" {
 
   identity {
     type         = "UserAssigned"
-    identity_ids = [azurerm_user_assigned_identity.default.id]
+    identity_ids = [var.module_user_assigned_identity_id]
   }
 
   source_image_reference {
@@ -39,18 +39,20 @@ resource "azurerm_network_interface" "vm_nic" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.jumpbox.id
+    subnet_id                     = var.module_jumpbox_subnet_id
     private_ip_address_allocation = "Dynamic"
   }
 }
 
 data "template_file" "init_script" {
-  template = file("${path.module}/shellscripts/init-vm-script.sh.tpl")
+  template = file("${path.module}/init-vm-script.sh.tpl")
 
   vars = {
-    key_vault_name = azurerm_key_vault.kv.name
-    secret_name    = azurerm_key_vault_secret.secret_3.name
-    client_id      = azurerm_user_assigned_identity.default.client_id
+    key_vault_name = var.module_keyvault_name
+    secret_names   = join(",", [for name in keys(var.module_secret_connection_string_names) : name])
+    client_id      = var.module_user_assigned_identity_client_id
+    admin_username = var.vm_admin_username
+
   }
 }
 

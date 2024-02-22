@@ -1,23 +1,23 @@
 # Create private DNS zone for key vault
 resource "azurerm_private_dns_zone" "pdz_kv" {
   name                = "privatelink.vaultcore.azure.net"
-  resource_group_name = module.vnetwork.vnet.resource_group_name.name
+  resource_group_name = var.module_vnet_resource_grp
 
   depends_on = [
-    module.vnetwork.vnet.id
+    var.module_vnet_id
   ]
 }
 
 # Create private virtual network link to spoke vnet
 resource "azurerm_private_dns_zone_virtual_network_link" "kv_pdz_vnet_link" {
-  name                  = "privatelink_to_${module.vnetwork.name}"
-  resource_group_name   = module.vnetwork.vnet.resource_group_name.name
-  virtual_network_id    = module.vnetwork.vnet.id
+  name                  = "privatelink_to_${var.module_vnet_name}"
+  resource_group_name   = var.module_vnet_resource_grp
+  virtual_network_id    = var.module_vnet_id
   private_dns_zone_name = azurerm_private_dns_zone.pdz_kv.name
 
   depends_on = [
-    module.vnetwork.vnet.resource_group_name,
-    module.vnetwork.vnet.id,
+    var.module_vnet_resource_grp,
+    var.module_vnet_id,
     azurerm_private_dns_zone.pdz_kv
   ]
 }
@@ -27,7 +27,7 @@ resource "azurerm_private_endpoint" "pe_kv" {
   name                = lower("${var.private_endpoint_prefix}-${azurerm_key_vault.kv.name}")
   location            = azurerm_key_vault.kv.location
   resource_group_name = azurerm_key_vault.kv.resource_group_name
-  subnet_id           = azurerm_subnet.jumpbox.id
+  subnet_id           = var.module_subnet_jumpbox_id
 
   private_service_connection {
     name                           = "pe-${azurerm_key_vault.kv.name}"

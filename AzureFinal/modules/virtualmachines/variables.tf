@@ -79,3 +79,30 @@ variable "vm_name" {
   type        = string
   default     = "management"
 }
+
+### Module Variables ###
+variable "module_jumpbox_subnet_id" {
+  description = "The ID of the jumpbox subnet"
+  type        = string
+}
+
+variable "module_user_assigned_identity_id" {
+  description = "The ID of the user assigned identity"
+  type        = string
+}
+
+
+variable "module_keyvault_name" {
+  description = "Name of the Key Vault with module"
+  type        = string
+}
+
+variable "module_secret_connection_string_names" {
+  description = "A map of database names to the names of the Key Vault secrets containing their connection strings."
+  type        = map(string)
+}
+
+variable "module_user_assigned_identity_client_id" {
+  description = "The ID of the user assigned identity client ID"
+  type        = string
+}

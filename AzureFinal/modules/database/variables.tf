@@ -31,7 +31,7 @@ data "azurerm_client_config" "current" {}
 variable "psql_name" {
   description = "(Required) The name which should be used for this PostgreSQL Flexible Server."
   type        = string
-  default     = "psql-server"
+  default     = "server"
 }
 
 variable "psql_sku_name" {
@@ -140,6 +140,7 @@ variable "private_dns_zone_name" {
   default     = "postgres-server"
 }
 
+### Module variables ### 
 variable "module_vnet_id" {
   description = "ID of the virtual network with module"
   type        = string
@@ -150,7 +151,6 @@ variable "module_vnet_name" {
   type        = string
 }
 
-# In modules/database/variables.tf
 variable "module_nsg_id" {
   description = "The ID of the Network Security Group"
   type        = string
@@ -166,7 +166,6 @@ variable "module_vnet" {
 }
 
 variable "module_vnet_resource_grp" {
-  description = "Name of the virtual network resource group with module"
+  description = "The object of the virtual network with module"
   type        = string
 }
-

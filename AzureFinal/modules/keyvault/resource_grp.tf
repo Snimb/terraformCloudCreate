@@ -1,6 +1,6 @@
 # Create the resource group
-resource "azurerm_resource_group" "vm" {
-  name     = lower("${var.rg_prefix}-${var.vm_rg_name}-${local.environment}")
+resource "azurerm_resource_group" "kv" {
+  name     = lower("${var.rg_prefix}-${var.kv_rg_name}-${local.environment}")
   location = var.location
   tags = merge(local.default_tags,
     {
@@ -19,12 +19,12 @@ locals {
 }
 
 # Lock the resource group
-resource "azurerm_management_lock" "vm" {
+/*resource "azurerm_management_lock" "kv" {
   name       = "CanNotDelete"
-  scope      = azurerm_resource_group.vm.id
+  scope      = azurerm_resource_group.kv.id
   lock_level = "CanNotDelete"
   notes      = "This resource group can not be deleted - lock set by Terraform"
   depends_on = [
-    azurerm_resource_group.vm,
+    azurerm_resource_group.kv,
   ]
-}
+}*/

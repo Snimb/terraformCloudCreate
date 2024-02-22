@@ -40,9 +40,9 @@ resource "azurerm_key_vault" "kv" {
 }
 
 # Create key vault secret for postgres database password
-resource "azurerm_key_vault_secret" "secret_1" {
+resource "azurerm_key_vault_secret" "postgres_password" {
   name         = "postgres-db-password"
-  value        = random_password.psql_admin_password.result
+  value        = var.module_postgres_password
   key_vault_id = azurerm_key_vault.kv.id
   tags         = {}
 
@@ -52,9 +52,9 @@ resource "azurerm_key_vault_secret" "secret_1" {
 }
 
 # Create key vault secret for postgres database hostname
-resource "azurerm_key_vault_secret" "secret_2" {
+resource "azurerm_key_vault_secret" "postgres_hostname" {
   name         = "postgres-db-hostname"
-  value        = "${azurerm_postgresql_flexible_server.psql.name}.postgres.database.azure.com"
+  value        = "${var.module_postgres_fs_name}.postgres.database.azure.com"
   key_vault_id = azurerm_key_vault.kv.id
   tags         = {}
 
@@ -64,16 +64,18 @@ resource "azurerm_key_vault_secret" "secret_2" {
 }
 
 # Create key vault secret for database1-connection-string
-resource "azurerm_key_vault_secret" "secret_3" {
-  name         = "db-connection-string"
-  value        = "User ID=${azurerm_postgresql_flexible_server.psql.administrator_login};Password=${azurerm_postgresql_flexible_server.psql.administrator_password};Host=${azurerm_postgresql_flexible_server.psql.name}.postgres.database.azure.com;database=${azurerm_postgresql_flexible_server_database.psqldb.name};Port=5432;"
+resource "azurerm_key_vault_secret" "db_connection_strings" {
+  for_each = var.module_postgres_fs_database
+
+  name         = "db-connection-string-${each.key}"
+  value        = "User ID=${var.module_postgres_admin_login};Password=${var.module_postgres_admin_pass};Host=${var.module_postgres_fs_name}.postgres.database.azure.com;database=${each.value.name};Port=5432;"
   key_vault_id = azurerm_key_vault.kv.id
   tags         = {}
 
   depends_on = [
     azurerm_key_vault.kv,
-    azurerm_postgresql_flexible_server.psql,
-    azurerm_postgresql_flexible_server_database.psqldb
+    var.module_postgres_fs,
+    var.module_postgres_fs_database,
   ]
 }
 

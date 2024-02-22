@@ -42,4 +42,3 @@ if [ "$APPROVAL" = "yes" ]; then
 else
     echo "Destroy canceled."
 fi
-

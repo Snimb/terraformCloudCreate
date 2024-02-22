@@ -27,7 +27,7 @@ data "azurerm_client_config" "current" {}
 variable "kv_name" {
   description = "(Required) Specifies the name of the key vault."
   type        = string
-  default     = "keyvault"
+  default     = "keyvault-1"
 }
 
 variable "kv_sku_name" {
@@ -136,7 +136,77 @@ variable "kv_storage_permissions_full" {
   default     = ["Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update", ]
 }
 
-variable "vnetid" {
-  description = "ID of the virtual network"
+
+### PostgreSQL Server Module Variables ###
+variable "module_postgres_fs" {
+  description = "The Obeject of the postgres server"
+  type        = object({
+    name = string
+    id = string
+    resource_group_name = string
+  })
+}
+
+variable "module_postgres_fs_name" {
+  description = "Name of the postgresql server with module"
+  type        = string
+}
+
+variable "module_postgres_fs_database" {
+  description = "The Obeject of the postgres database"
+ type        = map(object({
+    name      = string
+    charset   = string
+    collation = string
+  }))
+}
+
+variable "module_postgres_fs_database_names" {
+  description = "List of names for the PostgreSQL databases."
+  type        = list(string)
+}
+
+variable "module_postgres_admin_pass" {
+  description = "Name of the postgres admin password with module"
+  type        = string
+}
+
+variable "module_postgres_admin_login" {
+  description = "Name of the postgres admin login with module"
+  type        = string
+}
+
+variable "module_postgres_password" {
+description = "Random password with module"
+}
+
+### Virtual Network Module Variables ###
+variable "module_vnet" {
+  description = "The resource group of the virtual network"
+  type        = object({
+    name = string
+    id = string
+    resource_group_name = string
+
+  })
+}
+
+variable "module_vnet_resource_grp" {
+  description = "The object of the virtual network with module"
+  type        = string
+}
+
+variable "module_vnet_id" {
+  description = "ID of the virtual network with module"
+  type        = string
+}
+
+variable "module_vnet_name" {
+  description = "Name of the virtual network with module"
+  type        = string
+}
+
+variable "module_subnet_jumpbox_id" {
+  description = "ID of the subnet jumpbox with module"
   type        = string
 }

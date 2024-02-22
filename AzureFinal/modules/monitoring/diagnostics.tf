@@ -1,7 +1,7 @@
 # Networking - Diagnostic Settings
 resource "azurerm_monitor_diagnostic_setting" "diag_vnet" {
   name                       = "DiagnosticsSettings"
-  target_resource_id         = module.vnetwork.vnet_id
+  target_resource_id         = var.module_vnet_id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.workspace.id
 
   enabled_log {
@@ -15,15 +15,15 @@ resource "azurerm_monitor_diagnostic_setting" "diag_vnet" {
   }
 
   depends_on = [
-    module.vnetwork.vnet,
+    var.module_vnet,
     azurerm_log_analytics_workspace.workspace,
   ]
 }
 
 # Key Vault - Diagnostic Settings
 resource "azurerm_monitor_diagnostic_setting" "diag_kv" {
-  name                       = lower("${var.diag_prefix}-${azurerm_key_vault.kv.name}")
-  target_resource_id         = azurerm_key_vault.kv.id
+  name                       = lower("${var.diag_prefix}-${var.module_keyvault_name}")
+  target_resource_id         = var.module_keyvault_id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.workspace.id
 
   enabled_log {
@@ -36,15 +36,15 @@ resource "azurerm_monitor_diagnostic_setting" "diag_kv" {
   }
 
   depends_on = [
-    azurerm_key_vault.kv,
+    var.module_keyvault,
     azurerm_log_analytics_workspace.workspace,
   ]
 }
 
 # PostgreSQL Server - Diagnostic Settings
 resource "azurerm_monitor_diagnostic_setting" "diag_psql" {
-  name                       = lower("${var.diag_prefix}-${azurerm_postgresql_flexible_server.psql.name}")
-  target_resource_id         = azurerm_postgresql_flexible_server.psql.id
+  name                       = lower("${var.diag_prefix}-${var.module_postgres_fs_name}")
+  target_resource_id         = var.module_postgres_fs_id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.workspace.id
 
   enabled_log {
@@ -59,7 +59,7 @@ resource "azurerm_monitor_diagnostic_setting" "diag_psql" {
 
 
   depends_on = [
-    azurerm_postgresql_flexible_server.psql,
+    var.module_postgres_fs,
     azurerm_log_analytics_workspace.workspace,
   ]
 }
