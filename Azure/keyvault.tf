@@ -156,7 +156,7 @@ resource "azurerm_user_assigned_identity" "default" {
 
 resource "azurerm_role_assignment" "vm_kv_secrets_user" {
   scope                = azurerm_key_vault.kv.id
-  role_definition_name = "Key Vault VM Secrets User"
+  role_definition_name = "Key Vault Secrets User"
   principal_id         = azurerm_linux_virtual_machine.mgmt_vm.identity.0.principal_id
-depends_on = [ azurerm_linux_virtual_machine.mgmt_vm ]
+depends_on = [ azurerm_key_vault.kv ]
 }

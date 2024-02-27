@@ -21,10 +21,6 @@ variable "default_tags" {
   }
 }
 
-variable "sp-tenant-id" {
-  description = "Azure service principal tenant ID"
-}
-
 data "azurerm_client_config" "current" {}
 
 ### POSTGRESQL ###

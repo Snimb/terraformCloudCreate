@@ -264,8 +264,13 @@ Write-Host "SUCCESS!" -ForegroundColor 'Green'
 Write-Host "`nCreating Storage Container: [$storageContainerName] in the Storage Account: [$storageAccountName]..."
 try {
     $storageContext = New-AzStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccessKey
-    New-AzStorageContainer -Name $storageContainerName -Context $storageContext -ErrorAction Stop | Out-String | Write-Verbose
-    Write-Host "SUCCESS!" -ForegroundColor 'Green'
+    $container = Get-AzStorageContainer -Name $storageContainerName -Context $storageContext -ErrorAction SilentlyContinue
+    if ($container) {
+        Write-Host "Container '$storageContainerName' already exists." -ForegroundColor 'Magenta'
+    } else {
+        New-AzStorageContainer -Name $storageContainerName -Context $storageContext -ErrorAction Stop | Out-String | Write-Verbose
+        Write-Host "SUCCESS! Storage container created." -ForegroundColor 'Green'
+    }
 }
 catch {
     Write-Host "ERROR creating storage container:" -ForegroundColor 'Red'

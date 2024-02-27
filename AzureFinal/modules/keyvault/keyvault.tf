@@ -1,6 +1,6 @@
 # Create Azure Key Vault using terraform
 resource "azurerm_key_vault" "kv" {
-  name                            = lower("${var.kv_prefix}-${var.kv_name}-${local.environment}")
+  name                            = lower("${substr("${var.kv_prefix}-${random_pet.name_prefix.id}-${var.kv_name}-${local.environment}", 0, 24)}")
   resource_group_name             = azurerm_resource_group.kv.name
   location                        = azurerm_resource_group.kv.location
   tenant_id                       = data.azurerm_client_config.current.tenant_id
@@ -27,10 +27,10 @@ resource "azurerm_key_vault" "kv" {
   }
 
   network_acls {
-    default_action             = "Allow"
+    default_action             = var.kv_default_action
     bypass                     = "AzureServices"
     ip_rules                   = var.kv_ip_rules
-    virtual_network_subnet_ids = var.kv_virtual_network_subnet_ids
+    virtual_network_subnet_ids = [var.module_subnet_jumpbox_id, var.module_subnet_psql_id]
   }
 
   depends_on = [
@@ -68,7 +68,7 @@ resource "azurerm_key_vault_secret" "db_connection_strings" {
   for_each = var.module_postgres_fs_database
 
   name         = "db-connection-string-${each.key}"
-  value        = "User ID=${var.module_postgres_admin_login};Password=${var.module_postgres_admin_pass};Host=${var.module_postgres_fs_name}.postgres.database.azure.com;database=${each.value.name};Port=5432;"
+  value        = "User ID=${var.module_postgres_admin_login};Password=${var.module_postgres_admin_pass};Host=${var.module_postgres_fs_name}.postgres.database.azure.com;Database=${each.value.name};Port=5432;"
   key_vault_id = azurerm_key_vault.kv.id
   tags         = {}
 

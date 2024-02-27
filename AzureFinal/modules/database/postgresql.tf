@@ -1,7 +1,7 @@
 ## Provisions an Azure PostgreSQL Flexible Server with specified configurations like version, storage, and admin credentials.
 resource "azurerm_postgresql_flexible_server" "psql" {
   ## Defines the name of the PostgreSQL Flexible Server instance.
-  name = lower("${var.psql_prefix}-${var.psql_name}-${local.environment}")
+  name = lower("${var.psql_prefix}-${random_pet.name_prefix.id}-${var.psql_name}-${local.environment}")
 
   ## Specifies the name of the resource group where the PostgreSQL server will be located.
   resource_group_name = azurerm_resource_group.db.name
@@ -45,7 +45,7 @@ resource "azurerm_postgresql_flexible_server" "psql" {
   authentication {
     active_directory_auth_enabled = true
     password_auth_enabled         = true
-    tenant_id                     = var.sp-tenant-id
+    tenant_id                     = data.azurerm_client_config.current.tenant_id
   }
 
   ## when you prefer maintenance to occur. Azure uses this information to schedule maintenance operations, such as updates and patches, minimizing impact on your service.
@@ -95,7 +95,6 @@ resource "azurerm_postgresql_flexible_server_database" "psqldb" {
 resource "azuread_group" "psql_admin_group" {
   display_name     = "psql-admin-group"
   security_enabled = true
-  description      = "Group for PostgreSQL admin users"
 }
 
 ## Create Azure AD groups for database access
@@ -105,12 +104,12 @@ resource "azuread_group" "psql_ad_group" {
   security_enabled = true
   owners           = [data.azurerm_client_config.current.object_id]
 
-  lifecycle {
+  /*lifecycle {
     ignore_changes = [owners]
-  }
+  }*/
 }
 ## Set the AD administrator for PostgreSQL Flexible Server
-resource "azurerm_postgresql_flexible_server_active_directory_administrator" "psqlad" {
+resource "azurerm_postgresql_flexible_server_active_directory_administrator" "psql" {
   server_name         = azurerm_postgresql_flexible_server.psql.name
   resource_group_name = azurerm_resource_group.db.name
   tenant_id           = data.azurerm_client_config.current.tenant_id

@@ -1,31 +1,29 @@
 # Variables for the provider block:
+/*variable "tenant_id" {
+  description = "Tenant Id of the azure account."
+  type        = string
+  sensitive   = true
+}
+
 variable "sp-subscription-id" {
   description = "Id of the azure subscription where all resources will be created"
   type        = string
   sensitive   = true
-
-}
-
-variable "sp-tenant-id" {
-  description = "Tenant Id of the azure account."
-  type        = string
-  sensitive   = true
-
 }
 
 variable "sp-client-id" {
   description = "Client Id of A Service Principal or Azure Active Directory application registration used for provisioning azure resources."
   type        = string
   sensitive   = true
-
 }
 
 variable "sp-client-secret" {
   description = "Secret of A Service Principal or Azure Active Directory application registration used for provisioning azure resources."
   type        = string
   sensitive   = true
+}*/
 
-}
+data "azurerm_client_config" "current" {}
 
 # Location:
 variable "location" {
@@ -122,6 +120,11 @@ variable "image_version" {
   default     = "latest"
 }
 
+variable "sas_token" {
+  description = "SAS Token for accessing Azure Blob Storage"
+  type        = string
+}
+
 ### POSTGRESQL ###
 variable "psql_sku_name" {
   description = "(Optional) The SKU Name for the PostgreSQL Flexible Server. The name of the SKU, follows the tier + name pattern (e.g. B_Standard_B1ms, GP_Standard_D2s_v3, MO_Standard_E4s_v3). "
@@ -193,7 +196,6 @@ variable "geo_redundant_backup_enabled" {
   default     = true
 }
 
-
 variable "private_dns_zone_name" {
   description = "Specifies the name of the PostgreSQL servers private DNS zone"
   type        = string
@@ -239,37 +241,31 @@ variable "auto_grow_enabled" {
 variable "enabled_for_deployment" {
   description = "(Optional) Boolean flag to specify whether Azure Virtual Machines are permitted to retrieve certificates stored as secrets from the key vault. Defaults to false."
   type        = bool
-  default     = false
 }
 
 variable "enabled_for_disk_encryption" {
   description = " (Optional) Boolean flag to specify whether Azure Disk Encryption is permitted to retrieve secrets from the vault and unwrap keys. Defaults to false."
   type        = bool
-  default     = false
 }
 
 variable "enabled_for_template_deployment" {
   description = "(Optional) Boolean flag to specify whether Azure Resource Manager is permitted to retrieve secrets from the key vault. Defaults to false."
   type        = bool
-  default     = false
 }
 
 variable "enable_rbac_authorization" {
   description = "(Optional) Boolean flag to specify whether Azure Key Vault uses Role Based Access Control (RBAC) for authorization of data actions. Defaults to false."
   type        = bool
-  default     = false
 }
 
 variable "purge_protection_enabled" {
   description = "(Optional) Is Purge Protection enabled for this Key Vault? Defaults to false."
   type        = bool
-  default     = false
 }
 
 variable "soft_delete_retention_days" {
   description = "(Optional) The number of days that items should be retained for once soft-deleted. This value can be between 7 and 90 (the default) days."
   type        = number
-  default     = 30
 }
 
 variable "bypass" {
@@ -286,7 +282,6 @@ variable "bypass" {
 variable "kv_default_action" {
   description = "(Required) The Default Action to use when no rules match from ip_rules / virtual_network_subnet_ids. Possible values are Allow and Deny."
   type        = string
-  default     = "Allow"
 
   validation {
     condition     = contains(["Allow", "Deny"], var.kv_default_action)

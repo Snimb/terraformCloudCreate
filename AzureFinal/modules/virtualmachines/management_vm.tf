@@ -1,5 +1,5 @@
 resource "azurerm_linux_virtual_machine" "mgmt_vm" {
-  name                            = lower("${var.vm_prefix}-${var.vm_name}")
+  name                            = lower("${var.vm_prefix}-${random_pet.name_prefix.id}-${var.vm_name}")
   resource_group_name             = azurerm_resource_group.vm.name
   location                        = azurerm_resource_group.vm.location
   size                            = var.vm_size
@@ -19,8 +19,6 @@ resource "azurerm_linux_virtual_machine" "mgmt_vm" {
 
   identity {
     type = "SystemAssigned"
-    # type         = "UserAssigned"
-    # identity_ids = [var.module_user_assigned_identity_id]
   }
 
   source_image_reference {
@@ -29,12 +27,10 @@ resource "azurerm_linux_virtual_machine" "mgmt_vm" {
     sku       = var.image_sku
     version   = var.image_version
   }
-  # Custom Data for installing PostgreSQL client and fetching connection string from Key Vault
-  custom_data = base64encode(data.template_file.init_script.rendered)
 }
 
 resource "azurerm_network_interface" "vm_nic" {
-  name                = lower("${var.vm_prefix}-${var.vm_name}-nic")
+  name                = lower("${var.vm_prefix}-${random_pet.name_prefix.id}-${var.vm_name}-nic")
   location            = azurerm_resource_group.vm.location
   resource_group_name = azurerm_resource_group.vm.name
 
@@ -45,27 +41,65 @@ resource "azurerm_network_interface" "vm_nic" {
   }
 }
 
-data "template_file" "init_script" {
+resource "azurerm_virtual_machine_extension" "init_script" {
+  name                 = "initScriptExtension"
+  virtual_machine_id   = azurerm_linux_virtual_machine.mgmt_vm.id
+  publisher            = "Microsoft.Azure.Extensions"
+  type                 = "CustomScript"
+  type_handler_version = "2.1"
+  depends_on           = [azurerm_key_vault_access_policy.vm_access_policy,
+  azurerm_role_assignment.vm_reader]
+
+  settings = <<-SETTINGS
+    {
+      "fileUris": ["${var.sas_token}"],
+      "commandToExecute": "sudo bash init-vm-script.sh '${var.vm_admin_username}' '${var.module_keyvault_name}' '${var.module_secret_connection_string_names[0]}'"
+    }
+  SETTINGS
+}
+
+resource "azurerm_key_vault_access_policy" "vm_access_policy" {
+  key_vault_id = var.module_keyvault_id
+
+  tenant_id = data.azurerm_client_config.current.tenant_id # Your Azure tenant ID
+  object_id = azurerm_linux_virtual_machine.mgmt_vm.identity.0.principal_id
+
+  key_permissions = ["Get", "List"]
+
+  secret_permissions = ["Get", "List"]
+
+  certificate_permissions = ["Get", "List"]
+
+  depends_on = [
+    azurerm_linux_virtual_machine.mgmt_vm,
+    var.module_keyvault,
+  ]
+}
+
+data "azurerm_subscriptions" "available" {
+}
+
+resource "azurerm_role_assignment" "vm_reader" {
+  scope                = "subscriptions/${data.azurerm_subscriptions.available.subscriptions[0].subscription_id}"
+  role_definition_name = "Reader"
+  principal_id         = azurerm_linux_virtual_machine.mgmt_vm.identity.0.principal_id
+  depends_on = [
+    azurerm_linux_virtual_machine.mgmt_vm,
+    var.module_keyvault
+  ]
+}
+
+
+/*data "template_file" "init_script" {
   template = file("${path.module}/init-vm-script.sh.tpl")
 
   vars = {
     key_vault_name = var.module_keyvault_name
-    secret_names   = join(",", [for name in keys(var.module_secret_connection_string_names) : name])
+    secret_name    = var.module_secret_connection_string_names[0]
     admin_username = var.vm_admin_username
 
   }
-  depends_on = [ azurerm_role_assignment.vm_kv_secrets_user ]
-}
-    # client_id      = var.module_user_assigned_identity_client_id
-
-
-resource "azurerm_role_assignment" "vm_kv_secrets_user" {
-  scope                = var.module_keyvault_id
-  role_definition_name = "Key Vault VM Secrets User"
-  principal_id         = azurerm_linux_virtual_machine.mgmt_vm.identity.0.principal_id
-depends_on = [ azurerm_linux_virtual_machine.mgmt_vm ]
-}
-
+}*/
 
 
 /*resource "azurerm_virtual_machine_extension" "diag_vm" {

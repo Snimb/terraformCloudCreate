@@ -21,6 +21,9 @@ variable "default_tags" {
   }
 }
 
+data "azurerm_client_config" "current" {}
+
+
 ### Management VM ###
 variable "vm_admin_username" {
   description = "The username of the VM"
@@ -80,6 +83,11 @@ variable "vm_name" {
   default     = "management"
 }
 
+variable "sas_token" {
+  description = "SAS Token for accessing Azure Blob Storage"
+  type        = string
+}
+
 ### Module Variables ###
 variable "module_jumpbox_subnet_id" {
   description = "The ID of the jumpbox subnet"
@@ -98,7 +106,21 @@ variable "module_keyvault_name" {
 
 variable "module_secret_connection_string_names" {
   description = "A map of database names to the names of the Key Vault secrets containing their connection strings."
-  type        = map(string)
+  type        = list(string)
+}
+
+variable "module_keyvault" {
+  description = "The object of the Key Vault"
+  type = object({
+    name                = string
+    id                  = string
+    resource_group_name = string
+  })
+}
+
+variable "module_postgres_fs_database_names" {
+  type        = list(string)  # Adjust the type based on the actual structure you expect
+  description = "List of PostgreSQL database configurations"
 }
 
 /*variable "module_user_assigned_identity_client_id" {

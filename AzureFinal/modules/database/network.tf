@@ -1,12 +1,12 @@
 # Creates a subnet within the virtual network. This subnet includes a delegation for Azure PostgreSQL Flexible Servers, enabling them to be associated with this subnet.
 resource "azurerm_subnet" "psql" {
-  name                                          = lower("${var.subnet_prefix}-${var.psql_subnet_name}")
+  name                                          = lower("${var.subnet_prefix}-${random_pet.name_prefix.id}-${var.psql_subnet_name}")
   resource_group_name                           = var.module_vnet_resource_grp
   virtual_network_name                          = var.module_vnet_name
   address_prefixes                              = var.psql_address_prefixes
   private_endpoint_network_policies_enabled     = false
   private_link_service_network_policies_enabled = false
-  service_endpoints                             = ["Microsoft.Storage"]
+  service_endpoints                             = ["Microsoft.Storage","Microsoft.KeyVault"]
 
   # The delegation block allows the subnet to be dedicated for specific Azure services, in this case, Azure Database for PostgreSQL. 
   # This setup permits the PostgreSQL service to integrate deeply with the subnet, enhancing network security and performance by enabling direct service connections. 

@@ -12,6 +12,19 @@ else
     echo "Already logged in."
 fi
 
+# Define the name of your Azure Key Vault
+KEY_VAULT_NAME="<name of key vault>"
+TENANT_ID_SECRET_NAME="<name of tenant id secret>"
+SUBSCRIPTION_ID_SECRET_NAME="<name of subsription id secret >"
+CLIENT_SECRET_SECRET_NAME="<name of client secret secret>"
+CLIENT_ID_SECRET_NAME="<name of client id secret>"
+
+# Fetch secrets from Azure Key Vault and set them as environment variables
+export ARM_CLIENT_ID=$(az keyvault secret show --name "$CLIENT_ID_SECRET_NAME" --vault-name "$KEY_VAULT_NAME" --query value -o tsv)
+export ARM_CLIENT_SECRET=$(az keyvault secret show --name "$CLIENT_SECRET_SECRET_NAME" --vault-name "$KEY_VAULT_NAME" --query value -o tsv)
+export ARM_SUBSCRIPTION_ID=$(az keyvault secret show --name "$SUBSCRIPTION_ID_SECRET_NAME" --vault-name "$KEY_VAULT_NAME" --query value -o tsv)
+export ARM_TENANT_ID=$(az keyvault secret show --name "$TENANT_ID_SECRET_NAME" --vault-name "$KEY_VAULT_NAME" --query value -o tsv)
+
 # Initialize and prepare Terraform
 terraform init # Remove '-reconfigure' to use existing .terraform if present
 terraform validate
@@ -43,3 +56,9 @@ if [ "$APPROVAL" = "yes" ]; then
 else
     echo "Plan not applied."
 fi
+
+# Unsetting the environment variables
+unset ARM_CLIENT_ID
+unset ARM_CLIENT_SECRET
+unset ARM_SUBSCRIPTION_ID
+unset ARM_TENANT_ID

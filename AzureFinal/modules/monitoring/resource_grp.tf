@@ -1,6 +1,6 @@
 # Create the resource group
 resource "azurerm_resource_group" "diag" {
-  name     = lower("${var.rg_prefix}-${var.diag_rg_name}-${local.environment}")
+  name     = lower("${var.rg_prefix}-${random_pet.name_prefix.id}-${var.diag_rg_name}-${local.environment}")
   location = var.location
   tags = merge(local.default_tags,
     {
@@ -16,6 +16,16 @@ resource "azurerm_resource_group" "diag" {
 locals {
   default_tags = merge(var.default_tags, { "Environment" = "${terraform.workspace}" })
   environment  = terraform.workspace != "default" ? terraform.workspace : ""
+}
+
+resource "random_pet" "name_prefix" {
+  prefix = var.name_prefix # Generates a random name prefix to ensure resource names are unique.
+  length = 1               # Specifies the number of words in the generated name.
+}
+
+variable "name_prefix" {
+  default     = "azure" # Default prefix for resource names to ensure uniqueness.
+  description = "Prefix of the resource name."
 }
 
 # Lock the resource group

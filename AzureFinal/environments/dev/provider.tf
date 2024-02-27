@@ -15,11 +15,10 @@ terraform {
 
 provider "random" {}
 
-provider "azurerm" {
-  features {} # Required block for Azure provider, even if empty, to specify provider-specific features.
-  subscription_id = var.sp-subscription-id
-  tenant_id       = var.sp-tenant-id
-  client_secret   = var.sp-client-secret
-  client_id       = var.sp-client-id
+/*provider "azuread" {
+  # If different from ARM_* variables, specify client_id, client_secret, and tenant_id here
+}*/
 
+provider "azurerm" {
+  features {}
 }

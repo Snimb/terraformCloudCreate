@@ -24,7 +24,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "kv_pdz_vnet_link" {
 
 # Create private endpoint for key vault
 resource "azurerm_private_endpoint" "pe_kv" {
-  name                = lower("${var.private_endpoint_prefix}-${azurerm_key_vault.kv.name}")
+  name                = lower("${var.private_endpoint_prefix}-${random_pet.name_prefix.id}-${azurerm_key_vault.kv.name}")
   location            = azurerm_key_vault.kv.location
   resource_group_name = azurerm_key_vault.kv.resource_group_name
   subnet_id           = var.module_subnet_jumpbox_id

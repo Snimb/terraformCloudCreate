@@ -1,6 +1,6 @@
 # Virutal network
 resource "azurerm_virtual_network" "vnet" {
-  name                = lower("${var.vnet_prefix}-${var.vnet_name}-${local.environment}")
+  name                = lower("${var.vnet_prefix}-${random_pet.name_prefix.id}-${var.vnet_name}-${local.environment}")
   address_space       = var.vnet_address_space
   resource_group_name = azurerm_resource_group.vnet.name
   location            = azurerm_resource_group.vnet.location
@@ -11,12 +11,13 @@ resource "azurerm_virtual_network" "vnet" {
 
 # jumpm VM server subnet
 resource "azurerm_subnet" "jumpbox" {
-  name                                          = lower("${var.subnet_prefix}-${var.jumpbox_subnet_name}")
+  name                                          = lower("${var.subnet_prefix}-${random_pet.name_prefix.id}-${var.jumpbox_subnet_name}")
   resource_group_name                           = azurerm_virtual_network.vnet.resource_group_name
   virtual_network_name                          = azurerm_virtual_network.vnet.name
   address_prefixes                              = var.jumpbox_subnet_address_prefix
   private_endpoint_network_policies_enabled     = false
   private_link_service_network_policies_enabled = false
+  service_endpoints = ["Microsoft.KeyVault"]
   depends_on = [
     azurerm_virtual_network.vnet
   ]
@@ -37,7 +38,7 @@ resource "azurerm_subnet" "hub_bastion" {
 
 # Defines a network security group with a generic rule to allow all inbound TCP traffic. Adjust the rules based on your security requirements.
 resource "azurerm_network_security_group" "default" {
-  name                = lower("${var.nsg_prefix}-${var.nsg_name}-${local.environment}")
+  name                = lower("${var.nsg_prefix}-${random_pet.name_prefix.id}-${var.nsg_name}-${local.environment}")
   location            = azurerm_resource_group.vnet.location
   resource_group_name = azurerm_resource_group.vnet.name
 
@@ -56,3 +57,16 @@ resource "azurerm_network_security_group" "default" {
     }
   }
 }
+
+# Create hub azure firewall subnet
+/*resource "azurerm_subnet" "firewall" {
+  name                                          = var.hub_firewall_subnet_name
+  resource_group_name                           = azurerm_virtual_network.vnet.resource_group_name
+  virtual_network_name                          = azurerm_virtual_network.vnet.name
+  address_prefixes                              = var.hub_firewall_subnet_address_prefixes
+  private_endpoint_network_policies_enabled     = false
+  private_link_service_network_policies_enabled = false
+  depends_on = [
+    azurerm_virtual_network.vnet
+  ]
+}*/

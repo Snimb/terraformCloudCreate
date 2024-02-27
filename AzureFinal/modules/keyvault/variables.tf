@@ -27,7 +27,7 @@ data "azurerm_client_config" "current" {}
 variable "kv_name" {
   description = "(Required) Specifies the name of the key vault."
   type        = string
-  default     = "keyvault-1"
+  default     = "1"
 }
 
 variable "kv_sku_name" {
@@ -44,37 +44,31 @@ variable "kv_sku_name" {
 variable "enabled_for_deployment" {
   description = "(Optional) Boolean flag to specify whether Azure Virtual Machines are permitted to retrieve certificates stored as secrets from the key vault. Defaults to false."
   type        = bool
-  default     = false
 }
 
 variable "enabled_for_disk_encryption" {
   description = " (Optional) Boolean flag to specify whether Azure Disk Encryption is permitted to retrieve secrets from the vault and unwrap keys. Defaults to false."
   type        = bool
-  default     = false
 }
 
 variable "enabled_for_template_deployment" {
   description = "(Optional) Boolean flag to specify whether Azure Resource Manager is permitted to retrieve secrets from the key vault. Defaults to false."
   type        = bool
-  default     = false
 }
 
 variable "enable_rbac_authorization" {
   description = "(Optional) Boolean flag to specify whether Azure Key Vault uses Role Based Access Control (RBAC) for authorization of data actions. Defaults to false."
   type        = bool
-  default     = false
 }
 
 variable "purge_protection_enabled" {
   description = "(Optional) Is Purge Protection enabled for this Key Vault? Defaults to false."
   type        = bool
-  default     = false
 }
 
 variable "soft_delete_retention_days" {
   description = "(Optional) The number of days that items should be retained for once soft-deleted. This value can be between 7 and 90 (the default) days."
   type        = number
-  default     = 30
 }
 
 variable "bypass" {
@@ -105,12 +99,6 @@ variable "kv_ip_rules" {
   default     = []
 }
 
-variable "kv_virtual_network_subnet_ids" {
-  description = "(Optional) One or more Subnet ID's which should be able to access this Key Vault."
-  type        = list(string)
-  default     = [] # use this if virtual networking provisioned separately
-}
-
 variable "kv_key_permissions_full" {
   type        = list(string)
   description = "List of full key permissions, must be one or more from the following: backup, create, decrypt, delete, encrypt, get, import, list, purge, recover, restore, sign, unwrapKey, update, verify and wrapKey."
@@ -135,7 +123,6 @@ variable "kv_storage_permissions_full" {
   description = "List of full storage permissions, must be one or more from the following: backup, delete, deletesas, get, getsas, list, listsas, purge, recover, regeneratekey, restore, set, setsas and update"
   default     = ["Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update", ]
 }
-
 
 ### PostgreSQL Server Module Variables ###
 variable "module_postgres_fs" {
@@ -209,4 +196,10 @@ variable "module_vnet_name" {
 variable "module_subnet_jumpbox_id" {
   description = "ID of the subnet jumpbox with module"
   type        = string
+}
+
+variable "module_subnet_psql_id" {
+  description = "ID of the subnet psql with module"
+  type = string
+
 }

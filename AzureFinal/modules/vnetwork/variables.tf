@@ -83,3 +83,14 @@ variable "nsg_name" {
   type = string
   default = "network-rules"
 }
+
+/*variable "hub_firewall_subnet_name" {
+  description = "Specifies the name of the azure firewall subnet"
+  type        = string
+  default     = "AzureFirewallSubnet"
+}
+
+variable "hub_firewall_subnet_address_prefixes" {
+  description = "Specifies the address prefix of the azure firewall subnet"
+  type        = list(string)
+}*/

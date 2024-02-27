@@ -22,7 +22,7 @@ resource "azurerm_monitor_diagnostic_setting" "diag_vnet" {
 
 # Key Vault - Diagnostic Settings
 resource "azurerm_monitor_diagnostic_setting" "diag_kv" {
-  name                       = lower("${var.diag_prefix}-${var.module_keyvault_name}")
+  name                       = lower("${var.diag_prefix}-${random_pet.name_prefix.id}-${var.module_keyvault_name}")
   target_resource_id         = var.module_keyvault_id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.workspace.id
 
@@ -43,7 +43,7 @@ resource "azurerm_monitor_diagnostic_setting" "diag_kv" {
 
 # PostgreSQL Server - Diagnostic Settings
 resource "azurerm_monitor_diagnostic_setting" "diag_psql" {
-  name                       = lower("${var.diag_prefix}-${var.module_postgres_fs_name}")
+  name                       = lower("${var.diag_prefix}-${random_pet.name_prefix.id}-${var.module_postgres_fs_name}")
   target_resource_id         = var.module_postgres_fs_id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.workspace.id
 

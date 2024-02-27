@@ -1,6 +1,6 @@
 # Create Log Analytics Workspace 
 resource "azurerm_log_analytics_workspace" "workspace" {
-  name                = lower("${var.log_analytics_workspace_prefix}-${var.log_analytics_workspace_name}-${local.environment}")
+  name                = lower("${var.log_analytics_workspace_prefix}-${random_pet.name_prefix.id}-${var.log_analytics_workspace_name}-${local.environment}")
   resource_group_name = azurerm_resource_group.diag.name
   location            = var.location
   sku                 = var.log_analytics_workspace_sku
