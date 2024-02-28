@@ -10,15 +10,6 @@ secret_name="$3"
 sudo apt-get update -y && sudo apt-get upgrade -y
 sudo apt-get install -y postgresql-client
 
-# Define secure directory for credentials
-secure_dir="/etc/myapp"
-credentials_file="$secure_dir/credentials"
-
-# Create secure directory and credentials file
-sudo mkdir -p "$secure_dir"
-sudo touch "$credentials_file"
-sudo chmod 600 "$credentials_file"
-
 # Install Azure CLI
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
@@ -51,15 +42,6 @@ password=$(echo $conn_str | grep -oP 'Password=\K[^;]*')
 hostname=$(echo $conn_str | grep -oP 'Host=\K[^;]*')
 dbname=$(echo $conn_str | grep -oP 'Database=\K[^;]*')
 port=$(echo $conn_str | grep -oP 'Port=\K[^;]*')
-
-# Save connection details securely
-echo "$secret_name connection details:" >>"$credentials_file"
-echo "Hostname=$hostname" >>"$credentials_file"
-echo "Port=$port" >>"$credentials_file"
-echo "Database=$dbname" >>"$credentials_file"
-echo "Username=$username" >>"$credentials_file"
-echo "Password=$password" >>"$credentials_file"
-echo "" >>"$credentials_file"
 
 # Update .pgpass file for passwordless PostgreSQL client authentication
 echo "Updating .pgpass for user $username..."

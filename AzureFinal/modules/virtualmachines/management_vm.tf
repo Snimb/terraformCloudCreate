@@ -76,9 +76,6 @@ resource "azurerm_key_vault_access_policy" "vm_access_policy" {
   ]
 }
 
-data "azurerm_subscriptions" "available" {
-}
-
 resource "azurerm_role_assignment" "vm_reader" {
   scope                = "subscriptions/${data.azurerm_subscriptions.available.subscriptions[0].subscription_id}"
   role_definition_name = "Reader"
@@ -88,19 +85,6 @@ resource "azurerm_role_assignment" "vm_reader" {
     var.module_keyvault
   ]
 }
-
-
-/*data "template_file" "init_script" {
-  template = file("${path.module}/init-vm-script.sh.tpl")
-
-  vars = {
-    key_vault_name = var.module_keyvault_name
-    secret_name    = var.module_secret_connection_string_names[0]
-    admin_username = var.vm_admin_username
-
-  }
-}*/
-
 
 /*resource "azurerm_virtual_machine_extension" "diag_vm" {
   name                 = "diag_vm-diagnostics-extension"

@@ -66,6 +66,7 @@ module "keyvault" {
   module_vnet_resource_grp          = module.vnetwork.resource_group_name
   module_subnet_jumpbox_id          = module.vnetwork.subnet_jumpbox_id
   module_subnet_psql_id             = module.database.subnet_psql_id
+
 }
 
 module "monitoring" {
@@ -82,6 +83,7 @@ module "monitoring" {
   module_keyvault              = module.keyvault.key_vault_object
   module_keyvault_id           = module.keyvault.key_vault_id
   module_keyvault_name         = module.keyvault.key_vault_name
+
 }
 
 module "virtualmachines" {
@@ -104,4 +106,5 @@ module "virtualmachines" {
   module_keyvault_id                    = module.keyvault.key_vault_id
   module_keyvault                       = module.keyvault.key_vault_object
   module_postgres_fs_database_names     = module.database.specific_postgresql_flexible_server_database_names
+  
 }

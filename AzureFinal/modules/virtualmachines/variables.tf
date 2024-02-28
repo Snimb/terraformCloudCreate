@@ -23,6 +23,7 @@ variable "default_tags" {
 
 data "azurerm_client_config" "current" {}
 
+data "azurerm_subscriptions" "available" {}
 
 ### Management VM ###
 variable "vm_admin_username" {
@@ -122,13 +123,3 @@ variable "module_postgres_fs_database_names" {
   type        = list(string)  # Adjust the type based on the actual structure you expect
   description = "List of PostgreSQL database configurations"
 }
-
-/*variable "module_user_assigned_identity_client_id" {
-  description = "The ID of the user assigned identity client ID"
-  type        = string
-}
-
-variable "module_user_assigned_identity_id" {
-  description = "The ID of the user assigned identity"
-  type        = string
-}*/

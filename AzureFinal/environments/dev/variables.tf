@@ -1,29 +1,4 @@
-# Variables for the provider block:
-/*variable "tenant_id" {
-  description = "Tenant Id of the azure account."
-  type        = string
-  sensitive   = true
-}
-
-variable "sp-subscription-id" {
-  description = "Id of the azure subscription where all resources will be created"
-  type        = string
-  sensitive   = true
-}
-
-variable "sp-client-id" {
-  description = "Client Id of A Service Principal or Azure Active Directory application registration used for provisioning azure resources."
-  type        = string
-  sensitive   = true
-}
-
-variable "sp-client-secret" {
-  description = "Secret of A Service Principal or Azure Active Directory application registration used for provisioning azure resources."
-  type        = string
-  sensitive   = true
-}*/
-
-data "azurerm_client_config" "current" {}
+# data "azurerm_client_config" "current" {}
 
 # Location:
 variable "location" {

@@ -50,11 +50,6 @@ output "postgres_hostname_secret_name" {
   description = "The name of the Key Vault secret containing the Postgres database hostname."
 }
 
-/*output "db_connection_strings_secret_names" {
-  value = { for k, secret in azurerm_key_vault_secret.db_connection_strings.name : k => secret }
-  description = "A map of database names to the names of the Key Vault secrets containing their connection strings."
-}*/
-
 output "db_connection_strings_secret_names" {
   value = [for secret in values(azurerm_key_vault_secret.db_connection_strings) : secret.name]
   description = "A list of the names of the Key Vault secrets containing database connection strings."
