@@ -24,7 +24,7 @@ resource "random_pet" "name_prefix" {
 }
 
 variable "name_prefix" {
-  default     = "azure" # Default prefix for resource names to ensure uniqueness.
+  default     = "az" # Default prefix for resource names to ensure uniqueness.
   description = "Prefix of the resource name."
 }
 

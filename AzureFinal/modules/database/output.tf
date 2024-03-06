@@ -69,3 +69,8 @@ output "psql_admin_password" {
 output "account_id" {
   value = data.azurerm_client_config.current.client_id
 }
+
+output "psql_nsg_id" {
+  value = azurerm_network_security_group.psql.id
+  description = "The ID of the PostgreSQL Network Security Group"
+}

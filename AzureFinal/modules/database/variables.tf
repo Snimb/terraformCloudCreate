@@ -70,7 +70,7 @@ variable "auto_grow_enabled" {
 
 variable "zone" {
   description = "The availability zone in which to deploy the Azure PostgreSQL Flexible Server"
-  type        = string
+  type        = number
 }
 
 variable "maintenance_window" {
@@ -136,6 +136,30 @@ variable "private_dns_zone_name" {
   default     = "postgres-server"
 }
 
+variable "psql_nsg_name" {
+  description = "Specifies the name of the network security group"
+  type = string
+  default = "psql-network-rules"
+}
+
+# Variable for defining NSG security rules
+variable "nsg_security_rules_psql" {
+  description = "List of security rules for the Network Security Group."
+  type = list(object({
+    name                       = string
+    priority                   = number
+    direction                  = string
+    access                     = string
+    protocol                   = string
+    source_port_range          = string
+    destination_port_range     = string
+    source_address_prefix      = string
+    destination_address_prefix = string
+  }))
+  # The default is set to an empty list because the actual rules will be defined in the tfvars file.
+  default = []
+}
+
 ### Module variables ### 
 variable "module_vnet_id" {
   description = "ID of the virtual network with module"
@@ -144,11 +168,6 @@ variable "module_vnet_id" {
 
 variable "module_vnet_name" {
   description = "Name of the virtual network with module"
-  type        = string
-}
-
-variable "module_nsg_id" {
-  description = "The ID of the Network Security Group"
   type        = string
 }
 

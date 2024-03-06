@@ -23,7 +23,7 @@ variable "jumpbox_subnet_address_prefix" {
 }
 
 # Variable for defining NSG security rules
-variable "nsg_security_rules" {
+variable "nsg_security_rules_psql" {
   description = "List of security rules for the Network Security Group."
   type = list(object({
     name                       = string
@@ -40,6 +40,22 @@ variable "nsg_security_rules" {
   default = []
 }
 
+variable "nsg_security_rules_jumpbox" {
+  description = "List of security rules for the Network Security Group."
+  type = list(object({
+    name                       = string
+    priority                   = number
+    direction                  = string
+    access                     = string
+    protocol                   = string
+    source_port_range          = string
+    destination_port_range     = string
+    source_address_prefix      = string
+    destination_address_prefix = string
+  }))
+  # The default is set to an empty list because the actual rules will be defined in the tfvars file.
+  default = []
+}
 
 ### Management VM ###
 variable "vm_admin_username" {
@@ -81,7 +97,6 @@ variable "vm_size" {
   description = "The size og the virtual machine"
   type        = string
 }
-
 
 variable "os_disk_caching" {
   description = "Caching type for the OS Disk."
@@ -330,7 +345,112 @@ variable "solution_plan_map" {
   }
 }
 
+variable "network_watcher_retention_days" {
+  description = " (Optional) Specifies the data retention in days. Range between 31 and 730."
+  type        = number
+}
+
+variable "network_watcher_traffic_analytics_interval_in_minutes" {
+  type = number
+}
+
+variable "email_receivers" {
+  description = "List of email receivers for the action group"
+  type = list(object({
+    name          = string
+    email_address = string
+  }))
+}
+
+### Storage ###
 variable "log_analytics_retention_days" {
   description = " (Optional) Specifies the workspace data retention in days. Range between 31 and 730."
   type        = number
 }
+
+variable "storage_account_kind" {
+  description = "(Optional) Specifies the account kind of the storage account"
+  type        = string
+
+  validation {
+    condition     = contains(["Storage", "StorageV2", "BlobStorage", "BlockBlobStorage", "FileStorage"], var.storage_account_kind)
+    error_message = "The account kind of the storage account is invalid."
+  }
+}
+
+variable "storage_access_tier" {
+  description = "(Optional) Defines the access tier for BlobStorage, FileStorage and StorageV2 accounts. Valid options are Hot and Cool, defaults to Hot."
+  type        = string
+
+  validation {
+    condition     = contains(["Hot", "Cool"], var.storage_access_tier)
+    error_message = "The access tier of the storage account is invalid."
+  }
+}
+
+variable "storage_account_retention_days" {
+  type        = number
+  description = "The number of days to retain logs and metrics in the storage account."
+}
+
+variable "storage_account_tier" {
+  description = "(Optional) Specifies the account tier of the storage account"
+  type        = string
+
+  validation {
+    condition     = contains(["Standard", "Premium"], var.storage_account_tier)
+    error_message = "The account tier of the storage account is invalid."
+  }
+}
+
+variable "storage_replication_type" {
+  description = "(Optional) Specifies the replication type of the storage account"
+  type        = string
+
+  validation {
+    condition     = contains(["LRS", "GRS", "RAGRS", "ZRS", "GZRS", "RAGZRS"], var.storage_replication_type)
+    error_message = "The replication type of the storage account is invalid."
+  }
+}
+
+variable "storage_is_hns_enabled" {
+  description = "(Optional) Specifies the replication type of the storage account"
+  type        = bool
+}
+
+variable "storage_default_action" {
+  description = "Allow or disallow public access to all blobs or containers in the storage accounts. The default interpretation is true for this property."
+  type        = string
+}
+
+variable "storage_ip_rules" {
+  description = "Specifies IP rules for the storage account"
+  default     = []
+  type        = list(string)
+}
+
+variable "storage_virtual_network_subnet_ids" {
+  description = "Specifies a list of resource ids for subnets"
+  default     = []
+  type        = list(string)
+}
+
+variable "pe_blob_subresource_names" {
+  description = "(Optional) Specifies a subresource names which the Private Endpoint is able to connect to Blob."
+  type        = list(string)
+  default     = ["blob"]
+}
+
+variable "pe_blob_private_dns_zone_group_name" {
+  description = "(Required) Specifies the Name of the Private DNS Zone Group for Blob. "
+  type        = string
+  default     = "BlobPrivateDnsZoneGroup"
+}
+
+/*variable "blob_container_sas_token" {
+  type = string
+}
+
+variable "function_app_key" {
+  type = string
+}*/

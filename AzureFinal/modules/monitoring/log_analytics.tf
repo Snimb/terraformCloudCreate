@@ -5,6 +5,10 @@ resource "azurerm_log_analytics_workspace" "workspace" {
   location            = var.location
   sku                 = var.log_analytics_workspace_sku
   retention_in_days   = var.log_analytics_retention_days
+  
+  identity {
+    type = "SystemAssigned"
+  }
 
   depends_on = [
     azurerm_resource_group.diag,

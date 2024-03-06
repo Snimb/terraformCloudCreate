@@ -15,3 +15,15 @@ variable "diag_prefix" {
   default     = "diag"
   description = "Prefix of the Diagnostic Settings resource."
 }
+
+variable "network_watcher_prefix" {
+  type        = string
+  default     = "nw"
+  description = "Prefix of the Network Watcher resource."
+}
+
+variable "private_endpoint_prefix" {
+  type        = string
+  default     = "pe"
+  description = "Prefix of the private endpoint."
+}

@@ -21,3 +21,9 @@ variable "pdz_prefix" {
   default     = "pdz"
   description = "Prefix of the private DNS zone name."
 }
+
+variable "nsg_prefix" {
+  type        = string
+  default     = "nsg"
+  description = "Prefix of the network security group name."
+}

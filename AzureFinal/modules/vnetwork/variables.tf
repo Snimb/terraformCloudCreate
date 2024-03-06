@@ -21,24 +21,6 @@ variable "default_tags" {
   }
 }
 
-# Variable for defining NSG security rules
-variable "nsg_security_rules" {
-  description = "List of security rules for the Network Security Group."
-  type = list(object({
-    name                       = string
-    priority                   = number
-    direction                  = string
-    access                     = string
-    protocol                   = string
-    source_port_range          = string
-    destination_port_range     = string
-    source_address_prefix      = string
-    destination_address_prefix = string
-  }))
-  # The default is set to an empty list because the actual rules will be defined in the tfvars file.
-  default = []
-}
-
 variable "hub_bastion_subnet_name" {
   description = "Specifies the name of the hub vnet AzureBastion subnet"
   default     = "AzureBastionSubnet"
@@ -78,12 +60,6 @@ variable "bastion_name" {
   type        = string
 }
 
-variable "nsg_name" {
-  description = "Specifies the name of the network security group"
-  type = string
-  default = "network-rules"
-}
-
 /*variable "hub_firewall_subnet_name" {
   description = "Specifies the name of the azure firewall subnet"
   type        = string
@@ -94,3 +70,27 @@ variable "hub_firewall_subnet_address_prefixes" {
   description = "Specifies the address prefix of the azure firewall subnet"
   type        = list(string)
 }*/
+
+variable "jumpbox_nsg_name" {
+  description = "Specifies the name of the network security group"
+  type = string
+  default = "jumpbox-network-rules"
+}
+
+# Variable for defining NSG security rules
+variable "nsg_security_rules_jumpbox" {
+  description = "List of security rules for the Network Security Group."
+  type = list(object({
+    name                       = string
+    priority                   = number
+    direction                  = string
+    access                     = string
+    protocol                   = string
+    source_port_range          = string
+    destination_port_range     = string
+    source_address_prefix      = string
+    destination_address_prefix = string
+  }))
+  # The default is set to an empty list because the actual rules will be defined in the tfvars file.
+  default = []
+}

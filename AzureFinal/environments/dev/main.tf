@@ -4,13 +4,13 @@ module "vnetwork" {
   vnet_address_space                  = var.vnet_address_space
   jumpbox_subnet_address_prefix       = var.jumpbox_subnet_address_prefix
   hub_bastion_subnet_address_prefixes = var.hub_bastion_subnet_address_prefixes
-  nsg_security_rules                  = var.nsg_security_rules
-
+  nsg_security_rules_jumpbox          = var.nsg_security_rules_jumpbox
 }
 
 module "database" {
   source                       = "../../modules/database"
   location                     = var.location
+  nsg_security_rules_psql      = var.nsg_security_rules_psql
   psql_sku_name                = var.psql_sku_name
   psql_version                 = var.psql_version
   psql_storage_mb              = var.psql_storage_mb
@@ -30,7 +30,6 @@ module "database" {
   private_dns_zone_name     = var.private_dns_zone_name
   module_vnet_id            = module.vnetwork.vnet_id
   module_vnet_name          = module.vnetwork.vnet_name
-  module_nsg_id             = module.vnetwork.nsg_id
   module_vnet               = module.vnetwork.vnet
   module_vnet_resource_grp  = module.vnetwork.resource_group_name
 
@@ -60,30 +59,53 @@ module "keyvault" {
   module_postgres_password          = module.database.psql_admin_password
   module_postgres_admin_login       = module.database.postgresql_flexible_server_admin_login
   module_postgres_admin_pass        = module.database.postgresql_flexible_server_admin_password
+  module_subnet_psql_id             = module.database.subnet_psql_id
   module_vnet_id                    = module.vnetwork.vnet_id
   module_vnet_name                  = module.vnetwork.vnet_name
   module_vnet                       = module.vnetwork.vnet
   module_vnet_resource_grp          = module.vnetwork.resource_group_name
   module_subnet_jumpbox_id          = module.vnetwork.subnet_jumpbox_id
-  module_subnet_psql_id             = module.database.subnet_psql_id
 
 }
 
 module "monitoring" {
-  source                       = "../../modules/monitoring"
-  location                     = var.location
-  log_analytics_retention_days = var.log_analytics_retention_days
-  solution_plan_map            = var.solution_plan_map
-  log_analytics_workspace_sku  = var.log_analytics_workspace_sku
-  module_vnet                  = module.vnetwork.vnet
-  module_vnet_id               = module.vnetwork.vnet_id
-  module_postgres_fs_id        = module.database.azurerm_postgresql_flexible_server_id
-  module_postgres_fs_name      = module.database.azurerm_postgresql_flexible_server_name
-  module_postgres_fs           = module.database.azurerm_postgresql_flexible_server
-  module_keyvault              = module.keyvault.key_vault_object
-  module_keyvault_id           = module.keyvault.key_vault_id
-  module_keyvault_name         = module.keyvault.key_vault_name
+  source                                                = "../../modules/monitoring"
+  location                                              = var.location
+  log_analytics_retention_days                          = var.log_analytics_retention_days
+  solution_plan_map                                     = var.solution_plan_map
+  log_analytics_workspace_sku                           = var.log_analytics_workspace_sku
+  storage_access_tier                                   = var.storage_access_tier
+  storage_account_kind                                  = var.storage_account_kind
+  storage_account_retention_days                        = var.storage_account_retention_days
+  storage_account_tier                                  = var.storage_account_tier
+  storage_default_action                                = var.storage_default_action
+  storage_ip_rules                                      = var.storage_ip_rules
+  storage_is_hns_enabled                                = var.storage_is_hns_enabled
+  storage_replication_type                              = var.storage_replication_type
+  storage_virtual_network_subnet_ids                    = var.storage_virtual_network_subnet_ids
+  pe_blob_private_dns_zone_group_name                   = var.pe_blob_private_dns_zone_group_name
+  pe_blob_subresource_names                             = var.pe_blob_subresource_names
+  network_watcher_retention_days                        = var.network_watcher_retention_days
+  network_watcher_traffic_analytics_interval_in_minutes = var.network_watcher_traffic_analytics_interval_in_minutes
+  email_receivers                                       = var.email_receivers
+  module_vnet                                           = module.vnetwork.vnet
+  module_vnet_id                                        = module.vnetwork.vnet_id
+  module_nsg_id_jumpbox                                 = module.vnetwork.jumpbox_nsg_id
+  module_vnet_name                                      = module.vnetwork.vnet_name
+  module_vnet_resource_grp                              = module.vnetwork.resource_group_name
+  module_postgres_fs_id                                 = module.database.azurerm_postgresql_flexible_server_id
+  module_postgres_fs_name                               = module.database.azurerm_postgresql_flexible_server_name
+  module_postgres_fs                                    = module.database.azurerm_postgresql_flexible_server
+  module_nsg_id_psql                                    = module.database.psql_nsg_id
+  module_keyvault                                       = module.keyvault.key_vault_object
+  module_keyvault_id                                    = module.keyvault.key_vault_id
+  module_keyvault_name                                  = module.keyvault.key_vault_name
+  module_subnet_jumpbox_id                              = module.vnetwork.subnet_jumpbox_id
 
+  /*
+  blob_container_sas_token                              = var.blob_container_sas_token
+  function_app_key                                      = var.function_app_key
+  */
 }
 
 module "virtualmachines" {
@@ -106,5 +128,5 @@ module "virtualmachines" {
   module_keyvault_id                    = module.keyvault.key_vault_id
   module_keyvault                       = module.keyvault.key_vault_object
   module_postgres_fs_database_names     = module.database.specific_postgresql_flexible_server_database_names
-  
+
 }

@@ -10,14 +10,18 @@ terraform {
       source  = "hashicorp/random" # The Random provider source location for generating random values.
       version = ">= 3.4.0"         # Specifies the version of the Random provider to use.
     }
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = "~>2.0"
+    }
   }
 }
 
 provider "random" {}
 
-/*provider "azuread" {
+provider "azuread" {
   # If different from ARM_* variables, specify client_id, client_secret, and tenant_id here
-}*/
+}
 
 provider "azurerm" {
   features {}

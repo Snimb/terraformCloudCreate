@@ -30,6 +30,8 @@ resource "azurerm_postgresql_flexible_server" "psql" {
   ## The amount of storage allocated for the server in megabytes.
   storage_mb = var.psql_storage_mb
 
+  # storage_tier = "default"
+
   ## Specifies the SKU name for the server, determining the pricing tier and performance characteristics.
   sku_name = var.psql_sku_name
 

@@ -85,7 +85,6 @@ variable "bypass" {
 variable "kv_default_action" {
   description = "(Required) The Default Action to use when no rules match from ip_rules / virtual_network_subnet_ids. Possible values are Allow and Deny."
   type        = string
-  default     = "Allow"
 
   validation {
     condition     = contains(["Allow", "Deny"], var.kv_default_action)

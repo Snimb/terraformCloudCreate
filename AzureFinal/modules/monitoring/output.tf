@@ -34,3 +34,15 @@ output "log_analytics_workspace_primary_shared_key" {
   description = "Specifies the workspace key of the log analytics workspace"
   sensitive   = true
 }
+
+output "storage_account_connection_string" {
+  value = azurerm_storage_account.st.primary_connection_string
+}
+
+/*output "azurerm_function_app_host_keys" {
+value = azurerm_function_app_host_keys.hostkeys
+}
+
+output "sas_url_query_string" {
+  value = data.azurerm_storage_account_blob_container_sas.func_app_container_sas.sas
+}*/

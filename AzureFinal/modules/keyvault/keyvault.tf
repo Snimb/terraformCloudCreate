@@ -1,6 +1,6 @@
 # Create Azure Key Vault using terraform
 resource "azurerm_key_vault" "kv" {
-  name                            = lower("${substr("${var.kv_prefix}-${random_pet.name_prefix.id}-${var.kv_name}-${local.environment}", 0, 24)}")
+  name                            = lower("${var.kv_prefix}-${random_pet.name_prefix.id}-${var.kv_name}-${local.environment}")
   resource_group_name             = azurerm_resource_group.kv.name
   location                        = azurerm_resource_group.kv.location
   tenant_id                       = data.azurerm_client_config.current.tenant_id
@@ -55,6 +55,7 @@ resource "azurerm_key_vault_secret" "postgres_password" {
 resource "azurerm_key_vault_secret" "postgres_hostname" {
   name         = "postgres-db-hostname"
   value        = "${var.module_postgres_fs_name}.postgres.database.azure.com"
+  
   key_vault_id = azurerm_key_vault.kv.id
   tags         = {}
 

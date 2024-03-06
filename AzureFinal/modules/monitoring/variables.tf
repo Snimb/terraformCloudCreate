@@ -2,7 +2,7 @@
 variable "diag_rg_name" {
   description = "Name of the resource group"
   type        = string
-  default     = "workspace"
+  default     = "diagnostics"
 }
 
 # variable for location
@@ -20,7 +20,6 @@ variable "default_tags" {
     "CreatedBy" = "sinwi"
   }
 }
-
 
 ### LOG ANALYTICS ###
 variable "log_analytics_workspace_sku" {
@@ -51,10 +50,34 @@ variable "log_analytics_workspace_name" {
   default     = "log-analytics"
 }
 
+variable "network_watcher_name" {
+  description = "(Required) Specifies the name of the network watcher"
+  type        = string
+  default     = "network-watcher"
+}
+
+variable "network_watcher_retention_days" {
+  description = " (Optional) Specifies the data retention in days. Range between 31 and 730."
+  type        = number
+}
+
+variable "network_watcher_traffic_analytics_interval_in_minutes" {
+  type = number
+}
+
+variable "email_receivers" {
+  description = "List of email receivers for the action group"
+  type = list(object({
+    name          = string
+    email_address = string
+  }))
+}
+
 ### storage account variables ###
-/*variable "storage_name" {
+variable "storage_name" {
   description = "(Required) Specifies the name of the storage account"
   type        = string
+  default     = "logstorage"
 }
 
 variable "storage_account_kind" {
@@ -127,6 +150,7 @@ variable "storage_virtual_network_subnet_ids" {
 variable "storage_file_share_name" {
   description = " (Required) The name of the File Share within the Storage Account where Files should be stored"
   type        = string
+  default     = "file-share"
 }
 
 variable "pe_blob_subresource_names" {
@@ -140,7 +164,7 @@ variable "pe_blob_private_dns_zone_group_name" {
   type        = string
   default     = "BlobPrivateDnsZoneGroup"
 }
-*/
+
 
 ### Virtual Network module variables ### 
 variable "module_vnet_id" {
@@ -155,6 +179,25 @@ variable "module_vnet" {
     id                  = string
     resource_group_name = string
   })
+}
+
+variable "module_vnet_resource_grp" {
+  description = "The object of the virtual network with module"
+  type        = string
+}
+
+variable "module_vnet_name" {
+  description = "Name of the virtual network with module"
+  type        = string
+}
+
+variable "module_subnet_jumpbox_id" {
+  description = "ID of the subnet jumpbox with module"
+  type        = string
+}
+
+variable "module_nsg_id_jumpbox" {
+  type = string
 }
 
 ### PostgreSQL Server module variables ###
@@ -177,6 +220,10 @@ variable "module_postgres_fs" {
   })
 }
 
+variable "module_nsg_id_psql" {
+  type = string
+}
+
 ### Key Vault module variables ###
 variable "module_keyvault_name" {
   description = "Name of the Key Vault with module"
@@ -194,5 +241,18 @@ variable "module_keyvault" {
     name                = string
     id                  = string
     resource_group_name = string
+    vault_uri           = string
   })
 }
+
+data "azurerm_subscriptions" "available" {}
+
+data "azurerm_client_config" "current" {}
+
+/*variable "blob_container_sas_token"{
+  type = string
+}
+
+variable "function_app_key" {
+  type = string
+}*/

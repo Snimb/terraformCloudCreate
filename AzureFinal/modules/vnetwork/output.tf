@@ -29,6 +29,7 @@ output "subnet_bastion_id" {
   description = "Bastion Subnet ID"
 }
 
-output "nsg_id" {
-  value = azurerm_network_security_group.default.id
+output "jumpbox_nsg_id" {
+  value = azurerm_network_security_group.jumpbox.id
+  description = "The ID of the Jumpbox Network Security Group"
 }

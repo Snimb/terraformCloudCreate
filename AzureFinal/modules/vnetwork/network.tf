@@ -36,14 +36,27 @@ resource "azurerm_subnet" "hub_bastion" {
   ]
 }
 
-# Defines a network security group with a generic rule to allow all inbound TCP traffic. Adjust the rules based on your security requirements.
-resource "azurerm_network_security_group" "default" {
-  name                = lower("${var.nsg_prefix}-${random_pet.name_prefix.id}-${var.nsg_name}-${local.environment}")
+# Create hub azure firewall subnet
+/*resource "azurerm_subnet" "firewall" {
+  name                                          = var.hub_firewall_subnet_name
+  resource_group_name                           = azurerm_virtual_network.vnet.resource_group_name
+  virtual_network_name                          = azurerm_virtual_network.vnet.name
+  address_prefixes                              = var.hub_firewall_subnet_address_prefixes
+  private_endpoint_network_policies_enabled     = false
+  private_link_service_network_policies_enabled = false
+  depends_on = [
+    azurerm_virtual_network.vnet
+  ]
+}*/
+
+# Defines a network security group.
+resource "azurerm_network_security_group" "jumpbox" {
+  name                = lower("${var.nsg_prefix}-${random_pet.name_prefix.id}-${var.jumpbox_nsg_name}-${local.environment}")
   location            = azurerm_resource_group.vnet.location
   resource_group_name = azurerm_resource_group.vnet.name
 
   dynamic "security_rule" {
-    for_each = var.nsg_security_rules
+    for_each = var.nsg_security_rules_jumpbox
     content {
       name                       = security_rule.value.name
       priority                   = security_rule.value.priority
@@ -58,15 +71,8 @@ resource "azurerm_network_security_group" "default" {
   }
 }
 
-# Create hub azure firewall subnet
-/*resource "azurerm_subnet" "firewall" {
-  name                                          = var.hub_firewall_subnet_name
-  resource_group_name                           = azurerm_virtual_network.vnet.resource_group_name
-  virtual_network_name                          = azurerm_virtual_network.vnet.name
-  address_prefixes                              = var.hub_firewall_subnet_address_prefixes
-  private_endpoint_network_policies_enabled     = false
-  private_link_service_network_policies_enabled = false
-  depends_on = [
-    azurerm_virtual_network.vnet
-  ]
-}*/
+# Associates the previously defined network security group with the subnet. This applies the security group's rules to the subnet.
+resource "azurerm_subnet_network_security_group_association" "jumpbox" {
+  subnet_id                 = azurerm_subnet.jumpbox.id
+  network_security_group_id = azurerm_network_security_group.jumpbox.id
+}

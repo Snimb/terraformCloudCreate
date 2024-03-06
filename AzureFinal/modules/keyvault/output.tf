@@ -16,15 +16,7 @@ output "key_vault_object" {
   value       = azurerm_key_vault.kv
   description = "The entire Key Vault object."
 }
-/*
- output "user_assigned_identity_id" {
-  value = azurerm_user_assigned_identity.default.id
- }
 
- output "user_assigned_identity_client_id" {
-  value =  azurerm_user_assigned_identity.default.client_id
- }
-*/
 output "postgres_password_secret_id" {
   value = azurerm_key_vault_secret.postgres_password.id
   description = "The ID of the Key Vault secret containing the Postgres database password."
