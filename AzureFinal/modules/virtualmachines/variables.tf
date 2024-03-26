@@ -2,7 +2,7 @@
 variable "vm_rg_name" {
   description = "Name of the resource group"
   type        = string
-  default = "managementvm"
+  default     = "managementvm"
 }
 
 # variable for location
@@ -23,7 +23,7 @@ variable "default_tags" {
 
 data "azurerm_client_config" "current" {}
 
-data "azurerm_subscriptions" "available" {}
+# data "azurerm_subscriptions" "available" {}
 
 ### Management VM ###
 variable "vm_admin_username" {
@@ -120,6 +120,26 @@ variable "module_keyvault" {
 }
 
 variable "module_postgres_fs_database_names" {
-  type        = list(string)  # Adjust the type based on the actual structure you expect
+  type        = list(string) # Adjust the type based on the actual structure you expect
   description = "List of PostgreSQL database configurations"
+}
+
+variable "module_postgresql_configurations" {
+  description = "PostgreSQL configurations to enable."
+  type        = map(string)
+}
+
+variable "module_log_analytics_workspace_object" {
+  description = "The entire Log Analytics Workspace object."
+  type = any # You could also use a more specific type structure
+}
+
+variable "module_log_analytics_workspace_id" {
+  description = "The ID of the Log Analytics Workspace."
+  type        = string
+}
+
+variable "module_storage_account_id" {
+description = "The ID of the storage account."
+type = string  
 }

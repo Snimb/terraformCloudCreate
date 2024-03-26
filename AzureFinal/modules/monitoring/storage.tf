@@ -10,9 +10,10 @@ resource "azurerm_storage_account" "st" {
   is_hns_enabled           = var.storage_is_hns_enabled
 
   network_rules {
-    default_action             = (length(var.storage_ip_rules) + length(var.storage_virtual_network_subnet_ids)) > 0 ? "Deny" : var.storage_default_action
+    default_action             = var.storage_default_action
     ip_rules                   = var.storage_ip_rules
-    virtual_network_subnet_ids = var.storage_virtual_network_subnet_ids
+    virtual_network_subnet_ids = [var.module_subnet_jumpbox_id, var.module_subnet_psql_id, azurerm_subnet.func_app.id]
+    bypass                     = "AzureServices"
   }
 
   identity {
@@ -41,11 +42,6 @@ resource "azurerm_private_dns_zone_virtual_network_link" "blob_pdz_vnet_link" {
   virtual_network_id    = var.module_vnet_id
   private_dns_zone_name = azurerm_private_dns_zone.pdz_blob.name
 
-  lifecycle {
-    ignore_changes = [
-      tags
-    ]
-  }
   depends_on = [
     var.module_vnet_resource_grp,
     var.module_vnet_id,
@@ -112,12 +108,10 @@ resource "azurerm_key_vault_secret" "storage_access_key" {
   ]
 }
 
-
-
 resource "azurerm_storage_container" "func_app_container" {
-  name                  = "appfunctionblobstorage" 
+  name                  = "appfunctionblobstorage"
   storage_account_name  = azurerm_storage_account.st.name
-  container_access_type = "private"
+  container_access_type = "blob"
 }
 
 # Store Storage Account Connection String as a secret in Azure Key Vault
@@ -126,52 +120,3 @@ resource "azurerm_key_vault_secret" "storage_conn_str" {
   value        = azurerm_storage_account.st.primary_connection_string
   key_vault_id = var.module_keyvault_id
 }
-
-
-
-/*resource "azurerm_key_vault_secret" "funcapp_blob_url" {
-  name         = "FuncAppBlobUrl"
-  value        = "https://${azurerm_storage_account.st.name}.blob.core.windows.net/${azurerm_storage_container.func_app_container.name}/${azurerm_storage_blob.app_blob.name}?${var.blob_container_sas_token}"
-  key_vault_id = azurerm_key_vault.kv.id
-  depends_on = [ var.module_keyvault,
-    azurerm_storage_account_blob_container_sas.func_app_container_sas ]
-}
-
-*/
-
-/*data "azurerm_storage_account_blob_container_sas" "func_app_container_sas" {
-  connection_string = azurerm_storage_account.st.primary_connection_string
-  container_name    = azurerm_storage_container.func_app_container.name
-  start             = formatdate("YYYY-MM-DD'T'hh:mm:00Z", timeadd(timestamp(), "-1h"))
-  expiry            = formatdate("YYYY-MM-DD'T'hh:mm:00Z", timeadd(timestamp(), "24h"))
-  https_only        = true
-
-  # ip_address = "168.1.5.65"
-
-  permissions {
-    read   = true
-    add    = true
-    create = false
-    write  = false
-    delete = true
-    list   = true
-  }
-
-  cache_control       = "max-age=5"
-  content_disposition = "inline"
-  content_encoding    = "deflate"
-  content_language    = "en-US"
-  content_type        = "application/json"
-  depends_on = [ azurerm_storage_account.st, 
-  azurerm_storage_container.func_app_container,
-  ]
-}
-
-resource "azurerm_key_vault_secret" "funcapp_blob_url" {
-  name         = "FuncAppBlobUrl"
-  value        = "https://${azurerm_storage_account.st.name}.blob.core.windows.net/${azurerm_storage_container.func_app_container.name}/${azurerm_storage_blob.app_blob.name}?${azurerm_storage_account_blob_container_sas.func_app_container_sas.sas}"
-  key_vault_id = azurerm_key_vault.kv.id
-  depends_on = [ var.module_keyvault,
-    azurerm_storage_account_blob_container_sas.func_app_container_sas ]
-}
-*/

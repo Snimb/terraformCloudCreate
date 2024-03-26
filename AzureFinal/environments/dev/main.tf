@@ -5,6 +5,7 @@ module "vnetwork" {
   jumpbox_subnet_address_prefix       = var.jumpbox_subnet_address_prefix
   hub_bastion_subnet_address_prefixes = var.hub_bastion_subnet_address_prefixes
   nsg_security_rules_jumpbox          = var.nsg_security_rules_jumpbox
+
 }
 
 module "database" {
@@ -18,13 +19,14 @@ module "database" {
   psql_address_prefixes        = var.psql_address_prefixes
   zone                         = var.zone
   database_names               = var.database_names
-  total_memory_mb              = var.total_memory_mb
+  total_memory_gb              = var.total_memory_gb
   cpu_cores                    = var.cpu_cores
   psql_admin_login             = var.psql_admin_login
   geo_redundant_backup_enabled = var.geo_redundant_backup_enabled
   auto_grow_enabled            = var.auto_grow_enabled
   maintenance_window           = var.maintenance_window
   # high_availability_mode       = var.high_availability_mode
+  # standby_availability_zone    = var.standby_availability_zone
   postgresql_configurations = var.postgresql_configurations
   psql_subnet_name          = var.psql_subnet_name
   private_dns_zone_name     = var.private_dns_zone_name
@@ -34,6 +36,7 @@ module "database" {
   module_vnet_resource_grp  = module.vnetwork.resource_group_name
 
 }
+
 
 module "keyvault" {
   source                            = "../../modules/keyvault"
@@ -82,12 +85,14 @@ module "monitoring" {
   storage_ip_rules                                      = var.storage_ip_rules
   storage_is_hns_enabled                                = var.storage_is_hns_enabled
   storage_replication_type                              = var.storage_replication_type
-  storage_virtual_network_subnet_ids                    = var.storage_virtual_network_subnet_ids
   pe_blob_private_dns_zone_group_name                   = var.pe_blob_private_dns_zone_group_name
   pe_blob_subresource_names                             = var.pe_blob_subresource_names
   network_watcher_retention_days                        = var.network_watcher_retention_days
   network_watcher_traffic_analytics_interval_in_minutes = var.network_watcher_traffic_analytics_interval_in_minutes
   email_receivers                                       = var.email_receivers
+  sku_name_service_plan                                 = var.sku_name_service_plan
+  funcapp_subnet_address_prefix                         = var.funcapp_subnet_address_prefix
+  funcapp_allways_on                                    = var.funcapp_allways_on
   module_vnet                                           = module.vnetwork.vnet
   module_vnet_id                                        = module.vnetwork.vnet_id
   module_nsg_id_jumpbox                                 = module.vnetwork.jumpbox_nsg_id
@@ -101,11 +106,8 @@ module "monitoring" {
   module_keyvault_id                                    = module.keyvault.key_vault_id
   module_keyvault_name                                  = module.keyvault.key_vault_name
   module_subnet_jumpbox_id                              = module.vnetwork.subnet_jumpbox_id
+  module_subnet_psql_id                                 = module.database.subnet_psql_id
 
-  /*
-  blob_container_sas_token                              = var.blob_container_sas_token
-  function_app_key                                      = var.function_app_key
-  */
 }
 
 module "virtualmachines" {
@@ -128,5 +130,10 @@ module "virtualmachines" {
   module_keyvault_id                    = module.keyvault.key_vault_id
   module_keyvault                       = module.keyvault.key_vault_object
   module_postgres_fs_database_names     = module.database.specific_postgresql_flexible_server_database_names
-
+  module_postgresql_configurations      = module.database.psql_configurations
+  module_log_analytics_workspace_id     = module.monitoring.log_analytics_workspace_id
+  module_log_analytics_workspace_object = module.monitoring.log_analytics_workspace
+  module_storage_account_id             = module.monitoring.storage_account_id
 }
+
+

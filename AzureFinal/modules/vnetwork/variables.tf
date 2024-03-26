@@ -2,7 +2,7 @@
 variable "vnet_rg_name" {
   description = "Name of the virtual network resource group"
   type        = string
-  default = "virtualnetwork"
+  default     = "virtualnetwork"
 }
 
 # variable for location
@@ -73,8 +73,8 @@ variable "hub_firewall_subnet_address_prefixes" {
 
 variable "jumpbox_nsg_name" {
   description = "Specifies the name of the network security group"
-  type = string
-  default = "jumpbox-network-rules"
+  type        = string
+  default     = "jumpbox-network-rules"
 }
 
 # Variable for defining NSG security rules

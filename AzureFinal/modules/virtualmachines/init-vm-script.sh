@@ -5,6 +5,7 @@
 admin_username="$1"
 key_vault_name="$2"
 secret_name="$3"
+postgresql_extensions="$4"
 
 # Initial setup: Update system and install PostgreSQL client
 sudo apt-get update -y && sudo apt-get upgrade -y
@@ -54,10 +55,20 @@ sudo chown ${admin_username}:${admin_username} "$pgpass_file"
 echo "Persisting environment variables..."
 db_env_file="/etc/profile.d/db_env.sh"
 echo "export PGUSER='$username'" | sudo tee -a "$db_env_file" >/dev/null
-echo "export PGPASSWORD='$password'" | sudo tee -a "$db_env_file" >/dev/null
 echo "export PGHOST='$hostname'" | sudo tee -a "$db_env_file" >/dev/null
 echo "export PGPORT='$port'" | sudo tee -a "$db_env_file" >/dev/null
 echo "export PGDATABASE='$dbname'" | sudo tee -a "$db_env_file" >/dev/null
+echo "export PGPASSFILE='/home/${admin_username}/.pgpass'" | sudo tee -a "$db_env_file" >/dev/null
 sudo chmod +x "$db_env_file"
+
+# Assuming postgresql_extensions is a comma-separated list of extensions
+IFS=',' read -ra EXTENSIONS <<<"$postgresql_extensions"
+
+# Log in to PostgreSQL and create extensions
+echo "Logging into PostgreSQL database and creating extensions..."
+for ext in "${EXTENSIONS[@]}"; do
+    echo "Creating extension: $ext"
+    echo "CREATE EXTENSION IF NOT EXISTS \"$ext\";" | PGPASSWORD=$password psql -h $hostname -U $username -d $dbname -p $port
+done
 
 echo "Initialization script completed successfully."

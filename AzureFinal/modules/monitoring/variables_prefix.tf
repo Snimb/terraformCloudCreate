@@ -27,3 +27,9 @@ variable "private_endpoint_prefix" {
   default     = "pe"
   description = "Prefix of the private endpoint."
 }
+
+variable "subnet_prefix" {
+  type        = string
+  default     = "snet"
+  description = "Prefix of the Subnet name."
+}

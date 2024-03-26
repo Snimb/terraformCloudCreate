@@ -93,13 +93,14 @@ variable "maintenance_window" {
   default     = "ZoneRedundant" # Default to ZoneRedundant. Change to "SameZone" if needed.
 }*/
 
+/*variable "standby_availability_zone" {
+  type        = string
+  description = "The standby availability zone for the PostgreSQL Flexible Server."
+}*/
+
 variable "postgresql_configurations" {
   description = "PostgreSQL configurations to enable."
   type        = map(string)
-  default = {
-    # "pgbouncer.enabled" = "true",
-    "azure.extensions" = "CITEXT,BTREE_GIST,PG_TRGM"
-  }
 }
 
 # create databases in PostgreSQL Server
@@ -108,7 +109,7 @@ variable "database_names" {
 }
 
 # System resources:
-variable "total_memory_mb" {
+variable "total_memory_gb" {
   description = "Total memory in MB for the PostgreSQL server"
   type        = number
 }

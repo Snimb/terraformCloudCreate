@@ -25,15 +25,6 @@ locals {
       aggregation = "Average"
       operator    = "GreaterThan"
     },
-    storage_usage_high = {
-      metric_name = "storage_percent"
-      threshold   = 90
-      description = "Alert when Storage usage exceeds 80% on PostgreSQL Server."
-      frequency   = "PT1M"
-      window_size = "PT5M"
-      aggregation = "Average"
-      operator    = "GreaterThan"
-    },
     cpu_usage_low = {
       metric_name = "cpu_percent"
       threshold   = 20
@@ -51,6 +42,14 @@ locals {
       window_size = "PT5M"
       aggregation = "Average"
       operator    = "LessThan"
+    } /*,storage_usage_high = {
+      metric_name = "storage_percent"
+      threshold   = 90
+      description = "Alert when Storage usage exceeds 80% on PostgreSQL Server."
+      frequency   = "PT1M"
+      window_size = "PT5M"
+      aggregation = "Average"
+      operator    = "GreaterThan"
     },
     storage_usage_low = {
       metric_name = "storage_percent"
@@ -79,22 +78,31 @@ locals {
       window_size = "PT15M"
       aggregation = "Average"
       operator    = "GreaterThan"
-    }
+    }*/
+    /*pgbouncer_max_connections_alert = {
+      metric_name = "max_connections_reached"
+      threshold   = var.pgbouncer_max_connections_threshold
+      description = "Alert when pgBouncer reaches its maximum configured connections."
+      frequency   = "PT5M"
+      window_size = "PT15M"
+      aggregation = "Total"
+      operator    = "GreaterThan"
+    }*/
   }
 }
 
-locals {
+/*locals {
   alert_criteria = {
     config_changes = {
       category       = "Administrative"
       operation_name = "Microsoft.DBforPostgreSQL/flexibleServers/configurations/write"
       description    = "Configuration changes on PostgreSQL server"
     },
-    /*ha_state_changes = {
+    ha_state_changes = {
       category       = "Administrative"
       operation_name = "Microsoft.DBforPostgreSQL/flexibleServers/replicas/write"  # Adjusted, verify against real operations.
       description    = "High availability state changes in PostgreSQL server"
-    },*/
+    },
     database_operations = {
       category       = "Administrative"
       operation_name = "Microsoft.DBforPostgreSQL/flexibleServers/databases/write"
@@ -134,9 +142,9 @@ locals {
     }
     # Add additional criteria as needed.
   }
-}
+}*/
 
-locals {
+/*locals {
   alert_rules = [
     {
       name          = "postgresql-failed-connections-alert"
@@ -235,60 +243,4 @@ HighCpuEvents
 
     # Add more alert rules as needed
   ]
-}
-
-/* 
-locals {
-  nsg_alerts = {
-    "nsg-psql-high_denied_connections" = {
-      name           = "High Denied Connections - PSQL"
-      metric_name    = "DeniedInboundOrOutboundTraffic"
-      threshold      = 1000
-      severity       = 3
-      frequency      = "PT5M"
-      window_size    = "PT1H"
-      description    = "Alert when the number of denied connections is high."
-      nsg_resource_id = local.nsg_ids["nsg-psql"]
-      aggregation    = "Total"
-      operator       = "GreaterThan"
-    },
-    "nsg-psql-unusual_throughput" = {
-      name           = "Unusual Throughput - PSQL"
-      metric_name    = "Throughput"
-      threshold      = 500
-      severity       = 3
-      frequency      = "PT15M"
-      window_size    = "PT1H"
-      description    = "Alert when NSG throughput is unusual."
-      nsg_resource_id = local.nsg_ids["nsg-psql"]
-      aggregation    = "Average"
-      operator       = "GreaterThan"
-    },
-    "nsg-jumpbox-high_denied_connections" = {
-      name           = "High Denied Connections - Jumpbox"
-      metric_name    = "DeniedInboundOrOutboundTraffic"
-      threshold      = 1000
-      severity       = 3
-      frequency      = "PT5M"
-      window_size    = "PT1H"
-      description    = "Alert when the number of denied connections is high."
-      nsg_resource_id = local.nsg_ids["nsg-jumpbox"]
-      aggregation    = "Total"
-      operator       = "GreaterThan"
-    },
-    "nsg-jumpbox-unusual_throughput" = {
-      name           = "Unusual Throughput - Jumpbox"
-      metric_name    = "Throughput"
-      threshold      = 500
-      severity       = 3
-      frequency      = "PT15M"
-      window_size    = "PT1H"
-      description    = "Alert when NSG throughput is unusual."
-      nsg_resource_id = local.nsg_ids["nsg-jumpbox"]
-      aggregation    = "Average"
-      operator       = "GreaterThan"
-    }
-    # Add more alerts as needed
-  }
 }*/
-

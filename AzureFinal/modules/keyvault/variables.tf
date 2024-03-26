@@ -200,5 +200,4 @@ variable "module_subnet_jumpbox_id" {
 variable "module_subnet_psql_id" {
   description = "ID of the subnet psql with module"
   type = string
-
 }

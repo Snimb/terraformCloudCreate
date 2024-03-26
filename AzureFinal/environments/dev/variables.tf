@@ -1,5 +1,6 @@
 data "azurerm_client_config" "current" {}
 
+
 # Location:
 variable "location" {
   description = "Location of the resource - primary location."
@@ -19,6 +20,11 @@ variable "vnet_address_space" {
 
 variable "jumpbox_subnet_address_prefix" {
   description = "Specifies the address prefix of the jumpbox subnet"
+  type        = list(string)
+}
+
+variable "funcapp_subnet_address_prefix" {
+  description = "Specifies the address prefix of the funcapp subnet"
   type        = list(string)
 }
 
@@ -153,7 +159,7 @@ variable "database_names" {
 }
 
 # System resources:
-variable "total_memory_mb" {
+variable "total_memory_gb" {
   description = "Total memory in MB for the PostgreSQL server"
   type        = number
 }
@@ -195,10 +201,6 @@ variable "private_dns_zone_name" {
 variable "postgresql_configurations" {
   description = "PostgreSQL configurations to enable."
   type        = map(string)
-  default = {
-    # "pgbouncer.enabled" = "true",
-    "azure.extensions" = "CITEXT,BTREE_GIST,PG_TRGM"
-  }
 }
 
 variable "maintenance_window" {
@@ -225,6 +227,11 @@ variable "auto_grow_enabled" {
   description = "High availability mode for Azure PostgreSQL Flexible Server"
   type        = string
   default     = "ZoneRedundant" # Default to ZoneRedundant. Change to "SameZone" if needed.
+}*/
+
+/*variable "standby_availability_zone" {
+  type        = string
+  description = "The standby availability zone for the PostgreSQL Flexible Server."
 }*/
 
 ### KEY VAULT ###
@@ -345,6 +352,7 @@ variable "solution_plan_map" {
   }
 }
 
+### Network Watcher ###
 variable "network_watcher_retention_days" {
   description = " (Optional) Specifies the data retention in days. Range between 31 and 730."
   type        = number
@@ -354,12 +362,24 @@ variable "network_watcher_traffic_analytics_interval_in_minutes" {
   type = number
 }
 
+### Monitor Action Group ###
 variable "email_receivers" {
   description = "List of email receivers for the action group"
   type = list(object({
     name          = string
     email_address = string
   }))
+}
+
+### Function Application ###
+variable "sku_name_service_plan" {
+  description = "The SKU name of the service plan."
+  type        = string
+}
+
+variable "funcapp_allways_on" {
+  description = "Specifies if the function app should be allways on"
+  type = bool
 }
 
 ### Storage ###
@@ -429,12 +449,6 @@ variable "storage_ip_rules" {
   type        = list(string)
 }
 
-variable "storage_virtual_network_subnet_ids" {
-  description = "Specifies a list of resource ids for subnets"
-  default     = []
-  type        = list(string)
-}
-
 variable "pe_blob_subresource_names" {
   description = "(Optional) Specifies a subresource names which the Private Endpoint is able to connect to Blob."
   type        = list(string)
@@ -447,10 +461,4 @@ variable "pe_blob_private_dns_zone_group_name" {
   default     = "BlobPrivateDnsZoneGroup"
 }
 
-/*variable "blob_container_sas_token" {
-  type = string
-}
 
-variable "function_app_key" {
-  type = string
-}*/

@@ -4,6 +4,7 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = var.vnet_address_space
   resource_group_name = azurerm_resource_group.vnet.name
   location            = azurerm_resource_group.vnet.location
+  
   depends_on = [
     azurerm_resource_group.vnet,
   ]
@@ -17,10 +18,9 @@ resource "azurerm_subnet" "jumpbox" {
   address_prefixes                              = var.jumpbox_subnet_address_prefix
   private_endpoint_network_policies_enabled     = false
   private_link_service_network_policies_enabled = false
-  service_endpoints = ["Microsoft.KeyVault"]
-  depends_on = [
-    azurerm_virtual_network.vnet
-  ]
+  
+  service_endpoints = ["Microsoft.KeyVault", "Microsoft.Storage"]
+
 }
 
 # Create hub bastion host subnet

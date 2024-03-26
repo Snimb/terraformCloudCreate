@@ -47,22 +47,23 @@ resource "azurerm_virtual_machine_extension" "init_script" {
   publisher            = "Microsoft.Azure.Extensions"
   type                 = "CustomScript"
   type_handler_version = "2.1"
-  depends_on           = [azurerm_key_vault_access_policy.vm_access_policy,
-  azurerm_role_assignment.vm_reader]
 
   settings = <<-SETTINGS
     {
       "fileUris": ["${var.sas_token}"],
-      "commandToExecute": "sudo bash init-vm-script.sh '${var.vm_admin_username}' '${var.module_keyvault_name}' '${var.module_secret_connection_string_names[0]}'"
+      "commandToExecute": "sudo bash init-vm-script.sh '${var.vm_admin_username}' '${var.module_keyvault_name}' '${var.module_secret_connection_string_names[0]}' '${var.module_postgresql_configurations["azure.extensions"]}'"
     }
   SETTINGS
+
+  depends_on = [azurerm_key_vault_access_policy.vm_access_policy,
+    azurerm_role_assignment.vm_reader,
+  ]
 }
 
 resource "azurerm_key_vault_access_policy" "vm_access_policy" {
   key_vault_id = var.module_keyvault_id
-
-  tenant_id = data.azurerm_client_config.current.tenant_id # Your Azure tenant ID
-  object_id = azurerm_linux_virtual_machine.mgmt_vm.identity.0.principal_id
+  tenant_id    = data.azurerm_client_config.current.tenant_id # Your Azure tenant ID
+  object_id    = azurerm_linux_virtual_machine.mgmt_vm.identity.0.principal_id
 
   key_permissions = ["Get", "List"]
 
@@ -77,7 +78,7 @@ resource "azurerm_key_vault_access_policy" "vm_access_policy" {
 }
 
 resource "azurerm_role_assignment" "vm_reader" {
-  scope                = "subscriptions/${data.azurerm_subscriptions.available.subscriptions[0].subscription_id}"
+  scope                = "subscriptions/${data.azurerm_client_config.current.subscription_id}"
   role_definition_name = "Reader"
   principal_id         = azurerm_linux_virtual_machine.mgmt_vm.identity.0.principal_id
   depends_on = [
@@ -85,6 +86,7 @@ resource "azurerm_role_assignment" "vm_reader" {
     var.module_keyvault
   ]
 }
+
 
 /*resource "azurerm_virtual_machine_extension" "diag_vm" {
   name                 = "diag_vm-diagnostics-extension"
@@ -113,3 +115,24 @@ SETTINGS
 PROTECTED_SETTINGS
 }
 */
+
+resource "azurerm_monitor_diagnostic_setting" "diag_mgmt_vm" {
+  name                       = lower("${var.vm_prefix}-${random_pet.name_prefix.id}-${var.vm_name}")
+  target_resource_id         = azurerm_linux_virtual_machine.mgmt_vm.id
+  log_analytics_workspace_id = var.module_log_analytics_workspace_id
+  storage_account_id         = var.module_storage_account_id
+
+  enabled_log {
+    category_group = "allLogs"
+  }
+
+  metric {
+    category = "AllMetrics"
+    enabled  = true
+  }
+
+  depends_on = [
+    var.module_keyvault,
+    var.module_log_analytics_workspace_object,
+  ]
+}

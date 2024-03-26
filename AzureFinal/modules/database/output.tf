@@ -74,3 +74,7 @@ output "psql_nsg_id" {
   value = azurerm_network_security_group.psql.id
   description = "The ID of the PostgreSQL Network Security Group"
 }
+
+output "psql_configurations" {
+  value = var.postgresql_configurations
+}

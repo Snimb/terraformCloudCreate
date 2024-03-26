@@ -53,9 +53,9 @@ resource "azurerm_key_vault_secret" "postgres_password" {
 
 # Create key vault secret for postgres database hostname
 resource "azurerm_key_vault_secret" "postgres_hostname" {
-  name         = "postgres-db-hostname"
-  value        = "${var.module_postgres_fs_name}.postgres.database.azure.com"
-  
+  name  = "postgres-db-hostname"
+  value = "${var.module_postgres_fs_name}.postgres.database.azure.com"
+
   key_vault_id = azurerm_key_vault.kv.id
   tags         = {}
 

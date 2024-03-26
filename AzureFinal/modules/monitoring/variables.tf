@@ -21,6 +21,8 @@ variable "default_tags" {
   }
 }
 
+data "azurerm_client_config" "current" {}
+
 ### LOG ANALYTICS ###
 variable "log_analytics_workspace_sku" {
   description = "(Optional) Specifies the sku of the log analytics workspace"
@@ -72,6 +74,12 @@ variable "email_receivers" {
     email_address = string
   }))
 }
+
+variable "sku_name_service_plan" {
+  description = "The SKU name of the service plan."
+  type        = string
+}
+
 
 ### storage account variables ###
 variable "storage_name" {
@@ -141,12 +149,6 @@ variable "storage_ip_rules" {
   type        = list(string)
 }
 
-variable "storage_virtual_network_subnet_ids" {
-  description = "Specifies a list of resource ids for subnets"
-  default     = []
-  type        = list(string)
-}
-
 variable "storage_file_share_name" {
   description = " (Required) The name of the File Share within the Storage Account where Files should be stored"
   type        = string
@@ -165,6 +167,31 @@ variable "pe_blob_private_dns_zone_group_name" {
   default     = "BlobPrivateDnsZoneGroup"
 }
 
+variable "funcapp_subnet_address_prefix" {
+  description = "Specifies the address prefix of the funcapp subnet"
+  type        = list(string)
+}
+
+variable "funcapp_subnet_name" {
+  description = "Specifies the name of the funcapp subnet"
+  default     = "funcapp"
+  type        = string
+}
+
+variable "funcapp_allways_on" {
+  description = "Specifies if the function app should be allways on"
+  type = string
+}
+
+variable "security_center_pricing" {
+  description = "A list of Security Center pricing configurations"
+  type = list(object({
+    tier          = string
+    resource_type = string
+    subplan       = string
+  }))
+  default = []
+}
 
 ### Virtual Network module variables ### 
 variable "module_vnet_id" {
@@ -191,13 +218,13 @@ variable "module_vnet_name" {
   type        = string
 }
 
+variable "module_nsg_id_jumpbox" {
+  type = string
+}
+
 variable "module_subnet_jumpbox_id" {
   description = "ID of the subnet jumpbox with module"
   type        = string
-}
-
-variable "module_nsg_id_jumpbox" {
-  type = string
 }
 
 ### PostgreSQL Server module variables ###
@@ -218,6 +245,11 @@ variable "module_postgres_fs" {
     id                  = string
     resource_group_name = string
   })
+}
+
+variable "module_subnet_psql_id" {
+  description = "ID of the subnet psql with module"
+  type = string
 }
 
 variable "module_nsg_id_psql" {
@@ -244,15 +276,3 @@ variable "module_keyvault" {
     vault_uri           = string
   })
 }
-
-data "azurerm_subscriptions" "available" {}
-
-data "azurerm_client_config" "current" {}
-
-/*variable "blob_container_sas_token"{
-  type = string
-}
-
-variable "function_app_key" {
-  type = string
-}*/

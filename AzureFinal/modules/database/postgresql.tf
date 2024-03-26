@@ -58,13 +58,14 @@ resource "azurerm_postgresql_flexible_server" "psql" {
   }
 
   ## Configures the high availability (HA) settings for the PostgreSQL server to enhance fault tolerance and ensure service continuity.
-  # high_availability {
-  ## 'mode' determines the type of high availability configuration. 
-  ## "ZoneRedundant" places the standby server in a different availability zone from the primary server for increased resilience against zone failures.
-  ## "SameZone" places the standby server in the same availability zone as the primary server, which may offer lower latency during failover but doesn't protect against zone-wide issues.
-  # mode = var.high_availability_mode ## "ZoneRedundant" Or "SameZone" for single-zone high availability
-  # }
-
+  /*high_availability {
+    ## 'mode' determines the type of high availability configuration. 
+    ## "ZoneRedundant" places the standby server in a different availability zone from the primary server for increased resilience against zone failures.
+    ## "SameZone" places the standby server in the same availability zone as the primary server, which may offer lower latency during failover but doesn't protect against zone-wide issues.
+    mode                      = var.high_availability_mode ## "ZoneRedundant" Or "SameZone" for single-zone high availability
+    standby_availability_zone = var.standby_availability_zone
+  }
+*/
 
   depends_on = [azurerm_private_dns_zone_virtual_network_link.psql]
 }
@@ -110,6 +111,7 @@ resource "azuread_group" "psql_ad_group" {
     ignore_changes = [owners]
   }*/
 }
+
 ## Set the AD administrator for PostgreSQL Flexible Server
 resource "azurerm_postgresql_flexible_server_active_directory_administrator" "psql" {
   server_name         = azurerm_postgresql_flexible_server.psql.name
@@ -118,4 +120,12 @@ resource "azurerm_postgresql_flexible_server_active_directory_administrator" "ps
   object_id           = azuread_group.psql_admin_group.object_id
   principal_name      = azuread_group.psql_admin_group.display_name
   principal_type      = "Group"
+}
+
+resource "azurerm_postgresql_firewall_rule" "AllowAllWindowsAzureIps" {
+  name                = "AllowAllWindowsAzureIps"
+  resource_group_name = azurerm_postgresql_server.example.resource_group_name
+  server_name         = azurerm_postgresql_server.example.name
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "0.0.0.0"  # Only use this if you want to allow access from Azure services
 }
