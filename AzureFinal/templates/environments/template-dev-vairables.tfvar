@@ -1,19 +1,13 @@
 ## NOTE: Rename the file so it ends on .tfvars
 
-### IDs for provider block ###
-sp-subscription-id = "test8774-c12t-test-4j67-l08z94345test"
-sp-tenant-id       = "test6a32-test-2j32-test-t12132gtest"
-sp-client-secret   = "test~oFskcGH6bno8kS~test"
-sp-client-id       = "test-f87d-46ad-b4be-test"
-
 ### Location ###
 location = "Germany West Central"
 
 ### Management VM ###
-vm_admin_username      = "sinwi"
-admin_ssh_key_username = "sinwi"
+vm_admin_username      = "name of admin"
+admin_ssh_key_username = "name of admin"
 vm_size                = "Standard_DS1_v2"
-admin_public_key_path  = "C:\\Users\\sinwi\\.ssh\\id_rsa.pub"
+admin_public_key_path  = "path to key"
 os_disk_caching        = "ReadWrite"
 storage_account_type   = "Premium_LRS"
 image_publisher        = "Canonical"
@@ -21,155 +15,14 @@ image_offer            = "UbuntuServer"
 image_sku              = "18.04-LTS"
 image_version          = "latest"
 
-
-### Virtual Network Configuration ###
-hub_bastion_subnet_address_prefixes = ["10.64.4.128/28"]
-vnet_address_space                  = ["10.64.0.0/16"]
-psql_address_prefixes               = ["10.64.2.0/26"]
-jumpbox_subnet_address_prefix       = ["10.64.3.0/28"]
-
-## Network Security Group (NSG) Rules Configuration
-nsg_security_rules = [{
-  name                       = "testin"
-  priority                   = 100
-  direction                  = "Inbound"
-  access                     = "Allow"
-  protocol                   = "Tcp"
-  source_port_range          = "*"
-  destination_port_range     = "*"
-  source_address_prefix      = "*"
-  destination_address_prefix = "*"
-  },
-  {
-    name                       = "testout"
-    priority                   = 200
-    direction                  = "Outbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
-  /*{
-    name                       = "AllowSSH"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "22"
-    source_address_prefix      = "YOUR_MANAGEMENT_IP/32" # Replace with your actual management IP.
-    destination_address_prefix = "*"                     # Applies to any destination within the NSG's scope.
-    ## Allows SSH access from a specified management IP address.
-  },
-  {
-    name                       = "AllowPostgreSQL"
-    priority                   = 110
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "5432"
-    source_address_prefix      = "APPLICATION_SUBNET_OR_IP" # Replace with your app subnet or specific IPs.
-    destination_address_prefix = "*"
-    ## Permits traffic to the PostgreSQL server from your application subnet or specific IPs.
-  },
-  {
-    name                       = "DenyAllInboundInternet"
-    priority                   = 400
-    direction                  = "Inbound"
-    access                     = "Deny"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "Internet"
-    destination_address_prefix = "*"
-    ## Blocks all inbound traffic from the internet.
-
-  },
-  {
-    name                       = "AllowOutboundInternetHttps"
-    priority                   = 100
-    direction                  = "Outbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "443"
-    source_address_prefix      = "*"
-    destination_address_prefix = "Internet"
-    ## Allows outbound internet access over HTTPS.
-  },
-  {
-    name                       = "DenyAllOutboundToInternetExceptHttpHttps"
-    priority                   = 300
-    direction                  = "Outbound"
-    access                     = "Deny"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "*"
-    destination_address_prefix = "Internet"
-    ## Denies all outbound traffic to the internet except on ports 80 and 443.
-  },
-  {
-    name                       = "AllowVNetToVNet"
-    priority                   = 200
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "VirtualNetwork"
-    destination_address_prefix = "VirtualNetwork"
-    ## Enables free communication between resources within the virtual network.
-  },
-  {
-    name                       = "AllowAzureLoadBalancerProbe"
-    priority                   = 105
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "80"
-    source_address_prefix      = "AzureLoadBalancer"
-    destination_address_prefix = "*"
-    ## Permits health probe checks from the Azure Load Balancer.
-  },
-  {
-    name                       = "DenyAllInbound"
-    priority                   = 4096
-    direction                  = "Inbound"
-    access                     = "Deny"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-    ## Deny all other in bound traffic
-  },
-  {
-    name                       = "DenyAllOutbound"
-    priority                   = 4096
-    direction                  = "Outbound"
-    access                     = "Deny"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-    ## Deny all other out bound traffic
-  }*/
-]
-
 ## Compute size of the database change it to reflect the SKU name of the PostgreSQL database
-cpu_cores       = 1    # Options include: 1, 2, 4, 8, etc.
-total_memory_mb = 2048 # Options include: 2048 ,4096, 8192, 16384, 32768, etc.
+cpu_cores       = 8  # Options include: 1, 2, 4, 8, 16. 32, 48, 64, 96 etc.
+total_memory_gb = 32 # options include: 8, 16, 24, 32 etc.
 ## Note: Ensure that the values for cpu_cores and total_memory_mb align with the specifications of the SKU you choose for your PostgreSQL Flexible Server. The SKU's name indicates the tier, CPU, and memory configuration. Adjust these variables accordingly to reflect your chosen SKU's resources accurately.
 
 ### PostgreSQL ###
 database_names = ["db1", "db2"]
-psql_sku_name  = "B_Standard_B1ms" # Options include: B_Standard_B1ms, GP_Standard_D2s_v3, MO_Standard_E4s_v3 etc.
+psql_sku_name  = "GP_Standard_D8ds_v5" # "B_Standard_B1ms" # Options include: B_Standard_B1ms, GP_Standard_D2s_v3, MO_Standard_E4s_v3 etc.
 ## The SKU name format generally follows the pattern "{Tier}_{Family}_{Size}", where:
 ## - {Tier} could be "B" (Basic), "GP" (General Purpose), or "MO" (Memory Optimized).
 ## - {Family} indicates the VM family, such as "Standard".
@@ -177,15 +30,16 @@ psql_sku_name  = "B_Standard_B1ms" # Options include: B_Standard_B1ms, GP_Standa
 ## It's important to select a SKU that matches your application's performance needs and budget. The chosen SKU impacts the server's performance characteristics, including CPU, memory, and I/O throughput.
 ## Remember: The availability of certain SKUs and their specifications can vary by Azure region and over time. Always refer to the official Azure documentation for the most current information on PostgreSQL Flexible Server SKUs, capabilities, and pricing.
 psql_admin_login             = "postgres" # Admin username of the PostgreSQL server
-psql_version                 = "16"       # The version of PostgreSQL Flexible Server
+psql_version                 = "15"       # The version of PostgreSQL Flexible Server
 psql_storage_mb              = "32768"    # The max storage allowed for the PostgreSQL Flexible Server. Possible values are 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4193280, 4194304, 8388608, 16777216 and 33553408
 auto_grow_enabled            = false      # Specifies whether the server's storage should automatically grow as needed, preventing out-of-space errors. 
-zone                         = "3"        # The availability zone where the server will be placed. Use "1", "2", or "3" for specific zones, or leave empty for no specific zone.
+zone                         = 2          # The availability zone where the server will be placed. Use "1", "2", or "3" for specific zones, or leave empty for no specific zone.
 backup_retention_days        = 7          # The number of days backups are retained. Azure allows a minimum of 7 and a maximum of 35 days for backup retention.
 geo_redundant_backup_enabled = false      # Enabled provides additional data resiliency by storing backups in a secondary region
 ## Configures the high availability (HA) settings for the PostgreSQL server to enhance fault tolerance and ensure service continuity. 
 ## Options include: ZoneRedundant and SameZone
-# high_availability_mode       = "ZoneRedundant" # this is out-commented in the postgresql.tf aswell
+# high_availability_mode    = "ZoneRedundant" # this is out-commented in the postgresql.tf aswell
+# standby_availability_zone = "1"
 ## when you prefer maintenance to occur. Azure uses this information to schedule maintenance operations, such as updates and patches, minimizing impact on your service.
 maintenance_window = {
   day_of_week  = 0
@@ -194,9 +48,26 @@ maintenance_window = {
 }
 
 ### PostgreSQL Extensions Configuration ###
+
 postgresql_configurations = {
-  # "pgbouncer.enabled" = "true" # NOTE: is out-commented in variables.tf. Enable pgBouncer for connection pooling. Not supported with Burstable server compute tier.
-  "azure.extensions" = "CITEXT,BTREE_GIST,PG_STAT_STATEMENTS,PG_TRGM"
+  "azure.extensions" = "CITEXT,BTREE_GIST,PG_STAT_STATEMENTS,PG_TRGM,PG_HINT_PLAN"
+  "pgbouncer.enabled"             = "true" # NOTE: Enable pgBouncer for connection pooling. Not supported with Burstable server compute tier.
+  "metrics.pgbouncer_diagnostics" = "ON"
+  "pgbouncer.default_pool_size"   = "50"
+  "pgbouncer.max_client_conn"     = "5000"
+  "pgbouncer.pool_mode"           = "TRANSACTION"
+  "pgbouncer.min_pool_size"       = "0"
+  # "pgbouncer.ignore_startup_parameters" = ""
+  # "pgbouncer.query_wait_timeout"          = "120"
+   "pgbouncer.stats_users"                 = "postgres"
+   "pg_qs.query_capture_mode"              = "ALL" # You can set the default to NONE, TOP, or ALL
+   "pg_qs.index_recommendations"           = "RECOMMEND"
+   "pgms_wait_sampling.query_capture_mode" = "ALL"
+   "track_io_timing"                       = "ON"
+   "intelligent_tuning"                    = "ON"
+   "intelligent_tuning.metric_targets"     = "ALL"
+   "azure.accepted_password_auth_method"   = "MD5,SCRAM-SHA-256"
+   "password_encryption"                   = "SCRAM-SHA-256"
 }
 ## Other available extensions (SELECT * FROM pg_available_extensions;) 
 ## This list is not exhaustive and availability might depend on your PostgreSQL version:
@@ -232,38 +103,344 @@ log_analytics_workspace_sku  = "PerGB2018"
 ## "Standalone" - Allows for independent Log Analytics workspace usage without dependency on Azure Monitor. This SKU is designed for specific use cases where Log Analytics is used as a standalone service.
 ## Note: The availability and names of SKUs can change. Always refer to the official Azure documentation for the latest information on Log Analytics
 
+### Function application ###
+sku_name_service_plan = "S1"
+funcapp_allways_on    = true
+
+### Network Watcher ###
+network_watcher_retention_days                        = 30
+network_watcher_traffic_analytics_interval_in_minutes = 10
+
+### Monitor Action Group ###
+email_receivers = [
+  {
+    name          = "First Receiver"
+    email_address = "first.receiver@example.com"
+  },
+  {
+    name          = "Second Receiver"
+    email_address = "second.receiver@example.com"
+  }
+  # Add more entries as needed
+]
+
 ### key vault ###
 kv_sku_name                     = "standard"
 enabled_for_deployment          = false
 enabled_for_disk_encryption     = false
-enabled_for_template_deployment = false
+enabled_for_template_deployment = true
 enable_rbac_authorization       = false
 purge_protection_enabled        = false
 soft_delete_retention_days      = 30
 bypass                          = "AzureServices"
-kv_default_action               = "Allow"
-kv_ip_rules                     = ["185.157.132.93"]
-kv_virtual_network_subnet_ids   = []
+kv_default_action               = "Deny"
+kv_ip_rules                     = ["84.238.74.229", "185.157.132.92", "185.157.132.93"]
 kv_key_permissions_full         = ["Backup", "Create", "Decrypt", "Delete", "Encrypt", "Get", "Import", "List", "Purge", "Recover", "Restore", "Sign", "UnwrapKey", "Update", "Verify", "WrapKey", "Release", "Rotate", "GetRotationPolicy", "SetRotationPolicy"]
 kv_secret_permissions_full      = ["Backup", "Delete", "Get", "List", "Purge", "Recover", "Restore", "Set"]
 kv_certificate_permissions_full = ["Backup", "Create", "Delete", "DeleteIssuers", "Get", "GetIssuers", "Import", "List", "ListIssuers", "ManageContacts", "ManageIssuers", "Purge", "Recover", "Restore", "SetIssuers", "Update"]
 kv_storage_permissions_full     = ["Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update"]
 
-
 ### storage account ###
-/*storage_name                        = "storage1"
-storage_access_tier                 = "Hot"
-storage_account_kind                = "StorageV2"
+storage_access_tier  = "Hot"
+storage_account_kind = "StorageV2"
 ## Possible storage_replication_type options: "LRS", "GRS", "RAGRS", "ZRS", "GZRS", "RAGZRS".
-storage_replication_type            = "LRS" 
-storage_account_tier                = "Standard"
-# storage_container_name              = "container1"
-storage_file_share_name             = "file-share-1"
-storage_account_retention_days      = 30
-storage_is_hns_enabled              = false
-storage_default_action              = "Allow"
-pe_blob_subresource_names           = ["blob"]
-pe_blob_private_dns_zone_group_name = "BlobPrivateDnsZoneGroup"
-# storage_ip_rules                    = []
-# storage_virtual_network_subnet_ids  = []
-*/
+storage_replication_type       = "LRS"
+storage_account_tier           = "Standard"
+storage_account_retention_days = 30
+storage_is_hns_enabled         = false
+storage_default_action         = "Deny"
+pe_blob_subresource_names      = ["blob"]
+storage_ip_rules               = ["84.238.74.229", "185.157.132.92", "185.157.132.93"]
+
+
+### Virtual Network Configuration ###
+hub_bastion_subnet_address_prefixes = ["10.64.4.128/28"]
+vnet_address_space                  = ["10.64.0.0/16"]
+psql_address_prefixes               = ["10.64.2.0/26"]
+jumpbox_subnet_address_prefix       = ["10.64.3.0/28"]
+funcapp_subnet_address_prefix       = ["10.64.1.0/24"]
+# hub_firewall_subnet_address_prefixes = ["10.63.2.0/24"]
+
+### Microsoft Defender for Cloud ###
+security_center_pricing = [
+  {
+    tier          = "Standard"
+    resource_type = "VirtualMachines"
+    subplan       = ""
+  },
+  {
+    tier          = "Standard"
+    resource_type = "KeyVaults"
+    subplan       = ""
+  },
+  {
+    tier          = "Standard"
+    resource_type = "AppServices"
+    subplan       = ""
+  },
+  {
+    tier          = "Standard"
+    resource_type = "CloudPosture"
+    subplan       = ""
+  },
+  {
+    tier          = "Standard"
+    resource_type = "StorageAccounts"
+    subplan       = "DefenderForStorageV2"
+  },
+  {
+    tier          = "Standard"
+    resource_type = "OpenSourceRelationalDatabases"
+    subplan       = ""
+  }
+]
+
+## Network Security Group (NSG) Rules Configuration
+nsg_security_rules_psql = [
+  {
+    name                       = "AllowPostgreSQL"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "5432"
+    source_address_prefix      = "10.64.3.0/28" # Replace with your app subnet or specific IPs.
+    destination_address_prefix = "10.64.2.0/26"
+    ## Permits traffic to the PostgreSQL server from your application subnet or specific IPs.
+  }
+  ,
+  {
+    name                       = "AllowInboundToPgBouncer"
+    priority                   = 110
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "6432"         # Port for PgBouncer
+    source_address_prefix      = "10.64.3.0/28" # Replace with your jumpbox subnet IP range.
+    destination_address_prefix = "10.64.2.0/26"
+  }
+  ,
+  {
+    name                       = "AllowOutboundToAzureServices"
+    priority                   = 200
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443"
+    source_address_prefix      = "10.64.2.0/26"
+    destination_address_prefix = "AzureMonitor" # Use service tags for Azure Monitor if available.
+  }
+  ,
+  {
+    name                       = "AllowOutboundToKeyVault"
+    priority                   = 210
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443"
+    source_address_prefix      = "10.64.2.0/26"
+    destination_address_prefix = "AzureKeyVault"
+  }
+  ,
+  {
+    name                       = "AllowInboundHAReplication"
+    priority                   = 220
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "5432"           // PostgreSQL default port
+    source_address_prefix      = "VirtualNetwork" // Or specify the specific subnet for standby databases
+    destination_address_prefix = "10.64.2.0/26"   // Your PostgreSQL server subnet
+  }
+  ,
+  {
+    name                       = "AllowHAOutboundPostgreSQL"
+    priority                   = 300
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "5432"
+    source_address_prefix      = "VirtualNetwork"
+    destination_address_prefix = "VirtualNetwork" // Adjust as necessary, especially if connecting to external HA services
+  }
+  ,
+  {
+    name                       = "AllowHAOutboundHttps"
+    priority                   = 310
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443"
+    source_address_prefix      = "VirtualNetwork"
+    destination_address_prefix = "VirtualNetwork" // Adjust if necessary for specific external control services
+  }
+  ,
+  {
+    name                       = "AllowUpdatesOutbound"
+    priority                   = 320
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443" // Assuming updates are over HTTPS
+    source_address_prefix      = "VirtualNetwork"
+    destination_address_prefix = "AzureCloud" // Assuming updates are served from Azure services
+  }
+  ,
+  {
+    name                       = "AllowBackupsOutbound"
+    priority                   = 330
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443" // Backups might be stored over HTTPS
+    source_address_prefix      = "VirtualNetwork"
+    destination_address_prefix = "Storage" // If using Azure Storage, or specify exact service tags or IP ranges if known
+  }
+  /*,
+  {
+    name                       = "DenyAllInbound"
+    priority                   = 4095
+    direction                  = "Inbound"
+    access                     = "Deny"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+    ## Deny all other in bound traffic
+  }
+  ,
+  {
+    name                       = "DenyAllOutbound"
+    priority                   = 4096
+    direction                  = "Outbound"
+    access                     = "Deny"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+    ## Deny all other out bound traffic
+  }*/
+]
+
+nsg_security_rules_jumpbox = [
+  {
+    name                       = "AllowDatabaseAccess"
+    priority                   = 100
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "5432"         // PostgreSQL default port; adjust if using a different port
+    source_address_prefix      = "10.64.3.0/28" // Replace with your jumpbox subnet IP range
+    destination_address_prefix = "10.64.2.0/26" // Replace with your database subnet IP range or specific database IP
+  }
+  ,
+  {
+    name                       = "AllowKeyVaultAccess"
+    priority                   = 110
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443"           // Default port for HTTPS
+    source_address_prefix      = "10.64.3.0/28"  // Replace with your jumpbox subnet IP range
+    destination_address_prefix = "AzureKeyVault" // Use the service tag for Azure Key Vault
+  }
+  ,
+  {
+    name                       = "AllowLogAnalytics"
+    priority                   = 120
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443"          // Default port for HTTPS
+    source_address_prefix      = "10.64.3.0/28" // Replace with your jumpbox subnet IP range
+    destination_address_prefix = "AzureMonitor" // Use the service tag for Azure Monitor services
+  }
+  ,
+  {
+    name                       = "AllowSSH"
+    priority                   = 130
+    direction                  = "Inbound" // Change to Outbound if the jumpbox initiates SSH connections to other resources.
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "22"             // Default port for SSH
+    source_address_prefix      = "10.64.4.128/28" // Use "AzureBastion" service tag if using Azure Bastion, otherwise specify IP ranges
+    destination_address_prefix = "10.64.3.0/28"   // Replace with your jumpbox subnet IP range
+  }
+  ,
+  {
+    name                       = "AllowStorageAccess"
+    priority                   = 140 // Ensure this is unique and less than the DenyAllOutbound priority.
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"            // Applies to all source ports
+    destination_port_range     = "443"          // Default port for HTTPS
+    source_address_prefix      = "10.64.3.0/28" // Replace with your jumpbox subnet IP range
+    destination_address_prefix = "Storage"      // Use the service tag for Azure Storage
+  }
+  /*,
+  {
+    name                       = "AllowPackageUpdates"
+    priority                   = 150
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443"          // Default port for HTTPS
+    source_address_prefix      = "10.64.3.0/28" // Replace with your jumpbox subnet IP range
+    destination_address_prefix = "*"            // Allow access to any destination for package updates
+  }
+  ,
+  {
+    name                       = "AllowPostgreSQLClientInstallation"
+    priority                   = 160
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "80"           // Default port for HTTP (used for package repository)
+    source_address_prefix      = "10.64.3.0/28" // Replace with your jumpbox subnet IP range
+    destination_address_prefix = "*"            // Allow access to any destination for package download
+  }
+  ,
+  {
+    name                       = "DenyAllInbound"
+    priority                   = 4095
+    direction                  = "Inbound"
+    access                     = "Deny"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+    ## Deny all other in bound traffic
+  }
+  ,
+  {
+    name                       = "DenyAllOutbound"
+    priority                   = 4096
+    direction                  = "Outbound"
+    access                     = "Deny"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+    ## Deny all other out bound traffic
+  }*/
+]
