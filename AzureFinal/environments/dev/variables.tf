@@ -223,16 +223,16 @@ variable "auto_grow_enabled" {
   default     = false
 }
 
-/*variable "high_availability_mode" {
+variable "high_availability_mode" {
   description = "High availability mode for Azure PostgreSQL Flexible Server"
   type        = string
   default     = "ZoneRedundant" # Default to ZoneRedundant. Change to "SameZone" if needed.
-}*/
+}
 
-/*variable "standby_availability_zone" {
+variable "standby_availability_zone" {
   type        = string
   description = "The standby availability zone for the PostgreSQL Flexible Server."
-}*/
+}
 
 ### KEY VAULT ###
 variable "enabled_for_deployment" {
@@ -379,7 +379,7 @@ variable "sku_name_service_plan" {
 
 variable "funcapp_allways_on" {
   description = "Specifies if the function app should be allways on"
-  type = bool
+  type        = bool
 }
 
 ### Storage ###
@@ -461,4 +461,11 @@ variable "pe_blob_private_dns_zone_group_name" {
   default     = "BlobPrivateDnsZoneGroup"
 }
 
-
+variable "security_center_pricing" {
+  description = "A list of Security Center pricing configurations"
+  type = list(object({
+    tier          = string
+    resource_type = string
+  }))
+  default = []
+}

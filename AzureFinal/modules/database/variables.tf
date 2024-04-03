@@ -87,16 +87,16 @@ variable "maintenance_window" {
   }
 }
 
-/*variable "high_availability_mode" {
+variable "high_availability_mode" {
   description = "High availability mode for Azure PostgreSQL Flexible Server"
   type        = string
   default     = "ZoneRedundant" # Default to ZoneRedundant. Change to "SameZone" if needed.
-}*/
+}
 
-/*variable "standby_availability_zone" {
+variable "standby_availability_zone" {
   type        = string
   description = "The standby availability zone for the PostgreSQL Flexible Server."
-}*/
+}
 
 variable "postgresql_configurations" {
   description = "PostgreSQL configurations to enable."

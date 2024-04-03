@@ -13,7 +13,7 @@ resource "azurerm_storage_account" "st" {
     default_action             = var.storage_default_action
     ip_rules                   = var.storage_ip_rules
     virtual_network_subnet_ids = [var.module_subnet_jumpbox_id, var.module_subnet_psql_id, azurerm_subnet.func_app.id]
-    bypass                     = "AzureServices"
+    bypass                     = ["AzureServices"]
   }
 
   identity {

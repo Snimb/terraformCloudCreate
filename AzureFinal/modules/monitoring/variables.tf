@@ -188,7 +188,6 @@ variable "security_center_pricing" {
   type = list(object({
     tier          = string
     resource_type = string
-    subplan       = string
   }))
   default = []
 }

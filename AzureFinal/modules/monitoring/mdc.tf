@@ -20,12 +20,6 @@ resource "azurerm_security_center_subscription_pricing" "mdc_pricing" {
 
   tier          = each.value.tier
   resource_type = each.value.resource_type
-  dynamic "subplan" {
-    for_each = each.value.subplan != "" ? [each.value.subplan] : []
-    content {
-      subplan = subplan.value
-    }
-  }
 }
 
 resource "azurerm_security_center_setting" "setting_mde" {

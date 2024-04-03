@@ -25,16 +25,15 @@ module "database" {
   geo_redundant_backup_enabled = var.geo_redundant_backup_enabled
   auto_grow_enabled            = var.auto_grow_enabled
   maintenance_window           = var.maintenance_window
-  # high_availability_mode       = var.high_availability_mode
-  # standby_availability_zone    = var.standby_availability_zone
-  postgresql_configurations = var.postgresql_configurations
-  psql_subnet_name          = var.psql_subnet_name
-  private_dns_zone_name     = var.private_dns_zone_name
-  module_vnet_id            = module.vnetwork.vnet_id
-  module_vnet_name          = module.vnetwork.vnet_name
-  module_vnet               = module.vnetwork.vnet
-  module_vnet_resource_grp  = module.vnetwork.resource_group_name
-
+  high_availability_mode       = var.high_availability_mode
+  standby_availability_zone    = var.standby_availability_zone
+  postgresql_configurations    = var.postgresql_configurations
+  psql_subnet_name             = var.psql_subnet_name
+  private_dns_zone_name        = var.private_dns_zone_name
+  module_vnet_id               = module.vnetwork.vnet_id
+  module_vnet_name             = module.vnetwork.vnet_name
+  module_vnet                  = module.vnetwork.vnet
+  module_vnet_resource_grp     = module.vnetwork.resource_group_name
 }
 
 
@@ -93,6 +92,7 @@ module "monitoring" {
   sku_name_service_plan                                 = var.sku_name_service_plan
   funcapp_subnet_address_prefix                         = var.funcapp_subnet_address_prefix
   funcapp_allways_on                                    = var.funcapp_allways_on
+  security_center_pricing                               = var.security_center_pricing
   module_vnet                                           = module.vnetwork.vnet
   module_vnet_id                                        = module.vnetwork.vnet_id
   module_nsg_id_jumpbox                                 = module.vnetwork.jumpbox_nsg_id
@@ -107,6 +107,7 @@ module "monitoring" {
   module_keyvault_name                                  = module.keyvault.key_vault_name
   module_subnet_jumpbox_id                              = module.vnetwork.subnet_jumpbox_id
   module_subnet_psql_id                                 = module.database.subnet_psql_id
+
 
 }
 
