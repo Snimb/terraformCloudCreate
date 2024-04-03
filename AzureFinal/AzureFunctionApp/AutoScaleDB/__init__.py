@@ -53,7 +53,7 @@ sku_levels = sorted(sku_details.keys(), key=lambda x: sku_details[x]["cpu_cores"
 STORAGE_CONNECTION_STRING = os.environ.get("AzureWebJobsStorage")
 BLOB_CONTAINER_NAME = os.environ.get("BLOB_CONTAINER_NAME")
 
-def get_latest_metrics(resource_id, metric_names):
+"""def get_latest_metrics(resource_id, metric_names):
     credential = DefaultAzureCredential()
     client = MetricsQueryClient(credential)
     metrics_response = client.query_resource(
@@ -70,7 +70,7 @@ def get_latest_metrics(resource_id, metric_names):
                 if data.average is not None:
                     metrics_data[metric.name] = data.average
     return metrics_data
-
+"""
 
 # Function to calculate new PostgreSQL configuration values based on the SKU
 def calculate_postgres_configs(sku_name):
