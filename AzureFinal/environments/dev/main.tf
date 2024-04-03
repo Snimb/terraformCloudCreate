@@ -113,7 +113,7 @@ module "monitoring" {
 module "virtualmachines" {
   source                                = "../../modules/virtualmachines"
   location                              = var.location
-  vm_size                               = "Standard_DS1_v2"
+  vm_size                               = var.vm_size
   storage_account_type                  = var.storage_account_type
   image_publisher                       = var.image_publisher
   admin_ssh_key_username                = var.admin_ssh_key_username
