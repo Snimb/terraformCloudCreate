@@ -87,35 +87,6 @@ resource "azurerm_role_assignment" "vm_reader" {
   ]
 }
 
-
-/*resource "azurerm_virtual_machine_extension" "diag_vm" {
-  name                 = "diag_vm-diagnostics-extension"
-  virtual_machine_id   = azurerm_linux_virtual_machine.mgmt_vm.id
-  publisher            = "Microsoft.Azure.Diagnostics"
-  type                 = "LinuxDiagnostic"
-  type_handler_version = "4.0" # Make sure to use a supported version for your VM's OS
-
-  settings = <<SETTINGS
-{
-  "ladCfg": {
-    "diagnosticMonitorConfiguration": {
-      "metrics": {
-        "resourceId": "${azurerm_linux_virtual_machine.mgmt_vm.id}"
-      }
-    }
-  }
-}
-SETTINGS
-
-  protected_settings = <<PROTECTED_SETTINGS
-{
-  "workspaceId": "${azurerm_log_analytics_workspace.workspace.workspace_id}",
-  "workspaceKey": "${azurerm_log_analytics_workspace.workspace.primary_shared_key}"
-}
-PROTECTED_SETTINGS
-}
-*/
-
 resource "azurerm_monitor_diagnostic_setting" "diag_mgmt_vm" {
   name                       = lower("${var.vm_prefix}-${random_pet.name_prefix.id}-${var.vm_name}")
   target_resource_id         = azurerm_linux_virtual_machine.mgmt_vm.id

@@ -19,7 +19,7 @@ fi
 # Define the name of your Azure Key Vault
 KEY_VAULT_NAME="<name of key vault>"
 TENANT_ID_SECRET_NAME="<name of tenant id secret>"
-SUBSCRIPTION_ID_SECRET_NAME="<name of subsription id secret >"
+SUBSCRIPTION_ID_SECRET_NAME="<name of subsription id secret>"
 CLIENT_SECRET_SECRET_NAME="<name of client secret secret>"
 CLIENT_ID_SECRET_NAME="<name of client id secret>"
 SAS_TOKEN_SECRET_NAME="<name of sas token secret>"

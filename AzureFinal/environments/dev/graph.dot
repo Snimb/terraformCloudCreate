@@ -1,0 +1,1253 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] module.database.azuread_group.psql_ad_group (expand)" [label = "module.database.azuread_group.psql_ad_group", shape = "box"]
+		"[root] module.database.azuread_group.psql_ad_group[\"administrators\"]" [label = "module.database.azuread_group.psql_ad_group", shape = "box"]
+		"[root] module.database.azuread_group.psql_ad_group[\"readonly\"]" [label = "module.database.azuread_group.psql_ad_group", shape = "box"]
+		"[root] module.database.azuread_group.psql_ad_group[\"readwrite\"]" [label = "module.database.azuread_group.psql_ad_group", shape = "box"]
+		"[root] module.database.azuread_group.psql_admin_group" [label = "module.database.azuread_group.psql_admin_group", shape = "box"]
+		"[root] module.database.azuread_group.psql_admin_group (expand)" [label = "module.database.azuread_group.psql_admin_group", shape = "box"]
+		"[root] module.database.azurerm_network_security_group.psql" [label = "module.database.azurerm_network_security_group.psql", shape = "box"]
+		"[root] module.database.azurerm_network_security_group.psql (expand)" [label = "module.database.azurerm_network_security_group.psql", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server.psql" [label = "module.database.azurerm_postgresql_flexible_server.psql", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" [label = "module.database.azurerm_postgresql_flexible_server.psql", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_active_directory_administrator.psql" [label = "module.database.azurerm_postgresql_flexible_server_active_directory_administrator.psql", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_active_directory_administrator.psql (expand)" [label = "module.database.azurerm_postgresql_flexible_server_active_directory_administrator.psql", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations (expand)" [label = "module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"azure.accepted_password_auth_method\"]" [label = "module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"azure.extensions\"]" [label = "module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"password_encryption\"]" [label = "module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"pgbouncer.enabled\"]" [label = "module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_cache_size" [label = "module.database.azurerm_postgresql_flexible_server_configuration.effective_cache_size", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_cache_size (expand)" [label = "module.database.azurerm_postgresql_flexible_server_configuration.effective_cache_size", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_io_concurrency" [label = "module.database.azurerm_postgresql_flexible_server_configuration.effective_io_concurrency", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_io_concurrency (expand)" [label = "module.database.azurerm_postgresql_flexible_server_configuration.effective_io_concurrency", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.maintenance_work_mem" [label = "module.database.azurerm_postgresql_flexible_server_configuration.maintenance_work_mem", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.maintenance_work_mem (expand)" [label = "module.database.azurerm_postgresql_flexible_server_configuration.maintenance_work_mem", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.max_wal_size" [label = "module.database.azurerm_postgresql_flexible_server_configuration.max_wal_size", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.max_wal_size (expand)" [label = "module.database.azurerm_postgresql_flexible_server_configuration.max_wal_size", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.shared_buffers" [label = "module.database.azurerm_postgresql_flexible_server_configuration.shared_buffers", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.shared_buffers (expand)" [label = "module.database.azurerm_postgresql_flexible_server_configuration.shared_buffers", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.work_mem" [label = "module.database.azurerm_postgresql_flexible_server_configuration.work_mem", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.work_mem (expand)" [label = "module.database.azurerm_postgresql_flexible_server_configuration.work_mem", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_database.psqldb (expand)" [label = "module.database.azurerm_postgresql_flexible_server_database.psqldb", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_database.psqldb[\"db1\"]" [label = "module.database.azurerm_postgresql_flexible_server_database.psqldb", shape = "box"]
+		"[root] module.database.azurerm_postgresql_flexible_server_database.psqldb[\"db2\"]" [label = "module.database.azurerm_postgresql_flexible_server_database.psqldb", shape = "box"]
+		"[root] module.database.azurerm_private_dns_zone.psql" [label = "module.database.azurerm_private_dns_zone.psql", shape = "box"]
+		"[root] module.database.azurerm_private_dns_zone.psql (expand)" [label = "module.database.azurerm_private_dns_zone.psql", shape = "box"]
+		"[root] module.database.azurerm_private_dns_zone_virtual_network_link.psql" [label = "module.database.azurerm_private_dns_zone_virtual_network_link.psql", shape = "box"]
+		"[root] module.database.azurerm_private_dns_zone_virtual_network_link.psql (expand)" [label = "module.database.azurerm_private_dns_zone_virtual_network_link.psql", shape = "box"]
+		"[root] module.database.azurerm_resource_group.db" [label = "module.database.azurerm_resource_group.db", shape = "box"]
+		"[root] module.database.azurerm_resource_group.db (expand)" [label = "module.database.azurerm_resource_group.db", shape = "box"]
+		"[root] module.database.azurerm_subnet.psql" [label = "module.database.azurerm_subnet.psql", shape = "box"]
+		"[root] module.database.azurerm_subnet.psql (expand)" [label = "module.database.azurerm_subnet.psql", shape = "box"]
+		"[root] module.database.azurerm_subnet_network_security_group_association.psql" [label = "module.database.azurerm_subnet_network_security_group_association.psql", shape = "box"]
+		"[root] module.database.azurerm_subnet_network_security_group_association.psql (expand)" [label = "module.database.azurerm_subnet_network_security_group_association.psql", shape = "box"]
+		"[root] module.database.data.azurerm_client_config.current (expand)" [label = "module.database.data.azurerm_client_config.current", shape = "box"]
+		"[root] module.database.random_password.psql_admin_password" [label = "module.database.random_password.psql_admin_password", shape = "box"]
+		"[root] module.database.random_password.psql_admin_password (expand)" [label = "module.database.random_password.psql_admin_password", shape = "box"]
+		"[root] module.database.random_pet.name_prefix" [label = "module.database.random_pet.name_prefix", shape = "box"]
+		"[root] module.database.random_pet.name_prefix (expand)" [label = "module.database.random_pet.name_prefix", shape = "box"]
+		"[root] module.keyvault.azurerm_key_vault.kv" [label = "module.keyvault.azurerm_key_vault.kv", shape = "box"]
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" [label = "module.keyvault.azurerm_key_vault.kv", shape = "box"]
+		"[root] module.keyvault.azurerm_key_vault_secret.db_connection_strings (expand)" [label = "module.keyvault.azurerm_key_vault_secret.db_connection_strings", shape = "box"]
+		"[root] module.keyvault.azurerm_key_vault_secret.db_connection_strings[\"db1\"]" [label = "module.keyvault.azurerm_key_vault_secret.db_connection_strings", shape = "box"]
+		"[root] module.keyvault.azurerm_key_vault_secret.db_connection_strings[\"db2\"]" [label = "module.keyvault.azurerm_key_vault_secret.db_connection_strings", shape = "box"]
+		"[root] module.keyvault.azurerm_key_vault_secret.postgres_hostname" [label = "module.keyvault.azurerm_key_vault_secret.postgres_hostname", shape = "box"]
+		"[root] module.keyvault.azurerm_key_vault_secret.postgres_hostname (expand)" [label = "module.keyvault.azurerm_key_vault_secret.postgres_hostname", shape = "box"]
+		"[root] module.keyvault.azurerm_key_vault_secret.postgres_password" [label = "module.keyvault.azurerm_key_vault_secret.postgres_password", shape = "box"]
+		"[root] module.keyvault.azurerm_key_vault_secret.postgres_password (expand)" [label = "module.keyvault.azurerm_key_vault_secret.postgres_password", shape = "box"]
+		"[root] module.keyvault.azurerm_private_dns_zone.pdz_kv" [label = "module.keyvault.azurerm_private_dns_zone.pdz_kv", shape = "box"]
+		"[root] module.keyvault.azurerm_private_dns_zone.pdz_kv (expand)" [label = "module.keyvault.azurerm_private_dns_zone.pdz_kv", shape = "box"]
+		"[root] module.keyvault.azurerm_private_dns_zone_virtual_network_link.kv_pdz_vnet_link" [label = "module.keyvault.azurerm_private_dns_zone_virtual_network_link.kv_pdz_vnet_link", shape = "box"]
+		"[root] module.keyvault.azurerm_private_dns_zone_virtual_network_link.kv_pdz_vnet_link (expand)" [label = "module.keyvault.azurerm_private_dns_zone_virtual_network_link.kv_pdz_vnet_link", shape = "box"]
+		"[root] module.keyvault.azurerm_private_endpoint.pe_kv" [label = "module.keyvault.azurerm_private_endpoint.pe_kv", shape = "box"]
+		"[root] module.keyvault.azurerm_private_endpoint.pe_kv (expand)" [label = "module.keyvault.azurerm_private_endpoint.pe_kv", shape = "box"]
+		"[root] module.keyvault.azurerm_resource_group.kv" [label = "module.keyvault.azurerm_resource_group.kv", shape = "box"]
+		"[root] module.keyvault.azurerm_resource_group.kv (expand)" [label = "module.keyvault.azurerm_resource_group.kv", shape = "box"]
+		"[root] module.keyvault.data.azurerm_client_config.current (expand)" [label = "module.keyvault.data.azurerm_client_config.current", shape = "box"]
+		"[root] module.keyvault.random_pet.name_prefix" [label = "module.keyvault.random_pet.name_prefix", shape = "box"]
+		"[root] module.keyvault.random_pet.name_prefix (expand)" [label = "module.keyvault.random_pet.name_prefix", shape = "box"]
+		"[root] module.monitoring.azapi_resource.DfSMDVMSettings" [label = "module.monitoring.azapi_resource.DfSMDVMSettings", shape = "box"]
+		"[root] module.monitoring.azapi_resource.DfSMDVMSettings (expand)" [label = "module.monitoring.azapi_resource.DfSMDVMSettings", shape = "box"]
+		"[root] module.monitoring.azapi_resource.setting_agentless_vm" [label = "module.monitoring.azapi_resource.setting_agentless_vm", shape = "box"]
+		"[root] module.monitoring.azapi_resource.setting_agentless_vm (expand)" [label = "module.monitoring.azapi_resource.setting_agentless_vm", shape = "box"]
+		"[root] module.monitoring.azapi_update_resource.setting_cspm" [label = "module.monitoring.azapi_update_resource.setting_cspm", shape = "box"]
+		"[root] module.monitoring.azapi_update_resource.setting_cspm (expand)" [label = "module.monitoring.azapi_update_resource.setting_cspm", shape = "box"]
+		"[root] module.monitoring.azurerm_advanced_threat_protection.advanced_threat_proctec" [label = "module.monitoring.azurerm_advanced_threat_protection.advanced_threat_proctec", shape = "box"]
+		"[root] module.monitoring.azurerm_advanced_threat_protection.advanced_threat_proctec (expand)" [label = "module.monitoring.azurerm_advanced_threat_protection.advanced_threat_proctec", shape = "box"]
+		"[root] module.monitoring.azurerm_app_service_virtual_network_swift_connection.swift_conncetion" [label = "module.monitoring.azurerm_app_service_virtual_network_swift_connection.swift_conncetion", shape = "box"]
+		"[root] module.monitoring.azurerm_app_service_virtual_network_swift_connection.swift_conncetion (expand)" [label = "module.monitoring.azurerm_app_service_virtual_network_swift_connection.swift_conncetion", shape = "box"]
+		"[root] module.monitoring.azurerm_application_insights.linux-application-insights" [label = "module.monitoring.azurerm_application_insights.linux-application-insights", shape = "box"]
+		"[root] module.monitoring.azurerm_application_insights.linux-application-insights (expand)" [label = "module.monitoring.azurerm_application_insights.linux-application-insights", shape = "box"]
+		"[root] module.monitoring.azurerm_key_vault_access_policy.function_app_policy" [label = "module.monitoring.azurerm_key_vault_access_policy.function_app_policy", shape = "box"]
+		"[root] module.monitoring.azurerm_key_vault_access_policy.function_app_policy (expand)" [label = "module.monitoring.azurerm_key_vault_access_policy.function_app_policy", shape = "box"]
+		"[root] module.monitoring.azurerm_key_vault_secret.storage_access_key" [label = "module.monitoring.azurerm_key_vault_secret.storage_access_key", shape = "box"]
+		"[root] module.monitoring.azurerm_key_vault_secret.storage_access_key (expand)" [label = "module.monitoring.azurerm_key_vault_secret.storage_access_key", shape = "box"]
+		"[root] module.monitoring.azurerm_key_vault_secret.storage_conn_str" [label = "module.monitoring.azurerm_key_vault_secret.storage_conn_str", shape = "box"]
+		"[root] module.monitoring.azurerm_key_vault_secret.storage_conn_str (expand)" [label = "module.monitoring.azurerm_key_vault_secret.storage_conn_str", shape = "box"]
+		"[root] module.monitoring.azurerm_linux_function_app.diag_app" [label = "module.monitoring.azurerm_linux_function_app.diag_app", shape = "box"]
+		"[root] module.monitoring.azurerm_linux_function_app.diag_app (expand)" [label = "module.monitoring.azurerm_linux_function_app.diag_app", shape = "box"]
+		"[root] module.monitoring.azurerm_linux_function_app_slot.diag_app_slot" [label = "module.monitoring.azurerm_linux_function_app_slot.diag_app_slot", shape = "box"]
+		"[root] module.monitoring.azurerm_linux_function_app_slot.diag_app_slot (expand)" [label = "module.monitoring.azurerm_linux_function_app_slot.diag_app_slot", shape = "box"]
+		"[root] module.monitoring.azurerm_log_analytics_solution.workspace_solution (expand)" [label = "module.monitoring.azurerm_log_analytics_solution.workspace_solution", shape = "box"]
+		"[root] module.monitoring.azurerm_log_analytics_solution.workspace_solution[\"ContainerInsight\"]" [label = "module.monitoring.azurerm_log_analytics_solution.workspace_solution", shape = "box"]
+		"[root] module.monitoring.azurerm_log_analytics_workspace.workspace" [label = "module.monitoring.azurerm_log_analytics_workspace.workspace", shape = "box"]
+		"[root] module.monitoring.azurerm_log_analytics_workspace.workspace (expand)" [label = "module.monitoring.azurerm_log_analytics_workspace.workspace", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_action_group.ag" [label = "module.monitoring.azurerm_monitor_action_group.ag", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_action_group.ag (expand)" [label = "module.monitoring.azurerm_monitor_action_group.ag", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_kv" [label = "module.monitoring.azurerm_monitor_diagnostic_setting.diag_kv", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_kv (expand)" [label = "module.monitoring.azurerm_monitor_diagnostic_setting.diag_kv", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_psql" [label = "module.monitoring.azurerm_monitor_diagnostic_setting.diag_psql", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_psql (expand)" [label = "module.monitoring.azurerm_monitor_diagnostic_setting.diag_psql", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st" [label = "module.monitoring.azurerm_monitor_diagnostic_setting.diag_st", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st (expand)" [label = "module.monitoring.azurerm_monitor_diagnostic_setting.diag_st", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st_container" [label = "module.monitoring.azurerm_monitor_diagnostic_setting.diag_st_container", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st_container (expand)" [label = "module.monitoring.azurerm_monitor_diagnostic_setting.diag_st_container", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_vnet" [label = "module.monitoring.azurerm_monitor_diagnostic_setting.diag_vnet", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_vnet (expand)" [label = "module.monitoring.azurerm_monitor_diagnostic_setting.diag_vnet", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.func_app_diag" [label = "module.monitoring.azurerm_monitor_diagnostic_setting.func_app_diag", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.func_app_diag (expand)" [label = "module.monitoring.azurerm_monitor_diagnostic_setting.func_app_diag", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting (expand)" [label = "module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting[\"nsg-jumpbox\"]" [label = "module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting[\"nsg-psql\"]" [label = "module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert (expand)" [label = "module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"cpu_usage_high\"]" [label = "module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"cpu_usage_low\"]" [label = "module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"memory_usage_high\"]" [label = "module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert", shape = "box"]
+		"[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"memory_usage_low\"]" [label = "module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert", shape = "box"]
+		"[root] module.monitoring.azurerm_network_watcher.network_watcher" [label = "module.monitoring.azurerm_network_watcher.network_watcher", shape = "box"]
+		"[root] module.monitoring.azurerm_network_watcher.network_watcher (expand)" [label = "module.monitoring.azurerm_network_watcher.network_watcher", shape = "box"]
+		"[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log (expand)" [label = "module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log", shape = "box"]
+		"[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log[\"nsg-jumpbox\"]" [label = "module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log", shape = "box"]
+		"[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log[\"nsg-psql\"]" [label = "module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log", shape = "box"]
+		"[root] module.monitoring.azurerm_private_dns_zone.pdz_blob" [label = "module.monitoring.azurerm_private_dns_zone.pdz_blob", shape = "box"]
+		"[root] module.monitoring.azurerm_private_dns_zone.pdz_blob (expand)" [label = "module.monitoring.azurerm_private_dns_zone.pdz_blob", shape = "box"]
+		"[root] module.monitoring.azurerm_private_dns_zone_virtual_network_link.blob_pdz_vnet_link" [label = "module.monitoring.azurerm_private_dns_zone_virtual_network_link.blob_pdz_vnet_link", shape = "box"]
+		"[root] module.monitoring.azurerm_private_dns_zone_virtual_network_link.blob_pdz_vnet_link (expand)" [label = "module.monitoring.azurerm_private_dns_zone_virtual_network_link.blob_pdz_vnet_link", shape = "box"]
+		"[root] module.monitoring.azurerm_private_endpoint.pe_blob" [label = "module.monitoring.azurerm_private_endpoint.pe_blob", shape = "box"]
+		"[root] module.monitoring.azurerm_private_endpoint.pe_blob (expand)" [label = "module.monitoring.azurerm_private_endpoint.pe_blob", shape = "box"]
+		"[root] module.monitoring.azurerm_resource_group.diag" [label = "module.monitoring.azurerm_resource_group.diag", shape = "box"]
+		"[root] module.monitoring.azurerm_resource_group.diag (expand)" [label = "module.monitoring.azurerm_resource_group.diag", shape = "box"]
+		"[root] module.monitoring.azurerm_role_assignment.func_app_reader" [label = "module.monitoring.azurerm_role_assignment.func_app_reader", shape = "box"]
+		"[root] module.monitoring.azurerm_role_assignment.func_app_reader (expand)" [label = "module.monitoring.azurerm_role_assignment.func_app_reader", shape = "box"]
+		"[root] module.monitoring.azurerm_role_assignment.func_app_storage_contributor" [label = "module.monitoring.azurerm_role_assignment.func_app_storage_contributor", shape = "box"]
+		"[root] module.monitoring.azurerm_role_assignment.func_app_storage_contributor (expand)" [label = "module.monitoring.azurerm_role_assignment.func_app_storage_contributor", shape = "box"]
+		"[root] module.monitoring.azurerm_role_assignment.function_app_sql_contributor" [label = "module.monitoring.azurerm_role_assignment.function_app_sql_contributor", shape = "box"]
+		"[root] module.monitoring.azurerm_role_assignment.function_app_sql_contributor (expand)" [label = "module.monitoring.azurerm_role_assignment.function_app_sql_contributor", shape = "box"]
+		"[root] module.monitoring.azurerm_role_assignment.va-auto-provisioning-identity-role" [label = "module.monitoring.azurerm_role_assignment.va-auto-provisioning-identity-role", shape = "box"]
+		"[root] module.monitoring.azurerm_role_assignment.va-auto-provisioning-identity-role (expand)" [label = "module.monitoring.azurerm_role_assignment.va-auto-provisioning-identity-role", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_auto_provisioning.auto-provisioning" [label = "module.monitoring.azurerm_security_center_auto_provisioning.auto-provisioning", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_auto_provisioning.auto-provisioning (expand)" [label = "module.monitoring.azurerm_security_center_auto_provisioning.auto-provisioning", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_automation.la-exports" [label = "module.monitoring.azurerm_security_center_automation.la-exports", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_automation.la-exports (expand)" [label = "module.monitoring.azurerm_security_center_automation.la-exports", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_contact.mdc_contact" [label = "module.monitoring.azurerm_security_center_contact.mdc_contact", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_contact.mdc_contact (expand)" [label = "module.monitoring.azurerm_security_center_contact.mdc_contact", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_setting.setting_mde" [label = "module.monitoring.azurerm_security_center_setting.setting_mde", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_setting.setting_mde (expand)" [label = "module.monitoring.azurerm_security_center_setting.setting_mde", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing (expand)" [label = "module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"0\"]" [label = "module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"1\"]" [label = "module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"2\"]" [label = "module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"3\"]" [label = "module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"4\"]" [label = "module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"5\"]" [label = "module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_workspace.la_workspace" [label = "module.monitoring.azurerm_security_center_workspace.la_workspace", shape = "box"]
+		"[root] module.monitoring.azurerm_security_center_workspace.la_workspace (expand)" [label = "module.monitoring.azurerm_security_center_workspace.la_workspace", shape = "box"]
+		"[root] module.monitoring.azurerm_service_plan.diag_service_plan" [label = "module.monitoring.azurerm_service_plan.diag_service_plan", shape = "box"]
+		"[root] module.monitoring.azurerm_service_plan.diag_service_plan (expand)" [label = "module.monitoring.azurerm_service_plan.diag_service_plan", shape = "box"]
+		"[root] module.monitoring.azurerm_storage_account.st" [label = "module.monitoring.azurerm_storage_account.st", shape = "box"]
+		"[root] module.monitoring.azurerm_storage_account.st (expand)" [label = "module.monitoring.azurerm_storage_account.st", shape = "box"]
+		"[root] module.monitoring.azurerm_storage_container.func_app_container" [label = "module.monitoring.azurerm_storage_container.func_app_container", shape = "box"]
+		"[root] module.monitoring.azurerm_storage_container.func_app_container (expand)" [label = "module.monitoring.azurerm_storage_container.func_app_container", shape = "box"]
+		"[root] module.monitoring.azurerm_storage_management_policy.st_mgmt_policy" [label = "module.monitoring.azurerm_storage_management_policy.st_mgmt_policy", shape = "box"]
+		"[root] module.monitoring.azurerm_storage_management_policy.st_mgmt_policy (expand)" [label = "module.monitoring.azurerm_storage_management_policy.st_mgmt_policy", shape = "box"]
+		"[root] module.monitoring.azurerm_subnet.func_app" [label = "module.monitoring.azurerm_subnet.func_app", shape = "box"]
+		"[root] module.monitoring.azurerm_subnet.func_app (expand)" [label = "module.monitoring.azurerm_subnet.func_app", shape = "box"]
+		"[root] module.monitoring.azurerm_subscription_policy_assignment.mcsb_assignment" [label = "module.monitoring.azurerm_subscription_policy_assignment.mcsb_assignment", shape = "box"]
+		"[root] module.monitoring.azurerm_subscription_policy_assignment.mcsb_assignment (expand)" [label = "module.monitoring.azurerm_subscription_policy_assignment.mcsb_assignment", shape = "box"]
+		"[root] module.monitoring.azurerm_subscription_policy_assignment.va-auto-provisioning" [label = "module.monitoring.azurerm_subscription_policy_assignment.va-auto-provisioning", shape = "box"]
+		"[root] module.monitoring.azurerm_subscription_policy_assignment.va-auto-provisioning (expand)" [label = "module.monitoring.azurerm_subscription_policy_assignment.va-auto-provisioning", shape = "box"]
+		"[root] module.monitoring.data.archive_file.app_zip (expand)" [label = "module.monitoring.data.archive_file.app_zip", shape = "box"]
+		"[root] module.monitoring.data.azurerm_client_config.current (expand)" [label = "module.monitoring.data.azurerm_client_config.current", shape = "box"]
+		"[root] module.monitoring.data.azurerm_function_app_host_keys.func_app_keys" [label = "module.monitoring.data.azurerm_function_app_host_keys.func_app_keys", shape = "box"]
+		"[root] module.monitoring.data.azurerm_function_app_host_keys.func_app_keys (expand)" [label = "module.monitoring.data.azurerm_function_app_host_keys.func_app_keys", shape = "box"]
+		"[root] module.monitoring.data.azurerm_subscription.current (expand)" [label = "module.monitoring.data.azurerm_subscription.current", shape = "box"]
+		"[root] module.monitoring.random_pet.name_prefix" [label = "module.monitoring.random_pet.name_prefix", shape = "box"]
+		"[root] module.monitoring.random_pet.name_prefix (expand)" [label = "module.monitoring.random_pet.name_prefix", shape = "box"]
+		"[root] module.virtualmachines.azurerm_key_vault_access_policy.vm_access_policy" [label = "module.virtualmachines.azurerm_key_vault_access_policy.vm_access_policy", shape = "box"]
+		"[root] module.virtualmachines.azurerm_key_vault_access_policy.vm_access_policy (expand)" [label = "module.virtualmachines.azurerm_key_vault_access_policy.vm_access_policy", shape = "box"]
+		"[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm" [label = "module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm", shape = "box"]
+		"[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm (expand)" [label = "module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm", shape = "box"]
+		"[root] module.virtualmachines.azurerm_monitor_diagnostic_setting.diag_mgmt_vm" [label = "module.virtualmachines.azurerm_monitor_diagnostic_setting.diag_mgmt_vm", shape = "box"]
+		"[root] module.virtualmachines.azurerm_monitor_diagnostic_setting.diag_mgmt_vm (expand)" [label = "module.virtualmachines.azurerm_monitor_diagnostic_setting.diag_mgmt_vm", shape = "box"]
+		"[root] module.virtualmachines.azurerm_network_interface.vm_nic" [label = "module.virtualmachines.azurerm_network_interface.vm_nic", shape = "box"]
+		"[root] module.virtualmachines.azurerm_network_interface.vm_nic (expand)" [label = "module.virtualmachines.azurerm_network_interface.vm_nic", shape = "box"]
+		"[root] module.virtualmachines.azurerm_resource_group.vm" [label = "module.virtualmachines.azurerm_resource_group.vm", shape = "box"]
+		"[root] module.virtualmachines.azurerm_resource_group.vm (expand)" [label = "module.virtualmachines.azurerm_resource_group.vm", shape = "box"]
+		"[root] module.virtualmachines.azurerm_role_assignment.vm_reader" [label = "module.virtualmachines.azurerm_role_assignment.vm_reader", shape = "box"]
+		"[root] module.virtualmachines.azurerm_role_assignment.vm_reader (expand)" [label = "module.virtualmachines.azurerm_role_assignment.vm_reader", shape = "box"]
+		"[root] module.virtualmachines.azurerm_virtual_machine_extension.init_script" [label = "module.virtualmachines.azurerm_virtual_machine_extension.init_script", shape = "box"]
+		"[root] module.virtualmachines.azurerm_virtual_machine_extension.init_script (expand)" [label = "module.virtualmachines.azurerm_virtual_machine_extension.init_script", shape = "box"]
+		"[root] module.virtualmachines.data.azurerm_client_config.current (expand)" [label = "module.virtualmachines.data.azurerm_client_config.current", shape = "box"]
+		"[root] module.virtualmachines.random_pet.name_prefix" [label = "module.virtualmachines.random_pet.name_prefix", shape = "box"]
+		"[root] module.virtualmachines.random_pet.name_prefix (expand)" [label = "module.virtualmachines.random_pet.name_prefix", shape = "box"]
+		"[root] module.vnetwork.azurerm_bastion_host.azure_bastion" [label = "module.vnetwork.azurerm_bastion_host.azure_bastion", shape = "box"]
+		"[root] module.vnetwork.azurerm_bastion_host.azure_bastion (expand)" [label = "module.vnetwork.azurerm_bastion_host.azure_bastion", shape = "box"]
+		"[root] module.vnetwork.azurerm_network_security_group.jumpbox" [label = "module.vnetwork.azurerm_network_security_group.jumpbox", shape = "box"]
+		"[root] module.vnetwork.azurerm_network_security_group.jumpbox (expand)" [label = "module.vnetwork.azurerm_network_security_group.jumpbox", shape = "box"]
+		"[root] module.vnetwork.azurerm_public_ip.bastion_public_ip" [label = "module.vnetwork.azurerm_public_ip.bastion_public_ip", shape = "box"]
+		"[root] module.vnetwork.azurerm_public_ip.bastion_public_ip (expand)" [label = "module.vnetwork.azurerm_public_ip.bastion_public_ip", shape = "box"]
+		"[root] module.vnetwork.azurerm_resource_group.vnet" [label = "module.vnetwork.azurerm_resource_group.vnet", shape = "box"]
+		"[root] module.vnetwork.azurerm_resource_group.vnet (expand)" [label = "module.vnetwork.azurerm_resource_group.vnet", shape = "box"]
+		"[root] module.vnetwork.azurerm_subnet.hub_bastion" [label = "module.vnetwork.azurerm_subnet.hub_bastion", shape = "box"]
+		"[root] module.vnetwork.azurerm_subnet.hub_bastion (expand)" [label = "module.vnetwork.azurerm_subnet.hub_bastion", shape = "box"]
+		"[root] module.vnetwork.azurerm_subnet.jumpbox" [label = "module.vnetwork.azurerm_subnet.jumpbox", shape = "box"]
+		"[root] module.vnetwork.azurerm_subnet.jumpbox (expand)" [label = "module.vnetwork.azurerm_subnet.jumpbox", shape = "box"]
+		"[root] module.vnetwork.azurerm_subnet_network_security_group_association.jumpbox" [label = "module.vnetwork.azurerm_subnet_network_security_group_association.jumpbox", shape = "box"]
+		"[root] module.vnetwork.azurerm_subnet_network_security_group_association.jumpbox (expand)" [label = "module.vnetwork.azurerm_subnet_network_security_group_association.jumpbox", shape = "box"]
+		"[root] module.vnetwork.azurerm_virtual_network.vnet" [label = "module.vnetwork.azurerm_virtual_network.vnet", shape = "box"]
+		"[root] module.vnetwork.azurerm_virtual_network.vnet (expand)" [label = "module.vnetwork.azurerm_virtual_network.vnet", shape = "box"]
+		"[root] module.vnetwork.random_pet.name_prefix" [label = "module.vnetwork.random_pet.name_prefix", shape = "box"]
+		"[root] module.vnetwork.random_pet.name_prefix (expand)" [label = "module.vnetwork.random_pet.name_prefix", shape = "box"]
+		"[root] provider[\"registry.terraform.io/azure/azapi\"]" [label = "provider[\"registry.terraform.io/azure/azapi\"]", shape = "diamond"]
+		"[root] provider[\"registry.terraform.io/hashicorp/archive\"]" [label = "provider[\"registry.terraform.io/hashicorp/archive\"]", shape = "diamond"]
+		"[root] provider[\"registry.terraform.io/hashicorp/azuread\"]" [label = "provider[\"registry.terraform.io/hashicorp/azuread\"]", shape = "diamond"]
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]" [label = "provider[\"registry.terraform.io/hashicorp/azurerm\"]", shape = "diamond"]
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"]" [label = "provider[\"registry.terraform.io/hashicorp/random\"]", shape = "diamond"]
+		"[root] var.admin_public_key_path" [label = "var.admin_public_key_path", shape = "note"]
+		"[root] var.admin_ssh_key_username" [label = "var.admin_ssh_key_username", shape = "note"]
+		"[root] var.auto_grow_enabled" [label = "var.auto_grow_enabled", shape = "note"]
+		"[root] var.backup_retention_days" [label = "var.backup_retention_days", shape = "note"]
+		"[root] var.bypass" [label = "var.bypass", shape = "note"]
+		"[root] var.cpu_cores" [label = "var.cpu_cores", shape = "note"]
+		"[root] var.database_names" [label = "var.database_names", shape = "note"]
+		"[root] var.email_receivers" [label = "var.email_receivers", shape = "note"]
+		"[root] var.enable_rbac_authorization" [label = "var.enable_rbac_authorization", shape = "note"]
+		"[root] var.enabled_for_deployment" [label = "var.enabled_for_deployment", shape = "note"]
+		"[root] var.enabled_for_disk_encryption" [label = "var.enabled_for_disk_encryption", shape = "note"]
+		"[root] var.enabled_for_template_deployment" [label = "var.enabled_for_template_deployment", shape = "note"]
+		"[root] var.funcapp_allways_on" [label = "var.funcapp_allways_on", shape = "note"]
+		"[root] var.funcapp_subnet_address_prefix" [label = "var.funcapp_subnet_address_prefix", shape = "note"]
+		"[root] var.geo_redundant_backup_enabled" [label = "var.geo_redundant_backup_enabled", shape = "note"]
+		"[root] var.high_availability_mode" [label = "var.high_availability_mode", shape = "note"]
+		"[root] var.hub_bastion_subnet_address_prefixes" [label = "var.hub_bastion_subnet_address_prefixes", shape = "note"]
+		"[root] var.image_offer" [label = "var.image_offer", shape = "note"]
+		"[root] var.image_publisher" [label = "var.image_publisher", shape = "note"]
+		"[root] var.image_sku" [label = "var.image_sku", shape = "note"]
+		"[root] var.image_version" [label = "var.image_version", shape = "note"]
+		"[root] var.jumpbox_subnet_address_prefix" [label = "var.jumpbox_subnet_address_prefix", shape = "note"]
+		"[root] var.kv_certificate_permissions_full" [label = "var.kv_certificate_permissions_full", shape = "note"]
+		"[root] var.kv_default_action" [label = "var.kv_default_action", shape = "note"]
+		"[root] var.kv_ip_rules" [label = "var.kv_ip_rules", shape = "note"]
+		"[root] var.kv_key_permissions_full" [label = "var.kv_key_permissions_full", shape = "note"]
+		"[root] var.kv_secret_permissions_full" [label = "var.kv_secret_permissions_full", shape = "note"]
+		"[root] var.kv_sku_name" [label = "var.kv_sku_name", shape = "note"]
+		"[root] var.kv_storage_permissions_full" [label = "var.kv_storage_permissions_full", shape = "note"]
+		"[root] var.kv_virtual_network_subnet_ids" [label = "var.kv_virtual_network_subnet_ids", shape = "note"]
+		"[root] var.location" [label = "var.location", shape = "note"]
+		"[root] var.log_analytics_retention_days" [label = "var.log_analytics_retention_days", shape = "note"]
+		"[root] var.log_analytics_workspace_sku" [label = "var.log_analytics_workspace_sku", shape = "note"]
+		"[root] var.maintenance_window" [label = "var.maintenance_window", shape = "note"]
+		"[root] var.network_watcher_retention_days" [label = "var.network_watcher_retention_days", shape = "note"]
+		"[root] var.network_watcher_traffic_analytics_interval_in_minutes" [label = "var.network_watcher_traffic_analytics_interval_in_minutes", shape = "note"]
+		"[root] var.nsg_security_rules_jumpbox" [label = "var.nsg_security_rules_jumpbox", shape = "note"]
+		"[root] var.nsg_security_rules_psql" [label = "var.nsg_security_rules_psql", shape = "note"]
+		"[root] var.os_disk_caching" [label = "var.os_disk_caching", shape = "note"]
+		"[root] var.pe_blob_private_dns_zone_group_name" [label = "var.pe_blob_private_dns_zone_group_name", shape = "note"]
+		"[root] var.pe_blob_subresource_names" [label = "var.pe_blob_subresource_names", shape = "note"]
+		"[root] var.postgresql_configurations" [label = "var.postgresql_configurations", shape = "note"]
+		"[root] var.private_dns_zone_name" [label = "var.private_dns_zone_name", shape = "note"]
+		"[root] var.psql_address_prefixes" [label = "var.psql_address_prefixes", shape = "note"]
+		"[root] var.psql_admin_login" [label = "var.psql_admin_login", shape = "note"]
+		"[root] var.psql_name" [label = "var.psql_name", shape = "note"]
+		"[root] var.psql_sku_name" [label = "var.psql_sku_name", shape = "note"]
+		"[root] var.psql_storage_mb" [label = "var.psql_storage_mb", shape = "note"]
+		"[root] var.psql_subnet_name" [label = "var.psql_subnet_name", shape = "note"]
+		"[root] var.psql_version" [label = "var.psql_version", shape = "note"]
+		"[root] var.purge_protection_enabled" [label = "var.purge_protection_enabled", shape = "note"]
+		"[root] var.sas_token" [label = "var.sas_token", shape = "note"]
+		"[root] var.security_center_pricing" [label = "var.security_center_pricing", shape = "note"]
+		"[root] var.sku_name_service_plan" [label = "var.sku_name_service_plan", shape = "note"]
+		"[root] var.soft_delete_retention_days" [label = "var.soft_delete_retention_days", shape = "note"]
+		"[root] var.solution_plan_map" [label = "var.solution_plan_map", shape = "note"]
+		"[root] var.standby_availability_zone" [label = "var.standby_availability_zone", shape = "note"]
+		"[root] var.storage_access_tier" [label = "var.storage_access_tier", shape = "note"]
+		"[root] var.storage_account_kind" [label = "var.storage_account_kind", shape = "note"]
+		"[root] var.storage_account_retention_days" [label = "var.storage_account_retention_days", shape = "note"]
+		"[root] var.storage_account_tier" [label = "var.storage_account_tier", shape = "note"]
+		"[root] var.storage_account_type" [label = "var.storage_account_type", shape = "note"]
+		"[root] var.storage_default_action" [label = "var.storage_default_action", shape = "note"]
+		"[root] var.storage_ip_rules" [label = "var.storage_ip_rules", shape = "note"]
+		"[root] var.storage_is_hns_enabled" [label = "var.storage_is_hns_enabled", shape = "note"]
+		"[root] var.storage_replication_type" [label = "var.storage_replication_type", shape = "note"]
+		"[root] var.total_memory_gb" [label = "var.total_memory_gb", shape = "note"]
+		"[root] var.vm_admin_username" [label = "var.vm_admin_username", shape = "note"]
+		"[root] var.vm_size" [label = "var.vm_size", shape = "note"]
+		"[root] var.vnet_address_space" [label = "var.vnet_address_space", shape = "note"]
+		"[root] var.zone" [label = "var.zone", shape = "note"]
+		"[root] module.database (close)" -> "[root] module.database.azuread_group.psql_ad_group[\"administrators\"]"
+		"[root] module.database (close)" -> "[root] module.database.azuread_group.psql_ad_group[\"readonly\"]"
+		"[root] module.database (close)" -> "[root] module.database.azuread_group.psql_ad_group[\"readwrite\"]"
+		"[root] module.database (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_active_directory_administrator.psql"
+		"[root] module.database (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"azure.accepted_password_auth_method\"]"
+		"[root] module.database (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"azure.extensions\"]"
+		"[root] module.database (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"password_encryption\"]"
+		"[root] module.database (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"pgbouncer.enabled\"]"
+		"[root] module.database (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_cache_size"
+		"[root] module.database (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_io_concurrency"
+		"[root] module.database (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.maintenance_work_mem"
+		"[root] module.database (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.max_wal_size"
+		"[root] module.database (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.shared_buffers"
+		"[root] module.database (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.work_mem"
+		"[root] module.database (close)" -> "[root] module.database.output.azurerm_postgresql_flexible_server (expand)"
+		"[root] module.database (close)" -> "[root] module.database.output.azurerm_postgresql_flexible_server_id (expand)"
+		"[root] module.database (close)" -> "[root] module.database.output.azurerm_postgresql_flexible_server_name (expand)"
+		"[root] module.database (close)" -> "[root] module.database.output.postgresql_flexible_server_admin_login (expand)"
+		"[root] module.database (close)" -> "[root] module.database.output.postgresql_flexible_server_admin_password (expand)"
+		"[root] module.database (close)" -> "[root] module.database.output.psql_admin_password (expand)"
+		"[root] module.database (close)" -> "[root] module.database.output.psql_configurations (expand)"
+		"[root] module.database (close)" -> "[root] module.database.output.psql_nsg_id (expand)"
+		"[root] module.database (close)" -> "[root] module.database.output.specific_postgresql_flexible_server_database_object (expand)"
+		"[root] module.database (close)" -> "[root] module.database.output.subnet_psql_id (expand)"
+		"[root] module.database.azuread_group.psql_ad_group (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server.psql"
+		"[root] module.database.azuread_group.psql_ad_group (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azuread\"]"
+		"[root] module.database.azuread_group.psql_ad_group[\"administrators\"]" -> "[root] module.database.azuread_group.psql_ad_group (expand)"
+		"[root] module.database.azuread_group.psql_ad_group[\"readonly\"]" -> "[root] module.database.azuread_group.psql_ad_group (expand)"
+		"[root] module.database.azuread_group.psql_ad_group[\"readwrite\"]" -> "[root] module.database.azuread_group.psql_ad_group (expand)"
+		"[root] module.database.azuread_group.psql_admin_group (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.azuread_group.psql_admin_group (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azuread\"]"
+		"[root] module.database.azuread_group.psql_admin_group" -> "[root] module.database.azuread_group.psql_admin_group (expand)"
+		"[root] module.database.azurerm_network_security_group.psql (expand)" -> "[root] module.database.local.environment (expand)"
+		"[root] module.database.azurerm_network_security_group.psql (expand)" -> "[root] module.database.random_pet.name_prefix"
+		"[root] module.database.azurerm_network_security_group.psql (expand)" -> "[root] module.database.var.location (expand)"
+		"[root] module.database.azurerm_network_security_group.psql (expand)" -> "[root] module.database.var.module_vnet_resource_grp (expand)"
+		"[root] module.database.azurerm_network_security_group.psql (expand)" -> "[root] module.database.var.nsg_prefix (expand)"
+		"[root] module.database.azurerm_network_security_group.psql (expand)" -> "[root] module.database.var.nsg_security_rules_psql (expand)"
+		"[root] module.database.azurerm_network_security_group.psql (expand)" -> "[root] module.database.var.psql_nsg_name (expand)"
+		"[root] module.database.azurerm_network_security_group.psql" -> "[root] module.database.azurerm_network_security_group.psql (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.azurerm_private_dns_zone_virtual_network_link.psql"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.azurerm_resource_group.db"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.data.azurerm_client_config.current (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.random_password.psql_admin_password"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.var.auto_grow_enabled (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.var.backup_retention_days (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.var.geo_redundant_backup_enabled (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.var.high_availability_mode (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.var.maintenance_window (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.var.psql_admin_login (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.var.psql_name (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.var.psql_prefix (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.var.psql_sku_name (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.var.psql_storage_mb (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.var.psql_version (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.var.standby_availability_zone (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql (expand)" -> "[root] module.database.var.zone (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server.psql" -> "[root] module.database.azurerm_postgresql_flexible_server.psql (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_active_directory_administrator.psql (expand)" -> "[root] module.database.azuread_group.psql_admin_group"
+		"[root] module.database.azurerm_postgresql_flexible_server_active_directory_administrator.psql (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server.psql"
+		"[root] module.database.azurerm_postgresql_flexible_server_active_directory_administrator.psql" -> "[root] module.database.azurerm_postgresql_flexible_server_active_directory_administrator.psql (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server.psql"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations (expand)" -> "[root] module.database.var.postgresql_configurations (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"azure.accepted_password_auth_method\"]" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"azure.extensions\"]" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"password_encryption\"]" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"pgbouncer.enabled\"]" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_cache_size (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server.psql"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_cache_size (expand)" -> "[root] module.database.local.effective_cache_size (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_cache_size" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_cache_size (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_io_concurrency (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server.psql"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_io_concurrency (expand)" -> "[root] module.database.local.effective_io_concurrency (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_io_concurrency" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_io_concurrency (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.maintenance_work_mem (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server.psql"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.maintenance_work_mem (expand)" -> "[root] module.database.local.maintenance_work_mem (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.maintenance_work_mem" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.maintenance_work_mem (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.max_wal_size (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server.psql"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.max_wal_size (expand)" -> "[root] module.database.local.max_wal_size (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.max_wal_size" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.max_wal_size (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.shared_buffers (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server.psql"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.shared_buffers (expand)" -> "[root] module.database.local.shared_buffers (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.shared_buffers" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.shared_buffers (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.work_mem (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server.psql"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.work_mem (expand)" -> "[root] module.database.local.work_mem (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_configuration.work_mem" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.work_mem (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_database.psqldb (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server.psql"
+		"[root] module.database.azurerm_postgresql_flexible_server_database.psqldb (expand)" -> "[root] module.database.var.database_names (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_database.psqldb[\"db1\"]" -> "[root] module.database.azurerm_postgresql_flexible_server_database.psqldb (expand)"
+		"[root] module.database.azurerm_postgresql_flexible_server_database.psqldb[\"db2\"]" -> "[root] module.database.azurerm_postgresql_flexible_server_database.psqldb (expand)"
+		"[root] module.database.azurerm_private_dns_zone.psql (expand)" -> "[root] module.database.azurerm_subnet_network_security_group_association.psql"
+		"[root] module.database.azurerm_private_dns_zone.psql (expand)" -> "[root] module.database.var.pdz_prefix (expand)"
+		"[root] module.database.azurerm_private_dns_zone.psql (expand)" -> "[root] module.database.var.private_dns_zone_name (expand)"
+		"[root] module.database.azurerm_private_dns_zone.psql" -> "[root] module.database.azurerm_private_dns_zone.psql (expand)"
+		"[root] module.database.azurerm_private_dns_zone_virtual_network_link.psql (expand)" -> "[root] module.database.azurerm_private_dns_zone.psql"
+		"[root] module.database.azurerm_private_dns_zone_virtual_network_link.psql (expand)" -> "[root] module.database.var.module_vnet_id (expand)"
+		"[root] module.database.azurerm_private_dns_zone_virtual_network_link.psql" -> "[root] module.database.azurerm_private_dns_zone_virtual_network_link.psql (expand)"
+		"[root] module.database.azurerm_resource_group.db (expand)" -> "[root] module.database.local.default_tags (expand)"
+		"[root] module.database.azurerm_resource_group.db (expand)" -> "[root] module.database.local.environment (expand)"
+		"[root] module.database.azurerm_resource_group.db (expand)" -> "[root] module.database.random_pet.name_prefix"
+		"[root] module.database.azurerm_resource_group.db (expand)" -> "[root] module.database.var.db_rg_name (expand)"
+		"[root] module.database.azurerm_resource_group.db (expand)" -> "[root] module.database.var.location (expand)"
+		"[root] module.database.azurerm_resource_group.db (expand)" -> "[root] module.database.var.rg_prefix (expand)"
+		"[root] module.database.azurerm_resource_group.db (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+		"[root] module.database.azurerm_resource_group.db" -> "[root] module.database.azurerm_resource_group.db (expand)"
+		"[root] module.database.azurerm_subnet.psql (expand)" -> "[root] module.database.random_pet.name_prefix"
+		"[root] module.database.azurerm_subnet.psql (expand)" -> "[root] module.database.var.module_vnet (expand)"
+		"[root] module.database.azurerm_subnet.psql (expand)" -> "[root] module.database.var.module_vnet_name (expand)"
+		"[root] module.database.azurerm_subnet.psql (expand)" -> "[root] module.database.var.module_vnet_resource_grp (expand)"
+		"[root] module.database.azurerm_subnet.psql (expand)" -> "[root] module.database.var.psql_address_prefixes (expand)"
+		"[root] module.database.azurerm_subnet.psql (expand)" -> "[root] module.database.var.psql_subnet_name (expand)"
+		"[root] module.database.azurerm_subnet.psql (expand)" -> "[root] module.database.var.subnet_prefix (expand)"
+		"[root] module.database.azurerm_subnet.psql" -> "[root] module.database.azurerm_subnet.psql (expand)"
+		"[root] module.database.azurerm_subnet_network_security_group_association.psql (expand)" -> "[root] module.database.azurerm_network_security_group.psql"
+		"[root] module.database.azurerm_subnet_network_security_group_association.psql (expand)" -> "[root] module.database.azurerm_subnet.psql"
+		"[root] module.database.azurerm_subnet_network_security_group_association.psql" -> "[root] module.database.azurerm_subnet_network_security_group_association.psql (expand)"
+		"[root] module.database.data.azurerm_client_config.current (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.data.azurerm_client_config.current (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+		"[root] module.database.local.default_tags (expand)" -> "[root] module.database.var.default_tags (expand)"
+		"[root] module.database.local.effective_cache_size (expand)" -> "[root] module.database.local.total_memory_kb (expand)"
+		"[root] module.database.local.effective_io_concurrency (expand)" -> "[root] module.database.var.cpu_cores (expand)"
+		"[root] module.database.local.environment (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.local.maintenance_work_mem (expand)" -> "[root] module.database.local.total_memory_kb (expand)"
+		"[root] module.database.local.max_wal_size (expand)" -> "[root] module.database.var.total_memory_gb (expand)"
+		"[root] module.database.local.shared_buffers (expand)" -> "[root] module.database.local.total_memory_8kb (expand)"
+		"[root] module.database.local.total_memory_8kb (expand)" -> "[root] module.database.var.total_memory_gb (expand)"
+		"[root] module.database.local.total_memory_kb (expand)" -> "[root] module.database.var.total_memory_gb (expand)"
+		"[root] module.database.local.work_mem (expand)" -> "[root] module.database.local.total_memory_kb (expand)"
+		"[root] module.database.output.azurerm_postgresql_flexible_server (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server.psql"
+		"[root] module.database.output.azurerm_postgresql_flexible_server_id (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server.psql"
+		"[root] module.database.output.azurerm_postgresql_flexible_server_name (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server.psql"
+		"[root] module.database.output.postgresql_flexible_server_admin_login (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server.psql"
+		"[root] module.database.output.postgresql_flexible_server_admin_password (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server.psql"
+		"[root] module.database.output.psql_admin_password (expand)" -> "[root] module.database.random_password.psql_admin_password"
+		"[root] module.database.output.psql_configurations (expand)" -> "[root] module.database.var.postgresql_configurations (expand)"
+		"[root] module.database.output.psql_nsg_id (expand)" -> "[root] module.database.azurerm_network_security_group.psql"
+		"[root] module.database.output.specific_postgresql_flexible_server_database_object (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server_database.psqldb[\"db1\"]"
+		"[root] module.database.output.specific_postgresql_flexible_server_database_object (expand)" -> "[root] module.database.azurerm_postgresql_flexible_server_database.psqldb[\"db2\"]"
+		"[root] module.database.output.subnet_psql_id (expand)" -> "[root] module.database.azurerm_subnet.psql"
+		"[root] module.database.random_password.psql_admin_password (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.random_password.psql_admin_password (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] module.database.random_password.psql_admin_password" -> "[root] module.database.random_password.psql_admin_password (expand)"
+		"[root] module.database.random_pet.name_prefix (expand)" -> "[root] module.database.var.name_prefix (expand)"
+		"[root] module.database.random_pet.name_prefix (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] module.database.random_pet.name_prefix" -> "[root] module.database.random_pet.name_prefix (expand)"
+		"[root] module.database.var.auto_grow_enabled (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.auto_grow_enabled (expand)" -> "[root] var.auto_grow_enabled"
+		"[root] module.database.var.backup_retention_days (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.backup_retention_days (expand)" -> "[root] var.backup_retention_days"
+		"[root] module.database.var.cpu_cores (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.cpu_cores (expand)" -> "[root] var.cpu_cores"
+		"[root] module.database.var.database_names (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.database_names (expand)" -> "[root] var.database_names"
+		"[root] module.database.var.db_rg_name (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.default_tags (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.geo_redundant_backup_enabled (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.geo_redundant_backup_enabled (expand)" -> "[root] var.geo_redundant_backup_enabled"
+		"[root] module.database.var.high_availability_mode (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.high_availability_mode (expand)" -> "[root] var.high_availability_mode"
+		"[root] module.database.var.location (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.location (expand)" -> "[root] var.location"
+		"[root] module.database.var.maintenance_window (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.maintenance_window (expand)" -> "[root] var.maintenance_window"
+		"[root] module.database.var.module_vnet (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.module_vnet (expand)" -> "[root] module.vnetwork.output.vnet (expand)"
+		"[root] module.database.var.module_vnet_id (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.module_vnet_id (expand)" -> "[root] module.vnetwork.output.vnet_id (expand)"
+		"[root] module.database.var.module_vnet_name (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.module_vnet_name (expand)" -> "[root] module.vnetwork.output.vnet_name (expand)"
+		"[root] module.database.var.module_vnet_resource_grp (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.module_vnet_resource_grp (expand)" -> "[root] module.vnetwork.output.resource_group_name (expand)"
+		"[root] module.database.var.name_prefix (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.nsg_prefix (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.nsg_security_rules_psql (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.nsg_security_rules_psql (expand)" -> "[root] var.nsg_security_rules_psql"
+		"[root] module.database.var.pdz_prefix (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.postgresql_configurations (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.postgresql_configurations (expand)" -> "[root] var.postgresql_configurations"
+		"[root] module.database.var.private_dns_zone_name (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.private_dns_zone_name (expand)" -> "[root] var.private_dns_zone_name"
+		"[root] module.database.var.psql_address_prefixes (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.psql_address_prefixes (expand)" -> "[root] var.psql_address_prefixes"
+		"[root] module.database.var.psql_admin_login (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.psql_admin_login (expand)" -> "[root] var.psql_admin_login"
+		"[root] module.database.var.psql_name (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.psql_nsg_name (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.psql_prefix (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.psql_sku_name (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.psql_sku_name (expand)" -> "[root] var.psql_sku_name"
+		"[root] module.database.var.psql_storage_mb (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.psql_storage_mb (expand)" -> "[root] var.psql_storage_mb"
+		"[root] module.database.var.psql_subnet_name (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.psql_subnet_name (expand)" -> "[root] var.psql_subnet_name"
+		"[root] module.database.var.psql_version (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.psql_version (expand)" -> "[root] var.psql_version"
+		"[root] module.database.var.rg_prefix (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.standby_availability_zone (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.standby_availability_zone (expand)" -> "[root] var.standby_availability_zone"
+		"[root] module.database.var.subnet_prefix (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.total_memory_gb (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.total_memory_gb (expand)" -> "[root] var.total_memory_gb"
+		"[root] module.database.var.zone (expand)" -> "[root] module.database (expand)"
+		"[root] module.database.var.zone (expand)" -> "[root] var.zone"
+		"[root] module.keyvault (close)" -> "[root] module.keyvault.azurerm_key_vault_secret.postgres_hostname"
+		"[root] module.keyvault (close)" -> "[root] module.keyvault.azurerm_key_vault_secret.postgres_password"
+		"[root] module.keyvault (close)" -> "[root] module.keyvault.azurerm_private_dns_zone_virtual_network_link.kv_pdz_vnet_link"
+		"[root] module.keyvault (close)" -> "[root] module.keyvault.azurerm_private_endpoint.pe_kv"
+		"[root] module.keyvault (close)" -> "[root] module.keyvault.output.db_connection_strings_secret_names (expand)"
+		"[root] module.keyvault (close)" -> "[root] module.keyvault.output.key_vault_id (expand)"
+		"[root] module.keyvault (close)" -> "[root] module.keyvault.output.key_vault_name (expand)"
+		"[root] module.keyvault (close)" -> "[root] module.keyvault.output.key_vault_object (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.azurerm_resource_group.kv"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.data.azurerm_client_config.current (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.enable_rbac_authorization (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.enabled_for_deployment (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.enabled_for_disk_encryption (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.enabled_for_template_deployment (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.kv_certificate_permissions_full (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.kv_default_action (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.kv_ip_rules (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.kv_key_permissions_full (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.kv_name (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.kv_prefix (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.kv_secret_permissions_full (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.kv_sku_name (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.kv_storage_permissions_full (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.module_subnet_jumpbox_id (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.module_subnet_psql_id (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.purge_protection_enabled (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv (expand)" -> "[root] module.keyvault.var.soft_delete_retention_days (expand)"
+		"[root] module.keyvault.azurerm_key_vault.kv" -> "[root] module.keyvault.azurerm_key_vault.kv (expand)"
+		"[root] module.keyvault.azurerm_key_vault_secret.db_connection_strings (expand)" -> "[root] module.keyvault.azurerm_key_vault.kv"
+		"[root] module.keyvault.azurerm_key_vault_secret.db_connection_strings (expand)" -> "[root] module.keyvault.var.module_postgres_admin_login (expand)"
+		"[root] module.keyvault.azurerm_key_vault_secret.db_connection_strings (expand)" -> "[root] module.keyvault.var.module_postgres_admin_pass (expand)"
+		"[root] module.keyvault.azurerm_key_vault_secret.db_connection_strings (expand)" -> "[root] module.keyvault.var.module_postgres_fs (expand)"
+		"[root] module.keyvault.azurerm_key_vault_secret.db_connection_strings (expand)" -> "[root] module.keyvault.var.module_postgres_fs_database (expand)"
+		"[root] module.keyvault.azurerm_key_vault_secret.db_connection_strings (expand)" -> "[root] module.keyvault.var.module_postgres_fs_name (expand)"
+		"[root] module.keyvault.azurerm_key_vault_secret.db_connection_strings[\"db1\"]" -> "[root] module.keyvault.azurerm_key_vault_secret.db_connection_strings (expand)"
+		"[root] module.keyvault.azurerm_key_vault_secret.db_connection_strings[\"db2\"]" -> "[root] module.keyvault.azurerm_key_vault_secret.db_connection_strings (expand)"
+		"[root] module.keyvault.azurerm_key_vault_secret.postgres_hostname (expand)" -> "[root] module.keyvault.azurerm_key_vault.kv"
+		"[root] module.keyvault.azurerm_key_vault_secret.postgres_hostname (expand)" -> "[root] module.keyvault.var.module_postgres_fs_name (expand)"
+		"[root] module.keyvault.azurerm_key_vault_secret.postgres_hostname" -> "[root] module.keyvault.azurerm_key_vault_secret.postgres_hostname (expand)"
+		"[root] module.keyvault.azurerm_key_vault_secret.postgres_password (expand)" -> "[root] module.keyvault.azurerm_key_vault.kv"
+		"[root] module.keyvault.azurerm_key_vault_secret.postgres_password (expand)" -> "[root] module.keyvault.var.module_postgres_password (expand)"
+		"[root] module.keyvault.azurerm_key_vault_secret.postgres_password" -> "[root] module.keyvault.azurerm_key_vault_secret.postgres_password (expand)"
+		"[root] module.keyvault.azurerm_private_dns_zone.pdz_kv (expand)" -> "[root] module.keyvault.var.module_vnet_id (expand)"
+		"[root] module.keyvault.azurerm_private_dns_zone.pdz_kv (expand)" -> "[root] module.keyvault.var.module_vnet_resource_grp (expand)"
+		"[root] module.keyvault.azurerm_private_dns_zone.pdz_kv" -> "[root] module.keyvault.azurerm_private_dns_zone.pdz_kv (expand)"
+		"[root] module.keyvault.azurerm_private_dns_zone_virtual_network_link.kv_pdz_vnet_link (expand)" -> "[root] module.keyvault.azurerm_private_dns_zone.pdz_kv"
+		"[root] module.keyvault.azurerm_private_dns_zone_virtual_network_link.kv_pdz_vnet_link (expand)" -> "[root] module.keyvault.var.module_vnet_name (expand)"
+		"[root] module.keyvault.azurerm_private_dns_zone_virtual_network_link.kv_pdz_vnet_link" -> "[root] module.keyvault.azurerm_private_dns_zone_virtual_network_link.kv_pdz_vnet_link (expand)"
+		"[root] module.keyvault.azurerm_private_endpoint.pe_kv (expand)" -> "[root] module.keyvault.azurerm_key_vault.kv"
+		"[root] module.keyvault.azurerm_private_endpoint.pe_kv (expand)" -> "[root] module.keyvault.azurerm_private_dns_zone.pdz_kv"
+		"[root] module.keyvault.azurerm_private_endpoint.pe_kv (expand)" -> "[root] module.keyvault.var.private_endpoint_prefix (expand)"
+		"[root] module.keyvault.azurerm_private_endpoint.pe_kv" -> "[root] module.keyvault.azurerm_private_endpoint.pe_kv (expand)"
+		"[root] module.keyvault.azurerm_resource_group.kv (expand)" -> "[root] module.keyvault.local.default_tags (expand)"
+		"[root] module.keyvault.azurerm_resource_group.kv (expand)" -> "[root] module.keyvault.local.environment (expand)"
+		"[root] module.keyvault.azurerm_resource_group.kv (expand)" -> "[root] module.keyvault.random_pet.name_prefix"
+		"[root] module.keyvault.azurerm_resource_group.kv (expand)" -> "[root] module.keyvault.var.kv_rg_name (expand)"
+		"[root] module.keyvault.azurerm_resource_group.kv (expand)" -> "[root] module.keyvault.var.location (expand)"
+		"[root] module.keyvault.azurerm_resource_group.kv (expand)" -> "[root] module.keyvault.var.rg_prefix (expand)"
+		"[root] module.keyvault.azurerm_resource_group.kv (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+		"[root] module.keyvault.azurerm_resource_group.kv" -> "[root] module.keyvault.azurerm_resource_group.kv (expand)"
+		"[root] module.keyvault.data.azurerm_client_config.current (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.data.azurerm_client_config.current (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+		"[root] module.keyvault.local.default_tags (expand)" -> "[root] module.keyvault.var.default_tags (expand)"
+		"[root] module.keyvault.local.environment (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.output.db_connection_strings_secret_names (expand)" -> "[root] module.keyvault.azurerm_key_vault_secret.db_connection_strings[\"db1\"]"
+		"[root] module.keyvault.output.db_connection_strings_secret_names (expand)" -> "[root] module.keyvault.azurerm_key_vault_secret.db_connection_strings[\"db2\"]"
+		"[root] module.keyvault.output.key_vault_id (expand)" -> "[root] module.keyvault.azurerm_key_vault.kv"
+		"[root] module.keyvault.output.key_vault_name (expand)" -> "[root] module.keyvault.azurerm_key_vault.kv"
+		"[root] module.keyvault.output.key_vault_object (expand)" -> "[root] module.keyvault.azurerm_key_vault.kv"
+		"[root] module.keyvault.random_pet.name_prefix (expand)" -> "[root] module.keyvault.var.name_prefix (expand)"
+		"[root] module.keyvault.random_pet.name_prefix (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] module.keyvault.random_pet.name_prefix" -> "[root] module.keyvault.random_pet.name_prefix (expand)"
+		"[root] module.keyvault.var.default_tags (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.enable_rbac_authorization (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.enable_rbac_authorization (expand)" -> "[root] var.enable_rbac_authorization"
+		"[root] module.keyvault.var.enabled_for_deployment (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.enabled_for_deployment (expand)" -> "[root] var.enabled_for_deployment"
+		"[root] module.keyvault.var.enabled_for_disk_encryption (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.enabled_for_disk_encryption (expand)" -> "[root] var.enabled_for_disk_encryption"
+		"[root] module.keyvault.var.enabled_for_template_deployment (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.enabled_for_template_deployment (expand)" -> "[root] var.enabled_for_template_deployment"
+		"[root] module.keyvault.var.kv_certificate_permissions_full (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.kv_certificate_permissions_full (expand)" -> "[root] var.kv_certificate_permissions_full"
+		"[root] module.keyvault.var.kv_default_action (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.kv_default_action (expand)" -> "[root] var.kv_default_action"
+		"[root] module.keyvault.var.kv_ip_rules (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.kv_ip_rules (expand)" -> "[root] var.kv_ip_rules"
+		"[root] module.keyvault.var.kv_key_permissions_full (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.kv_key_permissions_full (expand)" -> "[root] var.kv_key_permissions_full"
+		"[root] module.keyvault.var.kv_name (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.kv_prefix (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.kv_rg_name (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.kv_secret_permissions_full (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.kv_secret_permissions_full (expand)" -> "[root] var.kv_secret_permissions_full"
+		"[root] module.keyvault.var.kv_sku_name (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.kv_sku_name (expand)" -> "[root] var.kv_sku_name"
+		"[root] module.keyvault.var.kv_storage_permissions_full (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.kv_storage_permissions_full (expand)" -> "[root] var.kv_storage_permissions_full"
+		"[root] module.keyvault.var.location (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.location (expand)" -> "[root] var.location"
+		"[root] module.keyvault.var.module_postgres_admin_login (expand)" -> "[root] module.database.output.postgresql_flexible_server_admin_login (expand)"
+		"[root] module.keyvault.var.module_postgres_admin_login (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.module_postgres_admin_pass (expand)" -> "[root] module.database.output.postgresql_flexible_server_admin_password (expand)"
+		"[root] module.keyvault.var.module_postgres_admin_pass (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.module_postgres_fs (expand)" -> "[root] module.database.output.azurerm_postgresql_flexible_server (expand)"
+		"[root] module.keyvault.var.module_postgres_fs (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.module_postgres_fs_database (expand)" -> "[root] module.database.output.specific_postgresql_flexible_server_database_object (expand)"
+		"[root] module.keyvault.var.module_postgres_fs_database (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.module_postgres_fs_name (expand)" -> "[root] module.database.output.azurerm_postgresql_flexible_server_name (expand)"
+		"[root] module.keyvault.var.module_postgres_fs_name (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.module_postgres_password (expand)" -> "[root] module.database.output.psql_admin_password (expand)"
+		"[root] module.keyvault.var.module_postgres_password (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.module_subnet_jumpbox_id (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.module_subnet_jumpbox_id (expand)" -> "[root] module.vnetwork.output.subnet_jumpbox_id (expand)"
+		"[root] module.keyvault.var.module_subnet_psql_id (expand)" -> "[root] module.database.output.subnet_psql_id (expand)"
+		"[root] module.keyvault.var.module_subnet_psql_id (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.module_vnet_id (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.module_vnet_id (expand)" -> "[root] module.vnetwork.output.vnet_id (expand)"
+		"[root] module.keyvault.var.module_vnet_name (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.module_vnet_name (expand)" -> "[root] module.vnetwork.output.vnet_name (expand)"
+		"[root] module.keyvault.var.module_vnet_resource_grp (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.module_vnet_resource_grp (expand)" -> "[root] module.vnetwork.output.resource_group_name (expand)"
+		"[root] module.keyvault.var.name_prefix (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.private_endpoint_prefix (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.purge_protection_enabled (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.purge_protection_enabled (expand)" -> "[root] var.purge_protection_enabled"
+		"[root] module.keyvault.var.rg_prefix (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.soft_delete_retention_days (expand)" -> "[root] module.keyvault (expand)"
+		"[root] module.keyvault.var.soft_delete_retention_days (expand)" -> "[root] var.soft_delete_retention_days"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azapi_resource.DfSMDVMSettings"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azapi_resource.setting_agentless_vm"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azapi_update_resource.setting_cspm"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_advanced_threat_protection.advanced_threat_proctec"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_app_service_virtual_network_swift_connection.swift_conncetion"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_key_vault_access_policy.function_app_policy"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_key_vault_secret.storage_access_key"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_key_vault_secret.storage_conn_str"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_linux_function_app_slot.diag_app_slot"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_log_analytics_solution.workspace_solution[\"ContainerInsight\"]"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_kv"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_psql"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st_container"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_vnet"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.func_app_diag"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting[\"nsg-jumpbox\"]"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting[\"nsg-psql\"]"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"cpu_usage_high\"]"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"cpu_usage_low\"]"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"memory_usage_high\"]"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"memory_usage_low\"]"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log[\"nsg-jumpbox\"]"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log[\"nsg-psql\"]"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_private_dns_zone_virtual_network_link.blob_pdz_vnet_link"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_private_endpoint.pe_blob"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_role_assignment.func_app_reader"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_role_assignment.func_app_storage_contributor"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_role_assignment.function_app_sql_contributor"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_role_assignment.va-auto-provisioning-identity-role"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_security_center_auto_provisioning.auto-provisioning"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_security_center_automation.la-exports"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_security_center_contact.mdc_contact"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_security_center_setting.setting_mde"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"0\"]"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"1\"]"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"2\"]"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"3\"]"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"4\"]"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"5\"]"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_security_center_workspace.la_workspace"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_storage_management_policy.st_mgmt_policy"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.azurerm_subscription_policy_assignment.mcsb_assignment"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.output.func_app_default_keys (expand)"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.output.func_app_primary_key (expand)"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.output.http_trigger_url (expand)"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.output.key_vault_uri (expand)"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.output.log_analytics_workspace (expand)"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.output.log_analytics_workspace_id (expand)"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.output.storage_account_connection_string (expand)"
+		"[root] module.monitoring (close)" -> "[root] module.monitoring.output.storage_account_id (expand)"
+		"[root] module.monitoring.azapi_resource.DfSMDVMSettings (expand)" -> "[root] module.monitoring.data.azurerm_subscription.current (expand)"
+		"[root] module.monitoring.azapi_resource.DfSMDVMSettings (expand)" -> "[root] provider[\"registry.terraform.io/azure/azapi\"]"
+		"[root] module.monitoring.azapi_resource.DfSMDVMSettings" -> "[root] module.monitoring.azapi_resource.DfSMDVMSettings (expand)"
+		"[root] module.monitoring.azapi_resource.setting_agentless_vm (expand)" -> "[root] module.monitoring.data.azurerm_subscription.current (expand)"
+		"[root] module.monitoring.azapi_resource.setting_agentless_vm (expand)" -> "[root] provider[\"registry.terraform.io/azure/azapi\"]"
+		"[root] module.monitoring.azapi_resource.setting_agentless_vm" -> "[root] module.monitoring.azapi_resource.setting_agentless_vm (expand)"
+		"[root] module.monitoring.azapi_update_resource.setting_cspm (expand)" -> "[root] module.monitoring.data.azurerm_subscription.current (expand)"
+		"[root] module.monitoring.azapi_update_resource.setting_cspm (expand)" -> "[root] provider[\"registry.terraform.io/azure/azapi\"]"
+		"[root] module.monitoring.azapi_update_resource.setting_cspm" -> "[root] module.monitoring.azapi_update_resource.setting_cspm (expand)"
+		"[root] module.monitoring.azurerm_advanced_threat_protection.advanced_threat_proctec (expand)" -> "[root] module.monitoring.var.module_postgres_fs_id (expand)"
+		"[root] module.monitoring.azurerm_advanced_threat_protection.advanced_threat_proctec" -> "[root] module.monitoring.azurerm_advanced_threat_protection.advanced_threat_proctec (expand)"
+		"[root] module.monitoring.azurerm_app_service_virtual_network_swift_connection.swift_conncetion (expand)" -> "[root] module.monitoring.azurerm_linux_function_app.diag_app"
+		"[root] module.monitoring.azurerm_app_service_virtual_network_swift_connection.swift_conncetion" -> "[root] module.monitoring.azurerm_app_service_virtual_network_swift_connection.swift_conncetion (expand)"
+		"[root] module.monitoring.azurerm_application_insights.linux-application-insights (expand)" -> "[root] module.monitoring.azurerm_resource_group.diag"
+		"[root] module.monitoring.azurerm_application_insights.linux-application-insights" -> "[root] module.monitoring.azurerm_application_insights.linux-application-insights (expand)"
+		"[root] module.monitoring.azurerm_key_vault_access_policy.function_app_policy (expand)" -> "[root] module.monitoring.azurerm_linux_function_app.diag_app"
+		"[root] module.monitoring.azurerm_key_vault_access_policy.function_app_policy (expand)" -> "[root] module.monitoring.var.module_keyvault (expand)"
+		"[root] module.monitoring.azurerm_key_vault_access_policy.function_app_policy (expand)" -> "[root] module.monitoring.var.module_keyvault_id (expand)"
+		"[root] module.monitoring.azurerm_key_vault_access_policy.function_app_policy" -> "[root] module.monitoring.azurerm_key_vault_access_policy.function_app_policy (expand)"
+		"[root] module.monitoring.azurerm_key_vault_secret.storage_access_key (expand)" -> "[root] module.monitoring.azurerm_storage_account.st"
+		"[root] module.monitoring.azurerm_key_vault_secret.storage_access_key (expand)" -> "[root] module.monitoring.var.module_keyvault (expand)"
+		"[root] module.monitoring.azurerm_key_vault_secret.storage_access_key (expand)" -> "[root] module.monitoring.var.module_keyvault_id (expand)"
+		"[root] module.monitoring.azurerm_key_vault_secret.storage_access_key" -> "[root] module.monitoring.azurerm_key_vault_secret.storage_access_key (expand)"
+		"[root] module.monitoring.azurerm_key_vault_secret.storage_conn_str (expand)" -> "[root] module.monitoring.azurerm_storage_account.st"
+		"[root] module.monitoring.azurerm_key_vault_secret.storage_conn_str (expand)" -> "[root] module.monitoring.var.module_keyvault_id (expand)"
+		"[root] module.monitoring.azurerm_key_vault_secret.storage_conn_str" -> "[root] module.monitoring.azurerm_key_vault_secret.storage_conn_str (expand)"
+		"[root] module.monitoring.azurerm_linux_function_app.diag_app (expand)" -> "[root] module.monitoring.azurerm_application_insights.linux-application-insights"
+		"[root] module.monitoring.azurerm_linux_function_app.diag_app (expand)" -> "[root] module.monitoring.azurerm_service_plan.diag_service_plan"
+		"[root] module.monitoring.azurerm_linux_function_app.diag_app (expand)" -> "[root] module.monitoring.azurerm_storage_container.func_app_container"
+		"[root] module.monitoring.azurerm_linux_function_app.diag_app (expand)" -> "[root] module.monitoring.data.archive_file.app_zip (expand)"
+		"[root] module.monitoring.azurerm_linux_function_app.diag_app (expand)" -> "[root] module.monitoring.data.azurerm_client_config.current (expand)"
+		"[root] module.monitoring.azurerm_linux_function_app.diag_app (expand)" -> "[root] module.monitoring.var.funcapp_allways_on (expand)"
+		"[root] module.monitoring.azurerm_linux_function_app.diag_app" -> "[root] module.monitoring.azurerm_linux_function_app.diag_app (expand)"
+		"[root] module.monitoring.azurerm_linux_function_app_slot.diag_app_slot (expand)" -> "[root] module.monitoring.azurerm_linux_function_app.diag_app"
+		"[root] module.monitoring.azurerm_linux_function_app_slot.diag_app_slot" -> "[root] module.monitoring.azurerm_linux_function_app_slot.diag_app_slot (expand)"
+		"[root] module.monitoring.azurerm_log_analytics_solution.workspace_solution (expand)" -> "[root] module.monitoring.azurerm_log_analytics_workspace.workspace"
+		"[root] module.monitoring.azurerm_log_analytics_solution.workspace_solution (expand)" -> "[root] module.monitoring.var.solution_plan_map (expand)"
+		"[root] module.monitoring.azurerm_log_analytics_solution.workspace_solution[\"ContainerInsight\"]" -> "[root] module.monitoring.azurerm_log_analytics_solution.workspace_solution (expand)"
+		"[root] module.monitoring.azurerm_log_analytics_workspace.workspace (expand)" -> "[root] module.monitoring.azurerm_resource_group.diag"
+		"[root] module.monitoring.azurerm_log_analytics_workspace.workspace (expand)" -> "[root] module.monitoring.var.log_analytics_retention_days (expand)"
+		"[root] module.monitoring.azurerm_log_analytics_workspace.workspace (expand)" -> "[root] module.monitoring.var.log_analytics_workspace_name (expand)"
+		"[root] module.monitoring.azurerm_log_analytics_workspace.workspace (expand)" -> "[root] module.monitoring.var.log_analytics_workspace_prefix (expand)"
+		"[root] module.monitoring.azurerm_log_analytics_workspace.workspace (expand)" -> "[root] module.monitoring.var.log_analytics_workspace_sku (expand)"
+		"[root] module.monitoring.azurerm_log_analytics_workspace.workspace" -> "[root] module.monitoring.azurerm_log_analytics_workspace.workspace (expand)"
+		"[root] module.monitoring.azurerm_monitor_action_group.ag (expand)" -> "[root] module.monitoring.data.azurerm_function_app_host_keys.func_app_keys"
+		"[root] module.monitoring.azurerm_monitor_action_group.ag (expand)" -> "[root] module.monitoring.var.email_receivers (expand)"
+		"[root] module.monitoring.azurerm_monitor_action_group.ag" -> "[root] module.monitoring.azurerm_monitor_action_group.ag (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_kv (expand)" -> "[root] module.monitoring.azurerm_log_analytics_workspace.workspace"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_kv (expand)" -> "[root] module.monitoring.azurerm_storage_account.st"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_kv (expand)" -> "[root] module.monitoring.var.diag_prefix (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_kv (expand)" -> "[root] module.monitoring.var.module_keyvault (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_kv (expand)" -> "[root] module.monitoring.var.module_keyvault_id (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_kv (expand)" -> "[root] module.monitoring.var.module_keyvault_name (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_kv" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_kv (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_psql (expand)" -> "[root] module.monitoring.azurerm_log_analytics_workspace.workspace"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_psql (expand)" -> "[root] module.monitoring.azurerm_storage_account.st"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_psql (expand)" -> "[root] module.monitoring.var.diag_prefix (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_psql (expand)" -> "[root] module.monitoring.var.module_postgres_fs (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_psql (expand)" -> "[root] module.monitoring.var.module_postgres_fs_id (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_psql (expand)" -> "[root] module.monitoring.var.module_postgres_fs_name (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_psql" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_psql (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st (expand)" -> "[root] module.monitoring.azurerm_log_analytics_workspace.workspace"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st (expand)" -> "[root] module.monitoring.azurerm_storage_account.st"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st (expand)" -> "[root] module.monitoring.var.diag_prefix (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st_container (expand)" -> "[root] module.monitoring.azurerm_log_analytics_workspace.workspace"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st_container (expand)" -> "[root] module.monitoring.azurerm_storage_account.st"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st_container (expand)" -> "[root] module.monitoring.var.diag_prefix (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st_container" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st_container (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_vnet (expand)" -> "[root] module.monitoring.azurerm_log_analytics_workspace.workspace"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_vnet (expand)" -> "[root] module.monitoring.azurerm_storage_account.st"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_vnet (expand)" -> "[root] module.monitoring.var.module_vnet_id (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_vnet" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_vnet (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.func_app_diag (expand)" -> "[root] module.monitoring.azurerm_linux_function_app.diag_app"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.func_app_diag (expand)" -> "[root] module.monitoring.azurerm_log_analytics_workspace.workspace"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.func_app_diag" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.func_app_diag (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting (expand)" -> "[root] module.monitoring.azurerm_log_analytics_workspace.workspace"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting (expand)" -> "[root] module.monitoring.azurerm_storage_account.st"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting (expand)" -> "[root] module.monitoring.local.nsg_ids (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting (expand)" -> "[root] module.monitoring.var.diag_prefix (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting[\"nsg-jumpbox\"]" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting (expand)"
+		"[root] module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting[\"nsg-psql\"]" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting (expand)"
+		"[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert (expand)" -> "[root] module.monitoring.azurerm_monitor_action_group.ag"
+		"[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert (expand)" -> "[root] module.monitoring.local.postgresql_metric_alerts (expand)"
+		"[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert (expand)" -> "[root] module.monitoring.var.module_postgres_fs_id (expand)"
+		"[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"cpu_usage_high\"]" -> "[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert (expand)"
+		"[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"cpu_usage_low\"]" -> "[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert (expand)"
+		"[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"memory_usage_high\"]" -> "[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert (expand)"
+		"[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"memory_usage_low\"]" -> "[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert (expand)"
+		"[root] module.monitoring.azurerm_network_watcher.network_watcher (expand)" -> "[root] module.monitoring.azurerm_resource_group.diag"
+		"[root] module.monitoring.azurerm_network_watcher.network_watcher (expand)" -> "[root] module.monitoring.var.network_watcher_name (expand)"
+		"[root] module.monitoring.azurerm_network_watcher.network_watcher (expand)" -> "[root] module.monitoring.var.network_watcher_prefix (expand)"
+		"[root] module.monitoring.azurerm_network_watcher.network_watcher" -> "[root] module.monitoring.azurerm_network_watcher.network_watcher (expand)"
+		"[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log (expand)" -> "[root] module.monitoring.azurerm_log_analytics_workspace.workspace"
+		"[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log (expand)" -> "[root] module.monitoring.azurerm_network_watcher.network_watcher"
+		"[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log (expand)" -> "[root] module.monitoring.azurerm_storage_account.st"
+		"[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log (expand)" -> "[root] module.monitoring.local.nsg_ids (expand)"
+		"[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log (expand)" -> "[root] module.monitoring.var.network_watcher_retention_days (expand)"
+		"[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log (expand)" -> "[root] module.monitoring.var.network_watcher_traffic_analytics_interval_in_minutes (expand)"
+		"[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log[\"nsg-jumpbox\"]" -> "[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log (expand)"
+		"[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log[\"nsg-psql\"]" -> "[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log (expand)"
+		"[root] module.monitoring.azurerm_private_dns_zone.pdz_blob (expand)" -> "[root] module.monitoring.var.module_vnet (expand)"
+		"[root] module.monitoring.azurerm_private_dns_zone.pdz_blob (expand)" -> "[root] module.monitoring.var.module_vnet_resource_grp (expand)"
+		"[root] module.monitoring.azurerm_private_dns_zone.pdz_blob" -> "[root] module.monitoring.azurerm_private_dns_zone.pdz_blob (expand)"
+		"[root] module.monitoring.azurerm_private_dns_zone_virtual_network_link.blob_pdz_vnet_link (expand)" -> "[root] module.monitoring.azurerm_private_dns_zone.pdz_blob"
+		"[root] module.monitoring.azurerm_private_dns_zone_virtual_network_link.blob_pdz_vnet_link (expand)" -> "[root] module.monitoring.var.module_vnet_id (expand)"
+		"[root] module.monitoring.azurerm_private_dns_zone_virtual_network_link.blob_pdz_vnet_link (expand)" -> "[root] module.monitoring.var.module_vnet_name (expand)"
+		"[root] module.monitoring.azurerm_private_dns_zone_virtual_network_link.blob_pdz_vnet_link" -> "[root] module.monitoring.azurerm_private_dns_zone_virtual_network_link.blob_pdz_vnet_link (expand)"
+		"[root] module.monitoring.azurerm_private_endpoint.pe_blob (expand)" -> "[root] module.monitoring.azurerm_private_dns_zone.pdz_blob"
+		"[root] module.monitoring.azurerm_private_endpoint.pe_blob (expand)" -> "[root] module.monitoring.azurerm_storage_account.st"
+		"[root] module.monitoring.azurerm_private_endpoint.pe_blob (expand)" -> "[root] module.monitoring.var.pe_blob_private_dns_zone_group_name (expand)"
+		"[root] module.monitoring.azurerm_private_endpoint.pe_blob (expand)" -> "[root] module.monitoring.var.pe_blob_subresource_names (expand)"
+		"[root] module.monitoring.azurerm_private_endpoint.pe_blob (expand)" -> "[root] module.monitoring.var.private_endpoint_prefix (expand)"
+		"[root] module.monitoring.azurerm_private_endpoint.pe_blob" -> "[root] module.monitoring.azurerm_private_endpoint.pe_blob (expand)"
+		"[root] module.monitoring.azurerm_resource_group.diag (expand)" -> "[root] module.monitoring.local.default_tags (expand)"
+		"[root] module.monitoring.azurerm_resource_group.diag (expand)" -> "[root] module.monitoring.local.environment (expand)"
+		"[root] module.monitoring.azurerm_resource_group.diag (expand)" -> "[root] module.monitoring.random_pet.name_prefix"
+		"[root] module.monitoring.azurerm_resource_group.diag (expand)" -> "[root] module.monitoring.var.diag_rg_name (expand)"
+		"[root] module.monitoring.azurerm_resource_group.diag (expand)" -> "[root] module.monitoring.var.location (expand)"
+		"[root] module.monitoring.azurerm_resource_group.diag (expand)" -> "[root] module.monitoring.var.rg_prefix (expand)"
+		"[root] module.monitoring.azurerm_resource_group.diag (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+		"[root] module.monitoring.azurerm_resource_group.diag" -> "[root] module.monitoring.azurerm_resource_group.diag (expand)"
+		"[root] module.monitoring.azurerm_role_assignment.func_app_reader (expand)" -> "[root] module.monitoring.azurerm_linux_function_app.diag_app"
+		"[root] module.monitoring.azurerm_role_assignment.func_app_reader (expand)" -> "[root] module.monitoring.var.module_keyvault (expand)"
+		"[root] module.monitoring.azurerm_role_assignment.func_app_reader" -> "[root] module.monitoring.azurerm_role_assignment.func_app_reader (expand)"
+		"[root] module.monitoring.azurerm_role_assignment.func_app_storage_contributor (expand)" -> "[root] module.monitoring.azurerm_linux_function_app.diag_app"
+		"[root] module.monitoring.azurerm_role_assignment.func_app_storage_contributor (expand)" -> "[root] module.monitoring.var.module_keyvault (expand)"
+		"[root] module.monitoring.azurerm_role_assignment.func_app_storage_contributor" -> "[root] module.monitoring.azurerm_role_assignment.func_app_storage_contributor (expand)"
+		"[root] module.monitoring.azurerm_role_assignment.function_app_sql_contributor (expand)" -> "[root] module.monitoring.azurerm_linux_function_app.diag_app"
+		"[root] module.monitoring.azurerm_role_assignment.function_app_sql_contributor (expand)" -> "[root] module.monitoring.var.module_postgres_fs_id (expand)"
+		"[root] module.monitoring.azurerm_role_assignment.function_app_sql_contributor" -> "[root] module.monitoring.azurerm_role_assignment.function_app_sql_contributor (expand)"
+		"[root] module.monitoring.azurerm_role_assignment.va-auto-provisioning-identity-role (expand)" -> "[root] module.monitoring.azurerm_subscription_policy_assignment.va-auto-provisioning"
+		"[root] module.monitoring.azurerm_role_assignment.va-auto-provisioning-identity-role" -> "[root] module.monitoring.azurerm_role_assignment.va-auto-provisioning-identity-role (expand)"
+		"[root] module.monitoring.azurerm_security_center_auto_provisioning.auto-provisioning (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.azurerm_security_center_auto_provisioning.auto-provisioning (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+		"[root] module.monitoring.azurerm_security_center_auto_provisioning.auto-provisioning" -> "[root] module.monitoring.azurerm_security_center_auto_provisioning.auto-provisioning (expand)"
+		"[root] module.monitoring.azurerm_security_center_automation.la-exports (expand)" -> "[root] module.monitoring.azurerm_log_analytics_workspace.workspace"
+		"[root] module.monitoring.azurerm_security_center_automation.la-exports (expand)" -> "[root] module.monitoring.data.azurerm_subscription.current (expand)"
+		"[root] module.monitoring.azurerm_security_center_automation.la-exports" -> "[root] module.monitoring.azurerm_security_center_automation.la-exports (expand)"
+		"[root] module.monitoring.azurerm_security_center_contact.mdc_contact (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.azurerm_security_center_contact.mdc_contact (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+		"[root] module.monitoring.azurerm_security_center_contact.mdc_contact" -> "[root] module.monitoring.azurerm_security_center_contact.mdc_contact (expand)"
+		"[root] module.monitoring.azurerm_security_center_setting.setting_mde (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.azurerm_security_center_setting.setting_mde (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+		"[root] module.monitoring.azurerm_security_center_setting.setting_mde" -> "[root] module.monitoring.azurerm_security_center_setting.setting_mde (expand)"
+		"[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing (expand)" -> "[root] module.monitoring.var.security_center_pricing (expand)"
+		"[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+		"[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"0\"]" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing (expand)"
+		"[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"1\"]" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing (expand)"
+		"[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"2\"]" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing (expand)"
+		"[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"3\"]" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing (expand)"
+		"[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"4\"]" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing (expand)"
+		"[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"5\"]" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing (expand)"
+		"[root] module.monitoring.azurerm_security_center_workspace.la_workspace (expand)" -> "[root] module.monitoring.azurerm_log_analytics_workspace.workspace"
+		"[root] module.monitoring.azurerm_security_center_workspace.la_workspace (expand)" -> "[root] module.monitoring.data.azurerm_subscription.current (expand)"
+		"[root] module.monitoring.azurerm_security_center_workspace.la_workspace" -> "[root] module.monitoring.azurerm_security_center_workspace.la_workspace (expand)"
+		"[root] module.monitoring.azurerm_service_plan.diag_service_plan (expand)" -> "[root] module.monitoring.azurerm_resource_group.diag"
+		"[root] module.monitoring.azurerm_service_plan.diag_service_plan (expand)" -> "[root] module.monitoring.var.sku_name_service_plan (expand)"
+		"[root] module.monitoring.azurerm_service_plan.diag_service_plan" -> "[root] module.monitoring.azurerm_service_plan.diag_service_plan (expand)"
+		"[root] module.monitoring.azurerm_storage_account.st (expand)" -> "[root] module.monitoring.azurerm_resource_group.diag"
+		"[root] module.monitoring.azurerm_storage_account.st (expand)" -> "[root] module.monitoring.azurerm_subnet.func_app"
+		"[root] module.monitoring.azurerm_storage_account.st (expand)" -> "[root] module.monitoring.var.module_subnet_jumpbox_id (expand)"
+		"[root] module.monitoring.azurerm_storage_account.st (expand)" -> "[root] module.monitoring.var.module_subnet_psql_id (expand)"
+		"[root] module.monitoring.azurerm_storage_account.st (expand)" -> "[root] module.monitoring.var.storage_access_tier (expand)"
+		"[root] module.monitoring.azurerm_storage_account.st (expand)" -> "[root] module.monitoring.var.storage_account_kind (expand)"
+		"[root] module.monitoring.azurerm_storage_account.st (expand)" -> "[root] module.monitoring.var.storage_account_tier (expand)"
+		"[root] module.monitoring.azurerm_storage_account.st (expand)" -> "[root] module.monitoring.var.storage_default_action (expand)"
+		"[root] module.monitoring.azurerm_storage_account.st (expand)" -> "[root] module.monitoring.var.storage_ip_rules (expand)"
+		"[root] module.monitoring.azurerm_storage_account.st (expand)" -> "[root] module.monitoring.var.storage_is_hns_enabled (expand)"
+		"[root] module.monitoring.azurerm_storage_account.st (expand)" -> "[root] module.monitoring.var.storage_name (expand)"
+		"[root] module.monitoring.azurerm_storage_account.st (expand)" -> "[root] module.monitoring.var.storage_replication_type (expand)"
+		"[root] module.monitoring.azurerm_storage_account.st" -> "[root] module.monitoring.azurerm_storage_account.st (expand)"
+		"[root] module.monitoring.azurerm_storage_container.func_app_container (expand)" -> "[root] module.monitoring.azurerm_storage_account.st"
+		"[root] module.monitoring.azurerm_storage_container.func_app_container" -> "[root] module.monitoring.azurerm_storage_container.func_app_container (expand)"
+		"[root] module.monitoring.azurerm_storage_management_policy.st_mgmt_policy (expand)" -> "[root] module.monitoring.azurerm_storage_account.st"
+		"[root] module.monitoring.azurerm_storage_management_policy.st_mgmt_policy (expand)" -> "[root] module.monitoring.var.storage_account_retention_days (expand)"
+		"[root] module.monitoring.azurerm_storage_management_policy.st_mgmt_policy" -> "[root] module.monitoring.azurerm_storage_management_policy.st_mgmt_policy (expand)"
+		"[root] module.monitoring.azurerm_subnet.func_app (expand)" -> "[root] module.monitoring.random_pet.name_prefix"
+		"[root] module.monitoring.azurerm_subnet.func_app (expand)" -> "[root] module.monitoring.var.funcapp_subnet_address_prefix (expand)"
+		"[root] module.monitoring.azurerm_subnet.func_app (expand)" -> "[root] module.monitoring.var.funcapp_subnet_name (expand)"
+		"[root] module.monitoring.azurerm_subnet.func_app (expand)" -> "[root] module.monitoring.var.module_vnet (expand)"
+		"[root] module.monitoring.azurerm_subnet.func_app (expand)" -> "[root] module.monitoring.var.module_vnet_name (expand)"
+		"[root] module.monitoring.azurerm_subnet.func_app (expand)" -> "[root] module.monitoring.var.module_vnet_resource_grp (expand)"
+		"[root] module.monitoring.azurerm_subnet.func_app (expand)" -> "[root] module.monitoring.var.subnet_prefix (expand)"
+		"[root] module.monitoring.azurerm_subnet.func_app" -> "[root] module.monitoring.azurerm_subnet.func_app (expand)"
+		"[root] module.monitoring.azurerm_subscription_policy_assignment.mcsb_assignment (expand)" -> "[root] module.monitoring.data.azurerm_subscription.current (expand)"
+		"[root] module.monitoring.azurerm_subscription_policy_assignment.mcsb_assignment" -> "[root] module.monitoring.azurerm_subscription_policy_assignment.mcsb_assignment (expand)"
+		"[root] module.monitoring.azurerm_subscription_policy_assignment.va-auto-provisioning (expand)" -> "[root] module.monitoring.data.azurerm_subscription.current (expand)"
+		"[root] module.monitoring.azurerm_subscription_policy_assignment.va-auto-provisioning (expand)" -> "[root] module.monitoring.var.location (expand)"
+		"[root] module.monitoring.azurerm_subscription_policy_assignment.va-auto-provisioning" -> "[root] module.monitoring.azurerm_subscription_policy_assignment.va-auto-provisioning (expand)"
+		"[root] module.monitoring.data.archive_file.app_zip (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.data.archive_file.app_zip (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/archive\"]"
+		"[root] module.monitoring.data.azurerm_client_config.current (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.data.azurerm_client_config.current (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+		"[root] module.monitoring.data.azurerm_function_app_host_keys.func_app_keys (expand)" -> "[root] module.monitoring.azurerm_linux_function_app.diag_app"
+		"[root] module.monitoring.data.azurerm_function_app_host_keys.func_app_keys" -> "[root] module.monitoring.data.azurerm_function_app_host_keys.func_app_keys (expand)"
+		"[root] module.monitoring.data.azurerm_subscription.current (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.data.azurerm_subscription.current (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+		"[root] module.monitoring.local.default_tags (expand)" -> "[root] module.monitoring.var.default_tags (expand)"
+		"[root] module.monitoring.local.environment (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.local.nsg_ids (expand)" -> "[root] module.monitoring.var.module_nsg_id_jumpbox (expand)"
+		"[root] module.monitoring.local.nsg_ids (expand)" -> "[root] module.monitoring.var.module_nsg_id_psql (expand)"
+		"[root] module.monitoring.local.postgresql_metric_alerts (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.output.func_app_default_keys (expand)" -> "[root] module.monitoring.azurerm_monitor_action_group.ag"
+		"[root] module.monitoring.output.func_app_primary_key (expand)" -> "[root] module.monitoring.azurerm_monitor_action_group.ag"
+		"[root] module.monitoring.output.http_trigger_url (expand)" -> "[root] module.monitoring.data.azurerm_function_app_host_keys.func_app_keys"
+		"[root] module.monitoring.output.key_vault_uri (expand)" -> "[root] module.monitoring.var.module_keyvault (expand)"
+		"[root] module.monitoring.output.log_analytics_workspace (expand)" -> "[root] module.monitoring.azurerm_log_analytics_workspace.workspace"
+		"[root] module.monitoring.output.log_analytics_workspace_id (expand)" -> "[root] module.monitoring.azurerm_log_analytics_workspace.workspace"
+		"[root] module.monitoring.output.storage_account_connection_string (expand)" -> "[root] module.monitoring.azurerm_storage_account.st"
+		"[root] module.monitoring.output.storage_account_id (expand)" -> "[root] module.monitoring.azurerm_storage_account.st"
+		"[root] module.monitoring.random_pet.name_prefix (expand)" -> "[root] module.monitoring.var.name_prefix (expand)"
+		"[root] module.monitoring.random_pet.name_prefix (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] module.monitoring.random_pet.name_prefix" -> "[root] module.monitoring.random_pet.name_prefix (expand)"
+		"[root] module.monitoring.var.default_tags (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.diag_prefix (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.diag_rg_name (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.email_receivers (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.email_receivers (expand)" -> "[root] var.email_receivers"
+		"[root] module.monitoring.var.funcapp_allways_on (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.funcapp_allways_on (expand)" -> "[root] var.funcapp_allways_on"
+		"[root] module.monitoring.var.funcapp_subnet_address_prefix (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.funcapp_subnet_address_prefix (expand)" -> "[root] var.funcapp_subnet_address_prefix"
+		"[root] module.monitoring.var.funcapp_subnet_name (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.location (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.location (expand)" -> "[root] var.location"
+		"[root] module.monitoring.var.log_analytics_retention_days (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.log_analytics_retention_days (expand)" -> "[root] var.log_analytics_retention_days"
+		"[root] module.monitoring.var.log_analytics_workspace_name (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.log_analytics_workspace_prefix (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.log_analytics_workspace_sku (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.log_analytics_workspace_sku (expand)" -> "[root] var.log_analytics_workspace_sku"
+		"[root] module.monitoring.var.module_keyvault (expand)" -> "[root] module.keyvault.output.key_vault_object (expand)"
+		"[root] module.monitoring.var.module_keyvault (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.module_keyvault_id (expand)" -> "[root] module.keyvault.output.key_vault_id (expand)"
+		"[root] module.monitoring.var.module_keyvault_id (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.module_keyvault_name (expand)" -> "[root] module.keyvault.output.key_vault_name (expand)"
+		"[root] module.monitoring.var.module_keyvault_name (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.module_nsg_id_jumpbox (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.module_nsg_id_jumpbox (expand)" -> "[root] module.vnetwork.output.jumpbox_nsg_id (expand)"
+		"[root] module.monitoring.var.module_nsg_id_psql (expand)" -> "[root] module.database.output.psql_nsg_id (expand)"
+		"[root] module.monitoring.var.module_nsg_id_psql (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.module_postgres_fs (expand)" -> "[root] module.database.output.azurerm_postgresql_flexible_server (expand)"
+		"[root] module.monitoring.var.module_postgres_fs (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.module_postgres_fs_id (expand)" -> "[root] module.database.output.azurerm_postgresql_flexible_server_id (expand)"
+		"[root] module.monitoring.var.module_postgres_fs_id (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.module_postgres_fs_name (expand)" -> "[root] module.database.output.azurerm_postgresql_flexible_server_name (expand)"
+		"[root] module.monitoring.var.module_postgres_fs_name (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.module_subnet_jumpbox_id (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.module_subnet_jumpbox_id (expand)" -> "[root] module.vnetwork.output.subnet_jumpbox_id (expand)"
+		"[root] module.monitoring.var.module_subnet_psql_id (expand)" -> "[root] module.database.output.subnet_psql_id (expand)"
+		"[root] module.monitoring.var.module_subnet_psql_id (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.module_vnet (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.module_vnet (expand)" -> "[root] module.vnetwork.output.vnet (expand)"
+		"[root] module.monitoring.var.module_vnet_id (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.module_vnet_id (expand)" -> "[root] module.vnetwork.output.vnet_id (expand)"
+		"[root] module.monitoring.var.module_vnet_name (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.module_vnet_name (expand)" -> "[root] module.vnetwork.output.vnet_name (expand)"
+		"[root] module.monitoring.var.module_vnet_resource_grp (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.module_vnet_resource_grp (expand)" -> "[root] module.vnetwork.output.resource_group_name (expand)"
+		"[root] module.monitoring.var.name_prefix (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.network_watcher_name (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.network_watcher_prefix (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.network_watcher_retention_days (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.network_watcher_retention_days (expand)" -> "[root] var.network_watcher_retention_days"
+		"[root] module.monitoring.var.network_watcher_traffic_analytics_interval_in_minutes (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.network_watcher_traffic_analytics_interval_in_minutes (expand)" -> "[root] var.network_watcher_traffic_analytics_interval_in_minutes"
+		"[root] module.monitoring.var.pe_blob_private_dns_zone_group_name (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.pe_blob_private_dns_zone_group_name (expand)" -> "[root] var.pe_blob_private_dns_zone_group_name"
+		"[root] module.monitoring.var.pe_blob_subresource_names (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.pe_blob_subresource_names (expand)" -> "[root] var.pe_blob_subresource_names"
+		"[root] module.monitoring.var.private_endpoint_prefix (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.rg_prefix (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.security_center_pricing (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.security_center_pricing (expand)" -> "[root] var.security_center_pricing"
+		"[root] module.monitoring.var.sku_name_service_plan (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.sku_name_service_plan (expand)" -> "[root] var.sku_name_service_plan"
+		"[root] module.monitoring.var.solution_plan_map (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.solution_plan_map (expand)" -> "[root] var.solution_plan_map"
+		"[root] module.monitoring.var.storage_access_tier (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.storage_access_tier (expand)" -> "[root] var.storage_access_tier"
+		"[root] module.monitoring.var.storage_account_kind (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.storage_account_kind (expand)" -> "[root] var.storage_account_kind"
+		"[root] module.monitoring.var.storage_account_retention_days (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.storage_account_retention_days (expand)" -> "[root] var.storage_account_retention_days"
+		"[root] module.monitoring.var.storage_account_tier (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.storage_account_tier (expand)" -> "[root] var.storage_account_tier"
+		"[root] module.monitoring.var.storage_default_action (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.storage_default_action (expand)" -> "[root] var.storage_default_action"
+		"[root] module.monitoring.var.storage_ip_rules (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.storage_ip_rules (expand)" -> "[root] var.storage_ip_rules"
+		"[root] module.monitoring.var.storage_is_hns_enabled (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.storage_is_hns_enabled (expand)" -> "[root] var.storage_is_hns_enabled"
+		"[root] module.monitoring.var.storage_name (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.storage_replication_type (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.monitoring.var.storage_replication_type (expand)" -> "[root] var.storage_replication_type"
+		"[root] module.monitoring.var.subnet_prefix (expand)" -> "[root] module.monitoring (expand)"
+		"[root] module.virtualmachines (close)" -> "[root] module.virtualmachines.azurerm_monitor_diagnostic_setting.diag_mgmt_vm"
+		"[root] module.virtualmachines (close)" -> "[root] module.virtualmachines.azurerm_virtual_machine_extension.init_script"
+		"[root] module.virtualmachines.azurerm_key_vault_access_policy.vm_access_policy (expand)" -> "[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm"
+		"[root] module.virtualmachines.azurerm_key_vault_access_policy.vm_access_policy (expand)" -> "[root] module.virtualmachines.data.azurerm_client_config.current (expand)"
+		"[root] module.virtualmachines.azurerm_key_vault_access_policy.vm_access_policy (expand)" -> "[root] module.virtualmachines.var.module_keyvault (expand)"
+		"[root] module.virtualmachines.azurerm_key_vault_access_policy.vm_access_policy (expand)" -> "[root] module.virtualmachines.var.module_keyvault_id (expand)"
+		"[root] module.virtualmachines.azurerm_key_vault_access_policy.vm_access_policy" -> "[root] module.virtualmachines.azurerm_key_vault_access_policy.vm_access_policy (expand)"
+		"[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm (expand)" -> "[root] module.virtualmachines.azurerm_network_interface.vm_nic"
+		"[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm (expand)" -> "[root] module.virtualmachines.var.admin_public_key_path (expand)"
+		"[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm (expand)" -> "[root] module.virtualmachines.var.admin_ssh_key_username (expand)"
+		"[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm (expand)" -> "[root] module.virtualmachines.var.image_offer (expand)"
+		"[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm (expand)" -> "[root] module.virtualmachines.var.image_publisher (expand)"
+		"[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm (expand)" -> "[root] module.virtualmachines.var.image_sku (expand)"
+		"[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm (expand)" -> "[root] module.virtualmachines.var.image_version (expand)"
+		"[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm (expand)" -> "[root] module.virtualmachines.var.os_disk_caching (expand)"
+		"[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm (expand)" -> "[root] module.virtualmachines.var.storage_account_type (expand)"
+		"[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm (expand)" -> "[root] module.virtualmachines.var.vm_admin_username (expand)"
+		"[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm (expand)" -> "[root] module.virtualmachines.var.vm_size (expand)"
+		"[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm" -> "[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm (expand)"
+		"[root] module.virtualmachines.azurerm_monitor_diagnostic_setting.diag_mgmt_vm (expand)" -> "[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm"
+		"[root] module.virtualmachines.azurerm_monitor_diagnostic_setting.diag_mgmt_vm (expand)" -> "[root] module.virtualmachines.var.module_keyvault (expand)"
+		"[root] module.virtualmachines.azurerm_monitor_diagnostic_setting.diag_mgmt_vm (expand)" -> "[root] module.virtualmachines.var.module_log_analytics_workspace_id (expand)"
+		"[root] module.virtualmachines.azurerm_monitor_diagnostic_setting.diag_mgmt_vm (expand)" -> "[root] module.virtualmachines.var.module_log_analytics_workspace_object (expand)"
+		"[root] module.virtualmachines.azurerm_monitor_diagnostic_setting.diag_mgmt_vm (expand)" -> "[root] module.virtualmachines.var.module_storage_account_id (expand)"
+		"[root] module.virtualmachines.azurerm_monitor_diagnostic_setting.diag_mgmt_vm" -> "[root] module.virtualmachines.azurerm_monitor_diagnostic_setting.diag_mgmt_vm (expand)"
+		"[root] module.virtualmachines.azurerm_network_interface.vm_nic (expand)" -> "[root] module.virtualmachines.azurerm_resource_group.vm"
+		"[root] module.virtualmachines.azurerm_network_interface.vm_nic (expand)" -> "[root] module.virtualmachines.var.module_jumpbox_subnet_id (expand)"
+		"[root] module.virtualmachines.azurerm_network_interface.vm_nic (expand)" -> "[root] module.virtualmachines.var.vm_name (expand)"
+		"[root] module.virtualmachines.azurerm_network_interface.vm_nic (expand)" -> "[root] module.virtualmachines.var.vm_prefix (expand)"
+		"[root] module.virtualmachines.azurerm_network_interface.vm_nic" -> "[root] module.virtualmachines.azurerm_network_interface.vm_nic (expand)"
+		"[root] module.virtualmachines.azurerm_resource_group.vm (expand)" -> "[root] module.virtualmachines.local.default_tags (expand)"
+		"[root] module.virtualmachines.azurerm_resource_group.vm (expand)" -> "[root] module.virtualmachines.local.environment (expand)"
+		"[root] module.virtualmachines.azurerm_resource_group.vm (expand)" -> "[root] module.virtualmachines.random_pet.name_prefix"
+		"[root] module.virtualmachines.azurerm_resource_group.vm (expand)" -> "[root] module.virtualmachines.var.location (expand)"
+		"[root] module.virtualmachines.azurerm_resource_group.vm (expand)" -> "[root] module.virtualmachines.var.rg_prefix (expand)"
+		"[root] module.virtualmachines.azurerm_resource_group.vm (expand)" -> "[root] module.virtualmachines.var.vm_rg_name (expand)"
+		"[root] module.virtualmachines.azurerm_resource_group.vm (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+		"[root] module.virtualmachines.azurerm_resource_group.vm" -> "[root] module.virtualmachines.azurerm_resource_group.vm (expand)"
+		"[root] module.virtualmachines.azurerm_role_assignment.vm_reader (expand)" -> "[root] module.virtualmachines.azurerm_linux_virtual_machine.mgmt_vm"
+		"[root] module.virtualmachines.azurerm_role_assignment.vm_reader (expand)" -> "[root] module.virtualmachines.data.azurerm_client_config.current (expand)"
+		"[root] module.virtualmachines.azurerm_role_assignment.vm_reader (expand)" -> "[root] module.virtualmachines.var.module_keyvault (expand)"
+		"[root] module.virtualmachines.azurerm_role_assignment.vm_reader" -> "[root] module.virtualmachines.azurerm_role_assignment.vm_reader (expand)"
+		"[root] module.virtualmachines.azurerm_virtual_machine_extension.init_script (expand)" -> "[root] module.virtualmachines.azurerm_key_vault_access_policy.vm_access_policy"
+		"[root] module.virtualmachines.azurerm_virtual_machine_extension.init_script (expand)" -> "[root] module.virtualmachines.azurerm_role_assignment.vm_reader"
+		"[root] module.virtualmachines.azurerm_virtual_machine_extension.init_script (expand)" -> "[root] module.virtualmachines.var.module_keyvault_name (expand)"
+		"[root] module.virtualmachines.azurerm_virtual_machine_extension.init_script (expand)" -> "[root] module.virtualmachines.var.module_postgresql_configurations (expand)"
+		"[root] module.virtualmachines.azurerm_virtual_machine_extension.init_script (expand)" -> "[root] module.virtualmachines.var.module_secret_connection_string_names (expand)"
+		"[root] module.virtualmachines.azurerm_virtual_machine_extension.init_script (expand)" -> "[root] module.virtualmachines.var.sas_token (expand)"
+		"[root] module.virtualmachines.azurerm_virtual_machine_extension.init_script" -> "[root] module.virtualmachines.azurerm_virtual_machine_extension.init_script (expand)"
+		"[root] module.virtualmachines.data.azurerm_client_config.current (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.data.azurerm_client_config.current (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+		"[root] module.virtualmachines.local.default_tags (expand)" -> "[root] module.virtualmachines.var.default_tags (expand)"
+		"[root] module.virtualmachines.local.environment (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.random_pet.name_prefix (expand)" -> "[root] module.virtualmachines.var.name_prefix (expand)"
+		"[root] module.virtualmachines.random_pet.name_prefix (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] module.virtualmachines.random_pet.name_prefix" -> "[root] module.virtualmachines.random_pet.name_prefix (expand)"
+		"[root] module.virtualmachines.var.admin_public_key_path (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.admin_public_key_path (expand)" -> "[root] var.admin_public_key_path"
+		"[root] module.virtualmachines.var.admin_ssh_key_username (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.admin_ssh_key_username (expand)" -> "[root] var.admin_ssh_key_username"
+		"[root] module.virtualmachines.var.default_tags (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.image_offer (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.image_offer (expand)" -> "[root] var.image_offer"
+		"[root] module.virtualmachines.var.image_publisher (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.image_publisher (expand)" -> "[root] var.image_publisher"
+		"[root] module.virtualmachines.var.image_sku (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.image_sku (expand)" -> "[root] var.image_sku"
+		"[root] module.virtualmachines.var.image_version (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.image_version (expand)" -> "[root] var.image_version"
+		"[root] module.virtualmachines.var.location (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.location (expand)" -> "[root] var.location"
+		"[root] module.virtualmachines.var.module_jumpbox_subnet_id (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.module_jumpbox_subnet_id (expand)" -> "[root] module.vnetwork.output.subnet_jumpbox_id (expand)"
+		"[root] module.virtualmachines.var.module_keyvault (expand)" -> "[root] module.keyvault.output.key_vault_object (expand)"
+		"[root] module.virtualmachines.var.module_keyvault (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.module_keyvault_id (expand)" -> "[root] module.keyvault.output.key_vault_id (expand)"
+		"[root] module.virtualmachines.var.module_keyvault_id (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.module_keyvault_name (expand)" -> "[root] module.keyvault.output.key_vault_name (expand)"
+		"[root] module.virtualmachines.var.module_keyvault_name (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.module_log_analytics_workspace_id (expand)" -> "[root] module.monitoring.output.log_analytics_workspace_id (expand)"
+		"[root] module.virtualmachines.var.module_log_analytics_workspace_id (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.module_log_analytics_workspace_object (expand)" -> "[root] module.monitoring.output.log_analytics_workspace (expand)"
+		"[root] module.virtualmachines.var.module_log_analytics_workspace_object (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.module_postgresql_configurations (expand)" -> "[root] module.database.output.psql_configurations (expand)"
+		"[root] module.virtualmachines.var.module_postgresql_configurations (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.module_secret_connection_string_names (expand)" -> "[root] module.keyvault.output.db_connection_strings_secret_names (expand)"
+		"[root] module.virtualmachines.var.module_secret_connection_string_names (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.module_storage_account_id (expand)" -> "[root] module.monitoring.output.storage_account_id (expand)"
+		"[root] module.virtualmachines.var.module_storage_account_id (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.name_prefix (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.os_disk_caching (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.os_disk_caching (expand)" -> "[root] var.os_disk_caching"
+		"[root] module.virtualmachines.var.rg_prefix (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.sas_token (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.sas_token (expand)" -> "[root] var.sas_token"
+		"[root] module.virtualmachines.var.storage_account_type (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.storage_account_type (expand)" -> "[root] var.storage_account_type"
+		"[root] module.virtualmachines.var.vm_admin_username (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.vm_admin_username (expand)" -> "[root] var.vm_admin_username"
+		"[root] module.virtualmachines.var.vm_name (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.vm_prefix (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.vm_rg_name (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.vm_size (expand)" -> "[root] module.virtualmachines (expand)"
+		"[root] module.virtualmachines.var.vm_size (expand)" -> "[root] var.vm_size"
+		"[root] module.vnetwork (close)" -> "[root] module.vnetwork.azurerm_bastion_host.azure_bastion"
+		"[root] module.vnetwork (close)" -> "[root] module.vnetwork.azurerm_subnet_network_security_group_association.jumpbox"
+		"[root] module.vnetwork (close)" -> "[root] module.vnetwork.output.jumpbox_nsg_id (expand)"
+		"[root] module.vnetwork (close)" -> "[root] module.vnetwork.output.resource_group_name (expand)"
+		"[root] module.vnetwork (close)" -> "[root] module.vnetwork.output.subnet_jumpbox_id (expand)"
+		"[root] module.vnetwork (close)" -> "[root] module.vnetwork.output.vnet (expand)"
+		"[root] module.vnetwork (close)" -> "[root] module.vnetwork.output.vnet_id (expand)"
+		"[root] module.vnetwork (close)" -> "[root] module.vnetwork.output.vnet_name (expand)"
+		"[root] module.vnetwork.azurerm_bastion_host.azure_bastion (expand)" -> "[root] module.vnetwork.azurerm_public_ip.bastion_public_ip"
+		"[root] module.vnetwork.azurerm_bastion_host.azure_bastion (expand)" -> "[root] module.vnetwork.azurerm_subnet.hub_bastion"
+		"[root] module.vnetwork.azurerm_bastion_host.azure_bastion" -> "[root] module.vnetwork.azurerm_bastion_host.azure_bastion (expand)"
+		"[root] module.vnetwork.azurerm_network_security_group.jumpbox (expand)" -> "[root] module.vnetwork.azurerm_resource_group.vnet"
+		"[root] module.vnetwork.azurerm_network_security_group.jumpbox (expand)" -> "[root] module.vnetwork.var.jumpbox_nsg_name (expand)"
+		"[root] module.vnetwork.azurerm_network_security_group.jumpbox (expand)" -> "[root] module.vnetwork.var.nsg_prefix (expand)"
+		"[root] module.vnetwork.azurerm_network_security_group.jumpbox (expand)" -> "[root] module.vnetwork.var.nsg_security_rules_jumpbox (expand)"
+		"[root] module.vnetwork.azurerm_network_security_group.jumpbox" -> "[root] module.vnetwork.azurerm_network_security_group.jumpbox (expand)"
+		"[root] module.vnetwork.azurerm_public_ip.bastion_public_ip (expand)" -> "[root] module.vnetwork.azurerm_resource_group.vnet"
+		"[root] module.vnetwork.azurerm_public_ip.bastion_public_ip (expand)" -> "[root] module.vnetwork.var.bastion_name (expand)"
+		"[root] module.vnetwork.azurerm_public_ip.bastion_public_ip" -> "[root] module.vnetwork.azurerm_public_ip.bastion_public_ip (expand)"
+		"[root] module.vnetwork.azurerm_resource_group.vnet (expand)" -> "[root] module.vnetwork.local.default_tags (expand)"
+		"[root] module.vnetwork.azurerm_resource_group.vnet (expand)" -> "[root] module.vnetwork.local.environment (expand)"
+		"[root] module.vnetwork.azurerm_resource_group.vnet (expand)" -> "[root] module.vnetwork.random_pet.name_prefix"
+		"[root] module.vnetwork.azurerm_resource_group.vnet (expand)" -> "[root] module.vnetwork.var.location (expand)"
+		"[root] module.vnetwork.azurerm_resource_group.vnet (expand)" -> "[root] module.vnetwork.var.rg_prefix (expand)"
+		"[root] module.vnetwork.azurerm_resource_group.vnet (expand)" -> "[root] module.vnetwork.var.vnet_rg_name (expand)"
+		"[root] module.vnetwork.azurerm_resource_group.vnet (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+		"[root] module.vnetwork.azurerm_resource_group.vnet" -> "[root] module.vnetwork.azurerm_resource_group.vnet (expand)"
+		"[root] module.vnetwork.azurerm_subnet.hub_bastion (expand)" -> "[root] module.vnetwork.azurerm_virtual_network.vnet"
+		"[root] module.vnetwork.azurerm_subnet.hub_bastion (expand)" -> "[root] module.vnetwork.var.hub_bastion_subnet_address_prefixes (expand)"
+		"[root] module.vnetwork.azurerm_subnet.hub_bastion (expand)" -> "[root] module.vnetwork.var.hub_bastion_subnet_name (expand)"
+		"[root] module.vnetwork.azurerm_subnet.hub_bastion" -> "[root] module.vnetwork.azurerm_subnet.hub_bastion (expand)"
+		"[root] module.vnetwork.azurerm_subnet.jumpbox (expand)" -> "[root] module.vnetwork.azurerm_virtual_network.vnet"
+		"[root] module.vnetwork.azurerm_subnet.jumpbox (expand)" -> "[root] module.vnetwork.var.jumpbox_subnet_address_prefix (expand)"
+		"[root] module.vnetwork.azurerm_subnet.jumpbox (expand)" -> "[root] module.vnetwork.var.jumpbox_subnet_name (expand)"
+		"[root] module.vnetwork.azurerm_subnet.jumpbox (expand)" -> "[root] module.vnetwork.var.subnet_prefix (expand)"
+		"[root] module.vnetwork.azurerm_subnet.jumpbox" -> "[root] module.vnetwork.azurerm_subnet.jumpbox (expand)"
+		"[root] module.vnetwork.azurerm_subnet_network_security_group_association.jumpbox (expand)" -> "[root] module.vnetwork.azurerm_network_security_group.jumpbox"
+		"[root] module.vnetwork.azurerm_subnet_network_security_group_association.jumpbox (expand)" -> "[root] module.vnetwork.azurerm_subnet.jumpbox"
+		"[root] module.vnetwork.azurerm_subnet_network_security_group_association.jumpbox" -> "[root] module.vnetwork.azurerm_subnet_network_security_group_association.jumpbox (expand)"
+		"[root] module.vnetwork.azurerm_virtual_network.vnet (expand)" -> "[root] module.vnetwork.azurerm_resource_group.vnet"
+		"[root] module.vnetwork.azurerm_virtual_network.vnet (expand)" -> "[root] module.vnetwork.var.vnet_address_space (expand)"
+		"[root] module.vnetwork.azurerm_virtual_network.vnet (expand)" -> "[root] module.vnetwork.var.vnet_name (expand)"
+		"[root] module.vnetwork.azurerm_virtual_network.vnet (expand)" -> "[root] module.vnetwork.var.vnet_prefix (expand)"
+		"[root] module.vnetwork.azurerm_virtual_network.vnet" -> "[root] module.vnetwork.azurerm_virtual_network.vnet (expand)"
+		"[root] module.vnetwork.local.default_tags (expand)" -> "[root] module.vnetwork.var.default_tags (expand)"
+		"[root] module.vnetwork.local.environment (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.output.jumpbox_nsg_id (expand)" -> "[root] module.vnetwork.azurerm_network_security_group.jumpbox"
+		"[root] module.vnetwork.output.resource_group_name (expand)" -> "[root] module.vnetwork.azurerm_resource_group.vnet"
+		"[root] module.vnetwork.output.subnet_jumpbox_id (expand)" -> "[root] module.vnetwork.azurerm_subnet.jumpbox"
+		"[root] module.vnetwork.output.vnet (expand)" -> "[root] module.vnetwork.azurerm_virtual_network.vnet"
+		"[root] module.vnetwork.output.vnet_id (expand)" -> "[root] module.vnetwork.azurerm_virtual_network.vnet"
+		"[root] module.vnetwork.output.vnet_name (expand)" -> "[root] module.vnetwork.azurerm_virtual_network.vnet"
+		"[root] module.vnetwork.random_pet.name_prefix (expand)" -> "[root] module.vnetwork.var.name_prefix (expand)"
+		"[root] module.vnetwork.random_pet.name_prefix (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] module.vnetwork.random_pet.name_prefix" -> "[root] module.vnetwork.random_pet.name_prefix (expand)"
+		"[root] module.vnetwork.var.bastion_name (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.default_tags (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.hub_bastion_subnet_address_prefixes (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.hub_bastion_subnet_address_prefixes (expand)" -> "[root] var.hub_bastion_subnet_address_prefixes"
+		"[root] module.vnetwork.var.hub_bastion_subnet_name (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.jumpbox_nsg_name (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.jumpbox_subnet_address_prefix (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.jumpbox_subnet_address_prefix (expand)" -> "[root] var.jumpbox_subnet_address_prefix"
+		"[root] module.vnetwork.var.jumpbox_subnet_name (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.location (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.location (expand)" -> "[root] var.location"
+		"[root] module.vnetwork.var.name_prefix (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.nsg_prefix (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.nsg_security_rules_jumpbox (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.nsg_security_rules_jumpbox (expand)" -> "[root] var.nsg_security_rules_jumpbox"
+		"[root] module.vnetwork.var.rg_prefix (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.subnet_prefix (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.vnet_address_space (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.vnet_address_space (expand)" -> "[root] var.vnet_address_space"
+		"[root] module.vnetwork.var.vnet_name (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.vnet_prefix (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] module.vnetwork.var.vnet_rg_name (expand)" -> "[root] module.vnetwork (expand)"
+		"[root] output.func_app_default_keys (expand)" -> "[root] module.monitoring.output.func_app_default_keys (expand)"
+		"[root] output.func_app_primary_key (expand)" -> "[root] module.monitoring.output.func_app_primary_key (expand)"
+		"[root] output.http_trigger_url (expand)" -> "[root] module.monitoring.output.http_trigger_url (expand)"
+		"[root] output.key_vault_uri (expand)" -> "[root] module.monitoring.output.key_vault_uri (expand)"
+		"[root] output.postgresql_configurations (expand)" -> "[root] module.database.output.psql_configurations (expand)"
+		"[root] output.storage_account_connection_string (expand)" -> "[root] module.monitoring.output.storage_account_connection_string (expand)"
+		"[root] provider[\"registry.terraform.io/azure/azapi\"] (close)" -> "[root] module.monitoring.azapi_resource.DfSMDVMSettings"
+		"[root] provider[\"registry.terraform.io/azure/azapi\"] (close)" -> "[root] module.monitoring.azapi_resource.setting_agentless_vm"
+		"[root] provider[\"registry.terraform.io/azure/azapi\"] (close)" -> "[root] module.monitoring.azapi_update_resource.setting_cspm"
+		"[root] provider[\"registry.terraform.io/hashicorp/archive\"] (close)" -> "[root] module.monitoring.data.archive_file.app_zip (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/azuread\"] (close)" -> "[root] module.database.azuread_group.psql_ad_group[\"administrators\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azuread\"] (close)" -> "[root] module.database.azuread_group.psql_ad_group[\"readonly\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azuread\"] (close)" -> "[root] module.database.azuread_group.psql_ad_group[\"readwrite\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azuread\"] (close)" -> "[root] module.database.azuread_group.psql_admin_group"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_active_directory_administrator.psql"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"azure.accepted_password_auth_method\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"azure.extensions\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"password_encryption\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.azure_configurations[\"pgbouncer.enabled\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_cache_size"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.effective_io_concurrency"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.maintenance_work_mem"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.max_wal_size"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.shared_buffers"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.database.azurerm_postgresql_flexible_server_configuration.work_mem"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.keyvault.azurerm_key_vault_secret.postgres_hostname"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.keyvault.azurerm_key_vault_secret.postgres_password"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.keyvault.azurerm_private_dns_zone_virtual_network_link.kv_pdz_vnet_link"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.keyvault.azurerm_private_endpoint.pe_kv"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_advanced_threat_protection.advanced_threat_proctec"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_app_service_virtual_network_swift_connection.swift_conncetion"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_key_vault_access_policy.function_app_policy"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_key_vault_secret.storage_access_key"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_key_vault_secret.storage_conn_str"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_linux_function_app_slot.diag_app_slot"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_log_analytics_solution.workspace_solution[\"ContainerInsight\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_kv"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_psql"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_st_container"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.diag_vnet"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.func_app_diag"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting[\"nsg-jumpbox\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_monitor_diagnostic_setting.nsg_diagnostic_setting[\"nsg-psql\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"cpu_usage_high\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"cpu_usage_low\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"memory_usage_high\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_monitor_metric_alert.postgresql_metric_alert[\"memory_usage_low\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log[\"nsg-jumpbox\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_network_watcher_flow_log.nw_flow_log[\"nsg-psql\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_private_dns_zone_virtual_network_link.blob_pdz_vnet_link"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_private_endpoint.pe_blob"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_role_assignment.func_app_reader"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_role_assignment.func_app_storage_contributor"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_role_assignment.function_app_sql_contributor"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_role_assignment.va-auto-provisioning-identity-role"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_security_center_auto_provisioning.auto-provisioning"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_security_center_automation.la-exports"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_security_center_contact.mdc_contact"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_security_center_setting.setting_mde"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"0\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"1\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"2\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"3\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"4\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_security_center_subscription_pricing.mdc_pricing[\"5\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_security_center_workspace.la_workspace"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_storage_management_policy.st_mgmt_policy"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.monitoring.azurerm_subscription_policy_assignment.mcsb_assignment"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.virtualmachines.azurerm_monitor_diagnostic_setting.diag_mgmt_vm"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.virtualmachines.azurerm_virtual_machine_extension.init_script"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.vnetwork.azurerm_bastion_host.azure_bastion"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] module.vnetwork.azurerm_subnet_network_security_group_association.jumpbox"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] module.database.random_password.psql_admin_password"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] module.database.random_pet.name_prefix"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] module.keyvault.random_pet.name_prefix"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] module.monitoring.random_pet.name_prefix"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] module.virtualmachines.random_pet.name_prefix"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] module.vnetwork.random_pet.name_prefix"
+		"[root] root" -> "[root] module.database (close)"
+		"[root] root" -> "[root] module.keyvault (close)"
+		"[root] root" -> "[root] module.monitoring (close)"
+		"[root] root" -> "[root] module.virtualmachines (close)"
+		"[root] root" -> "[root] module.vnetwork (close)"
+		"[root] root" -> "[root] output.client_id (expand)"
+		"[root] root" -> "[root] output.func_app_default_keys (expand)"
+		"[root] root" -> "[root] output.func_app_primary_key (expand)"
+		"[root] root" -> "[root] output.http_trigger_url (expand)"
+		"[root] root" -> "[root] output.key_vault_uri (expand)"
+		"[root] root" -> "[root] output.object_id (expand)"
+		"[root] root" -> "[root] output.postgresql_configurations (expand)"
+		"[root] root" -> "[root] output.storage_account_connection_string (expand)"
+		"[root] root" -> "[root] output.subscription_id (expand)"
+		"[root] root" -> "[root] output.tenant_id (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/azure/azapi\"] (close)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/archive\"] (close)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/azuread\"] (close)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)"
+		"[root] root" -> "[root] var.bypass"
+		"[root] root" -> "[root] var.kv_virtual_network_subnet_ids"
+		"[root] root" -> "[root] var.psql_name"
+	}
+}
