@@ -16,19 +16,19 @@
 
 ### Setup
 
-1. **Move the shell scripts and tfvars file**
-
-Make sure you create a shellscript folder with the scripts from the templates folder. Remember to fill out the script's variables with appropriate names.
-Also make sure you move the tfvars file from the template folder to environments/dev folder and make the appropriate changes. 
-
-
-2. **Clone the Repository**
+1. **Clone the Repository**
 
 First, clone the repository to your local machine:
 ```sh 
 git clone https://github.com/Snimb/terraformCloudCreate.git
 cd terraformCloudCreate/AzureFinal
 ```
+
+
+2. **Move the shell scripts and tfvars file**
+
+Make sure you create a shellscript folder with the scripts from the templates folder. Remember to fill out the script's variables with appropriate names.
+Also make sure you move the tfvars file from the template folder to environments/dev folder and make the appropriate changes. 
 
 
 3. **Log in to Azure**
