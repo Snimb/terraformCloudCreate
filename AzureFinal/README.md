@@ -17,23 +17,31 @@
 ### Setup
 
 1. **Move the shell scripts and tfvars file**
+
 Make sure you create a shellscript folder with the scripts from the templates folder. Remember to fill out the script's variables with appropriate names.
 Also make sure you move the tfvars file from the template folder to environments/dev folder and make the appropriate changes. 
 
+
 2. **Clone the Repository**
+
 First, clone the repository to your local machine:
 ```sh 
 git clone https://github.com/Snimb/terraformCloudCreate.git
 cd terraformCloudCreate/AzureFinal
 ```
+
+
 3. **Log in to Azure**
+
 Use the Azure CLI to log in to your Azure account:
 ```sh
 az login
 ```
 Follow the prompts to complete the authentication process.
 
+
 4. **Run the Terraform Backend Creation Script**
+
 Before initializing Terraform, run the provided PowerShell script to set up the Terraform backend:
 ```sh
 cd shellscript/
@@ -41,7 +49,9 @@ cd shellscript/
 ```
 This script will create necessary Azure resources for the Terraform backend and output required configuration settings.
 
+
 5. **Initialize, plan and apply Terraform**
+
 Navigate to the environment's directory and initialize Terraform with the backend configuration obtained from the previous step:
 ```sh
 cd environments/dev
