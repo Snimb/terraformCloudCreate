@@ -10,19 +10,19 @@ if ! az account show >/dev/null 2>&1; then
     az login
     # Optional: List all subscriptions and set a specific one
     az account list --output table
-    az account set -s "<name of subscription>"
+    az account set -s "<name_of_your_subscription>"
     az account show --output table
 else
     echo "Already logged in."
 fi
 
 # Define the name of your Azure Key Vault
-KEY_VAULT_NAME="<name of key vault>"
-TENANT_ID_SECRET_NAME="<name of tenant id secret>"
-SUBSCRIPTION_ID_SECRET_NAME="<name of subsription id secret>"
-CLIENT_SECRET_SECRET_NAME="<name of client secret secret>"
-CLIENT_ID_SECRET_NAME="<name of client id secret>"
-SAS_TOKEN_SECRET_NAME="<name of sas token secret>"
+KEY_VAULT_NAME="<name_of_your_key_vault>"
+TENANT_ID_SECRET_NAME="<name_of_your_tenant_id_secret>"
+SUBSCRIPTION_ID_SECRET_NAME="<name_of_your_subsription_id_secret>"
+CLIENT_SECRET_SECRET_NAME="<name_of_your_client_secret_secret>"
+CLIENT_ID_SECRET_NAME="<name_of_your_client_id_secret>"
+SAS_TOKEN_SECRET_NAME="<name_of_your_sas_token_secret>"
 
 
 # Fetch secrets from Azure Key Vault and set them as environment variables

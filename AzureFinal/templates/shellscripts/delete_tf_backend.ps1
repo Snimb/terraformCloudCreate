@@ -1,10 +1,10 @@
 # PowerShell script to delete a specific Azure resource group, its Key Vault, Service Principal, and associated App Registration
 
 # Define the name of the resource group, key vault, and service principal you want to delete
-$resourceGroupName = "<your_name>"
-$keyVaultName = "<your_name>"
+$resourceGroupName = "rg-tfmgmt-dev"
+$keyVaultName = "<your_keyvault_name>"
 $location = "<your_location>"
-$servicePrincipalName = "<your_name>"
+$servicePrincipalName = "<your_service_principal_name>"
 
 # Attempt to log in to Azure
 try {

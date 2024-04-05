@@ -31,12 +31,12 @@
 param (    
     $adminUserDisplayName = "<your_adminUserDisplayName>", # This is used to assign yourself access to KeyVault
     $servicePrincipalName = "<your_servicePrincipalName>",
-    $resourceGroupName = "<your_resourceGroupName>",
+    $resourceGroupName = "rg-tfmgmt-dev",
     $location = "<your_location>",
-    $storageAccountSku = "<your_storageAccountSku>",
-    $storageContainerName = "<your_storageContainerName>",
+    $storageAccountSku = "Standard_LRS",
+    $storageContainerName = "tfmgmtstates",
     $vaultName = "<your_vaultName>",
-    $storageAccountName = "<your_storageAccountName>",
+    $storageAccountName = "storageacctfstatesdev",
     $subscriptionID = "<your_subscriptionID>"
 )
 
