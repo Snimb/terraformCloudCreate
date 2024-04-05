@@ -44,7 +44,7 @@ Follow the prompts to complete the authentication process.
 
 Before initializing Terraform, run the provided PowerShell script to set up the Terraform backend:
 ```sh
-cd shellscript/
+cd .\shellscripts\
 .\tf_backend.ps1
 ```
 This script will create necessary Azure resources for the Terraform backend and output required configuration settings.
@@ -54,7 +54,7 @@ This script will create necessary Azure resources for the Terraform backend and 
 
 Navigate to the environment's directory and initialize Terraform with the backend configuration obtained from the previous step:
 ```sh
-cd environments/dev
+cd environments/dev/
 ../../shellscripts/tf_dev_apply.sh
 ```
 When prompted, type which modules you want to make a plan for and then type 'yes' to proceed with the apply and the deployment.
