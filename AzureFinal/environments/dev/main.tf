@@ -5,7 +5,6 @@ module "vnetwork" {
   jumpbox_subnet_address_prefix       = var.jumpbox_subnet_address_prefix
   hub_bastion_subnet_address_prefixes = var.hub_bastion_subnet_address_prefixes
   nsg_security_rules_jumpbox          = var.nsg_security_rules_jumpbox
-
 }
 
 module "database" {
@@ -35,7 +34,6 @@ module "database" {
   module_vnet                  = module.vnetwork.vnet
   module_vnet_resource_grp     = module.vnetwork.resource_group_name
 }
-
 
 module "keyvault" {
   source                            = "../../modules/keyvault"
@@ -67,7 +65,6 @@ module "keyvault" {
   module_vnet                       = module.vnetwork.vnet
   module_vnet_resource_grp          = module.vnetwork.resource_group_name
   module_subnet_jumpbox_id          = module.vnetwork.subnet_jumpbox_id
-
 }
 
 module "monitoring" {
@@ -107,8 +104,6 @@ module "monitoring" {
   module_keyvault_name                                  = module.keyvault.key_vault_name
   module_subnet_jumpbox_id                              = module.vnetwork.subnet_jumpbox_id
   module_subnet_psql_id                                 = module.database.subnet_psql_id
-
-
 }
 
 module "virtualmachines" {
