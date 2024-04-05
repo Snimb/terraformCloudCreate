@@ -27,7 +27,7 @@ resource "azurerm_monitor_metric_alert" "postgresql_metric_alert" {
   target_resource_location = var.location
 }
 
-/*resource "azurerm_monitor_activity_log_alert" "psql_log_alert" {
+resource "azurerm_monitor_activity_log_alert" "psql_log_alert" {
   for_each = local.alert_criteria
 
   name                = "${each.key}-activity-alert"
@@ -47,9 +47,9 @@ resource "azurerm_monitor_metric_alert" "postgresql_metric_alert" {
   action {
     action_group_id = azurerm_monitor_action_group.ag.id
   }
-}*/
+}
 
-/*resource "azurerm_monitor_scheduled_query_rules_alert_v2" "dynamic_alerts" {
+resource "azurerm_monitor_scheduled_query_rules_alert_v2" "dynamic_alerts" {
   for_each = { for idx, rule in local.alert_rules : idx => rule }
 
   name                = each.value.name
@@ -79,6 +79,6 @@ resource "azurerm_monitor_metric_alert" "postgresql_metric_alert" {
   enabled      = true
   description  = each.value.description
   display_name = each.value.display_name
-}*/
+}
 
 

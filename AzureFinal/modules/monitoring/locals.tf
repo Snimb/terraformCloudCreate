@@ -42,7 +42,7 @@ locals {
       window_size = "PT5M"
       aggregation = "Average"
       operator    = "LessThan"
-    } /*,storage_usage_high = {
+    } ,storage_usage_high = {
       metric_name = "storage_percent"
       threshold   = 90
       description = "Alert when Storage usage exceeds 80% on PostgreSQL Server."
@@ -78,20 +78,11 @@ locals {
       window_size = "PT15M"
       aggregation = "Average"
       operator    = "GreaterThan"
-    }*/
-    /*pgbouncer_max_connections_alert = {
-      metric_name = "max_connections_reached"
-      threshold   = var.pgbouncer_max_connections_threshold
-      description = "Alert when pgBouncer reaches its maximum configured connections."
-      frequency   = "PT5M"
-      window_size = "PT15M"
-      aggregation = "Total"
-      operator    = "GreaterThan"
-    }*/
+    }
   }
 }
 
-/*locals {
+locals {
   alert_criteria = {
     config_changes = {
       category       = "Administrative"
@@ -142,9 +133,9 @@ locals {
     }
     # Add additional criteria as needed.
   }
-}*/
+}
 
-/*locals {
+locals {
   alert_rules = [
     {
       name          = "postgresql-failed-connections-alert"
@@ -243,4 +234,4 @@ HighCpuEvents
 
     # Add more alert rules as needed
   ]
-}*/
+}
