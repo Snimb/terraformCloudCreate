@@ -30,8 +30,8 @@ cd terraformCloudCreate/AzureFinal
 Use the Azure CLI to log in to your Azure account:
 ```sh
 az login
-Follow the prompts to complete the authentication process.
 ```
+Follow the prompts to complete the authentication process.
 
 4. **Run the Terraform Backend Creation Script**
 Before initializing Terraform, run the provided PowerShell script to set up the Terraform backend:
