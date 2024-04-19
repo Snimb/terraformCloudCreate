@@ -166,32 +166,26 @@ security_center_pricing = [
   {
     tier          = "Standard"
     resource_type = "VirtualMachines"
-    subplan       = ""
   },
   {
     tier          = "Standard"
     resource_type = "KeyVaults"
-    subplan       = ""
   },
   {
     tier          = "Standard"
     resource_type = "AppServices"
-    subplan       = ""
   },
   {
     tier          = "Standard"
     resource_type = "CloudPosture"
-    subplan       = ""
   },
   {
     tier          = "Standard"
     resource_type = "StorageAccounts"
-    subplan       = "DefenderForStorageV2"
   },
   {
     tier          = "Standard"
     resource_type = "OpenSourceRelationalDatabases"
-    subplan       = ""
   }
 ]
 
