@@ -1,4 +1,5 @@
 terraform {
+  
   required_version = ">=1.0" # Specifies the minimum Terraform version required for this configuration.
 
   required_providers {
@@ -18,6 +19,7 @@ terraform {
       source = "Azure/azapi"
     }
   }
+  
 }
 
 provider "random" {}

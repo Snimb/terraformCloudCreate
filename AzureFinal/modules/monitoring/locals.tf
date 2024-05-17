@@ -42,7 +42,8 @@ locals {
       window_size = "PT5M"
       aggregation = "Average"
       operator    = "LessThan"
-    } ,storage_usage_high = {
+    },
+    storage_usage_high = {
       metric_name = "storage_percent"
       threshold   = 90
       description = "Alert when Storage usage exceeds 80% on PostgreSQL Server."
@@ -60,7 +61,6 @@ locals {
       aggregation = "Average"
       operator    = "LessThan"
     },
-
     connection_count = {
       metric_name = "active_connections"
       threshold   = 150
@@ -91,7 +91,7 @@ locals {
     },
     ha_state_changes = {
       category       = "Administrative"
-      operation_name = "Microsoft.DBforPostgreSQL/flexibleServers/replicas/write"  # Adjusted, verify against real operations.
+      operation_name = "Microsoft.DBforPostgreSQL/flexibleServers/replicas/write" # Adjusted, verify against real operations.
       description    = "High availability state changes in PostgreSQL server"
     },
     database_operations = {
