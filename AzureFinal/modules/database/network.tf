@@ -4,9 +4,9 @@ resource "azurerm_subnet" "psql" {
   resource_group_name                           = var.module_vnet_resource_grp
   virtual_network_name                          = var.module_vnet_name
   address_prefixes                              = var.psql_address_prefixes
-  private_endpoint_network_policies_enabled     = false
+  private_endpoint_network_policies             = false
   private_link_service_network_policies_enabled = false
-  service_endpoints                             = ["Microsoft.Storage","Microsoft.KeyVault"]
+  service_endpoints                             = ["Microsoft.Storage", "Microsoft.KeyVault"]
 
   # The delegation block allows the subnet to be dedicated for specific Azure services, in this case, Azure Database for PostgreSQL. 
   # This setup permits the PostgreSQL service to integrate deeply with the subnet, enhancing network security and performance by enabling direct service connections. 
@@ -21,7 +21,7 @@ resource "azurerm_subnet" "psql" {
     }
   }
   depends_on = [
-   var.module_vnet
+    var.module_vnet
   ]
 }
 

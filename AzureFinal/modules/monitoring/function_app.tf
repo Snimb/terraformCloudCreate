@@ -59,13 +59,13 @@ resource "azurerm_linux_function_app" "diag_app" {
 
   # If you were using app settings, they would still be applicable here
   app_settings = {
-    "FUNCTIONS_WORKER_RUNTIME"         = "python" # Or your runtime of choice: node, python, etc.
-    "WEBSITE_RUN_FROM_PACKAGE"         = "0"
-    "AzureWebJobsStorage"              = azurerm_storage_account.st.primary_connection_string
-    "APPINSIGHTS_INSTRUMENTATIONKEY"   = azurerm_application_insights.linux-application-insights.instrumentation_key
-    "SUBSCRIPTION_ID"                  = data.azurerm_client_config.current.subscription_id
-    "SCM_DO_BUILD_DURING_DEPLOYMENT"   = true
-    "BLOB_CONTAINER_NAME"              = azurerm_storage_container.func_app_container.name
+    "FUNCTIONS_WORKER_RUNTIME"       = "python" # Or your runtime of choice: node, python, etc.
+    "WEBSITE_RUN_FROM_PACKAGE"       = "0"
+    "AzureWebJobsStorage"            = azurerm_storage_account.st.primary_connection_string
+    "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.linux-application-insights.instrumentation_key
+    "SUBSCRIPTION_ID"                = data.azurerm_client_config.current.subscription_id
+    "SCM_DO_BUILD_DURING_DEPLOYMENT" = true
+    "BLOB_CONTAINER_NAME"            = azurerm_storage_container.func_app_container.name
   }
 }
 
@@ -150,7 +150,7 @@ resource "azurerm_subnet" "func_app" {
   resource_group_name                           = var.module_vnet_resource_grp
   virtual_network_name                          = var.module_vnet_name
   address_prefixes                              = var.funcapp_subnet_address_prefix
-  private_endpoint_network_policies_enabled     = false
+  private_endpoint_network_policies             = false
   private_link_service_network_policies_enabled = false
 
   service_endpoints = ["Microsoft.KeyVault", "Microsoft.Web", "Microsoft.Storage"]

@@ -11,6 +11,7 @@ from azure.storage.blob import BlobServiceClient  # Interact with Azure Blob Sto
 import os  # Access environment variables
 from azure.mgmt.rdbms.postgresql_flexibleservers.models import Configuration
 from azure.mgmt.rdbms.postgresql_flexibleservers import PostgreSQLManagementClient
+
 # from azure.monitor.query import MetricsQueryClient, MetricAggregationType
 
 # Define the ordered SKU levels from lowest to highest capacity for General Purpose (GP) tiers
@@ -53,36 +54,15 @@ sku_levels = sorted(sku_details.keys(), key=lambda x: sku_details[x]["cpu_cores"
 STORAGE_CONNECTION_STRING = os.environ.get("AzureWebJobsStorage")
 BLOB_CONTAINER_NAME = os.environ.get("BLOB_CONTAINER_NAME")
 
-"""
-def get_latest_metrics(resource_id, metric_names):
-    credential = DefaultAzureCredential()
-    client = MetricsQueryClient(credential)
-    metrics_response = client.query_resource(
-        resource_id,
-        metric_names,
-        duration='PT5M',  # Last 5 minutes; adjust as necessary
-        aggregations=[MetricAggregationType.AVERAGE],
-    )
-    metrics_data = {}
-    for metric in metrics_response.metrics:
-        for time_series in metric.timeseries:
-            for data in time_series.data:
-                # Assuming you want the latest data point; adjust as needed
-                if data.average is not None:
-                    metrics_data[metric.name] = data.average
-    return metrics_data
-"""
 
 # Function to calculate new PostgreSQL configuration values based on the SKU
 def calculate_postgres_configs(sku_name):
     details = sku_details.get(sku_name)
     if not details:
         raise ValueError(f"Unsupported SKU: {sku_name}")
-
     # Convert memory from GB to KB and calculate different memory metrics
     total_memory_kb = details["memory_gb"] * 1024 * 1024  # total memory in KB
     total_memory_8kb = total_memory_kb / 8  # total memory in 8KB chunks
-
     # Calculate configuration values based on memory and CPU
     configs = {
         "shared_buffers": f"{int(total_memory_8kb / 4)}",  # 25% of total memory, adjusted for 8KB units
@@ -177,10 +157,8 @@ def scale_postgresql_server(resource_group, server_name, new_sku_name):
     blob_service_client = BlobServiceClient.from_connection_string(
         STORAGE_CONNECTION_STRING
     )
-
     retries = 3  # Max number of retries
     delay = 60  # Delay between retries in seconds
-
     logging.info(f"Scaling PostgreSQL server: {server_name} to SKU: {new_sku_name}")
     subscription_id = os.environ.get("SUBSCRIPTION_ID")
     credentials = DefaultAzureCredential()
@@ -188,10 +166,8 @@ def scale_postgresql_server(resource_group, server_name, new_sku_name):
     server = client.servers.get(
         resource_group_name=resource_group, server_name=server_name
     )
-
     current_sku = server.sku.name
     logging.info(f"Current SKU: {current_sku}")
-
     try:
         current_sku_index = sku_levels.index(current_sku)
         new_sku_index = sku_levels.index(new_sku_name)
@@ -199,18 +175,15 @@ def scale_postgresql_server(resource_group, server_name, new_sku_name):
     except ValueError as e:
         logging.error(f"An error occurred finding SKU levels: {e}")
         # Handle the error appropriately, maybe set a default behavior or halt the operation
-
     last_scale_down_time = get_last_scale_down_time()
     time_since_last_scale_down = datetime.datetime.now() - last_scale_down_time
     can_scale_down = time_since_last_scale_down.total_seconds() >= 12 * 3600  # 12 hours
-
     if not can_scale_down:
         logging.info(
             f"Scale-down operation blocked: Only {time_since_last_scale_down.total_seconds() / 3600:.2f} hours since last scale-down. 12 hours required."
         )
     # Scale up condition or scale down condition after 12 hours
     if is_scaling_up or (not is_scaling_up and can_scale_down):
-
         for attempt in range(retries):
             try:
                 # Proceed with scaling
@@ -238,14 +211,11 @@ def scale_postgresql_server(resource_group, server_name, new_sku_name):
         # Update the PostgreSQL server configurations for the new SKU
         update_postgres_configs(client, resource_group, server_name, new_configs)
         logging.info("Updated PostgreSQL configurations based on the new SKU.")
-
         if not is_scaling_up:
             set_last_scale_down_time()
-
         # If we just scaled up, update the last scale-up time
         if is_scaling_up:
             set_last_scale_up_time()
-
     else:
         logging.error("Cannot scale down within 12 hours of the last scale-down.")
 
@@ -267,7 +237,6 @@ def get_lower_sku(current_sku):
 
 
 def handle_sku_change(alert_data):
-
     resource_group = alert_data["data"]["context"]["resourceGroupName"]
     server_name = alert_data["data"]["context"]["resourceName"]
     alert_name = alert_data["data"]["context"]["name"]
@@ -275,7 +244,6 @@ def handle_sku_change(alert_data):
     if not resource_group or not server_name or not alert_name:
         logging.error("Missing essential information in the payload.")
         return
-
     subscription_id = os.environ.get("SUBSCRIPTION_ID")
     credentials = DefaultAzureCredential()
     client = PostgreSQLManagementClient(credentials, subscription_id)
@@ -286,9 +254,7 @@ def handle_sku_change(alert_data):
     except Exception as e:  # Catch exceptions from Azure SDK calls
         logging.error(f"Could not retrieve server info: {e}")
         return
-
     current_sku = server.sku.name
-
     # Determine new SKU based on the type of alert
     if "high" in alert_name:  # Replace with your actual condition for high usage
         new_sku_name = get_higher_sku(current_sku)
@@ -297,14 +263,12 @@ def handle_sku_change(alert_data):
     else:
         logging.info("Alert does not indicate a clear scale direction.")
         return
-
     if new_sku_name != current_sku:
         scale_postgresql_server(resource_group, server_name, new_sku_name)
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info("Python HTTP trigger function processed a request.")
-
     try:
         # Attempt to extract alert data from request body
         alert_data_raw = req.get_body().decode(
@@ -320,12 +284,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     except Exception as e:
         logging.error(f"Unexpected error: {e}")
         return func.HttpResponse(f"Unexpected error: {e}", status_code=400)
-
     # Ensure alert_data is a dictionary before continuing
     if not isinstance(alert_data, dict):
         logging.error("Request body is not a JSON object")
         return func.HttpResponse("Request body is not a JSON object", status_code=400)
-
     # Navigate through the JSON structure correctly
     try:
         # Updated line: Extract 'name' from 'context' section of the payload as 'alert_name'
@@ -337,7 +299,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(
             f"Missing expected fields in JSON: {e}", status_code=400
         )
-
     # Proceed if the alert name matches known alert types
     if alert_name in [
         "cpu_usage_high-alert",
