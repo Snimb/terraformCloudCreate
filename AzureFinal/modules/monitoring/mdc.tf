@@ -66,6 +66,7 @@ resource "azapi_update_resource" "setting_cspm" {
 }
 
 resource "azurerm_security_center_contact" "mdc_contact" {
+  name                = "mdc_contact"
   email               = "simonwilliams@outlook.dk"
   phone               = "+4520627530"
   alert_notifications = true

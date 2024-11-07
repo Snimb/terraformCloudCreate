@@ -28,8 +28,8 @@ resource "azurerm_monitor_metric_alert" "postgresql_metric_alert" {
 }
 
 resource "azurerm_monitor_activity_log_alert" "psql_log_alert" {
-  for_each = local.alert_criteria
-
+  for_each            = local.alert_criteria
+  location            = azurerm_resource_group.diag.location
   name                = "${each.key}-activity-alert"
   resource_group_name = azurerm_resource_group.diag.name
   scopes              = [var.module_postgres_fs_id]
