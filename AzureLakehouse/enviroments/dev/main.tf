@@ -12,5 +12,7 @@ module "lakehouse" {
 }
 
 module "databricks" {
-  source   = "../../modules/databricks"
+  source            = "../../modules/databricks"
+  location          = var.location
+  databricks_ws_sku = var.databricks_ws_sku
 }

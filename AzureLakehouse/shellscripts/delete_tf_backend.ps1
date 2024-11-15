@@ -2,8 +2,8 @@
 
 # Define the name of the resource group, key vault, and service principal you want to delete
 $resourceGroupName = "rg-tfmgmt-dev"
-$keyVaultName = "snimb-kv-tfstates-dev"
-$location = "Germany West Central"
+$keyVaultName = "dt-kv-tfstates-dev"
+$location = "West Europe"
 $servicePrincipalName = "sp-tfmgmt-dev"
 
 # Attempt to log in to Azure
@@ -51,6 +51,11 @@ if ($resourceGroupExists) {
 if ($resourceGroupExists) {
     try {
         Write-Host "Attempting to delete the key vault '$keyVaultName' permanently..."
+        
+        # Wait for a while before attempting permanent deletion to allow Azure to complete the initial deletion
+        Start-Sleep -Seconds 60  # Wait for 1 minute
+
+        # Attempt to delete the Key Vault in the removed state
         Remove-AzKeyVault -VaultName $keyVaultName -Location $location -InRemovedState -Force -ErrorAction Stop
         Write-Host "Key vault '$keyVaultName' has been deleted permanently." -ForegroundColor Green
     }

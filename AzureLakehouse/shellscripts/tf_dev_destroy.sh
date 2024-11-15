@@ -22,14 +22,12 @@ TENANT_ID_SECRET_NAME="tf-tenant-id"
 SUBSCRIPTION_ID_SECRET_NAME="tf-subscription-id"
 CLIENT_SECRET_SECRET_NAME="tf-client-secret"
 CLIENT_ID_SECRET_NAME="tf-client-id"
-SAS_TOKEN_SECRET_NAME="sasTokenForScript"
 
 # Fetch secrets from Azure Key Vault and set them as environment variables
 export ARM_CLIENT_ID=$(az keyvault secret show --name "$CLIENT_ID_SECRET_NAME" --vault-name "$KEY_VAULT_NAME" --query value -o tsv)
 export ARM_CLIENT_SECRET=$(az keyvault secret show --name "$CLIENT_SECRET_SECRET_NAME" --vault-name "$KEY_VAULT_NAME" --query value -o tsv)
 export ARM_SUBSCRIPTION_ID=$(az keyvault secret show --name "$SUBSCRIPTION_ID_SECRET_NAME" --vault-name "$KEY_VAULT_NAME" --query value -o tsv)
 export ARM_TENANT_ID=$(az keyvault secret show --name "$TENANT_ID_SECRET_NAME" --vault-name "$KEY_VAULT_NAME" --query value -o tsv)
-export TF_VAR_sas_token=$(az keyvault secret show --name "$SAS_TOKEN_SECRET_NAME" --vault-name "$KEY_VAULT_NAME" --query value -o tsv)
 
 # Initialize and prepare Terraform
 if ! terraform init; then  # Check if Terraform initialization is successful
@@ -52,11 +50,9 @@ else
 fi
 
 echo "Select which modules to apply (separate choices with spaces):"
-echo "1 - vnetwork"
-echo "2 - database"
-echo "3 - keyvault"
-echo "4 - monitoring"
-echo "5 - virtualmachines"
+echo "1 - network"
+echo "2 - lakehouse"
+echo "3 - databricks"
 echo "0 - All (default)"
 read -p "Enter your choices (press Enter for All): " MODULE_CHOICES
 
@@ -69,19 +65,13 @@ MODULE_TARGETS=()
 for choice in $MODULE_CHOICES; do
     case $choice in
     1)
-        MODULE_TARGETS+=("module.vnetwork")
+        MODULE_TARGETS+=("module.network")
         ;;
     2)
-        MODULE_TARGETS+=("module.database")
+        MODULE_TARGETS+=("module.lakehouse")
         ;;
     3)
-        MODULE_TARGETS+=("module.keyvault")
-        ;;
-    4)
-        MODULE_TARGETS+=("module.monitoring")
-        ;;
-    5)
-        MODULE_TARGETS+=("module.virtualmachines")
+        MODULE_TARGETS+=("module.databricks")
         ;;
     0)
         # Apply to all modules, so clear the array to specify no target.
@@ -120,7 +110,6 @@ unset ARM_CLIENT_ID
 unset ARM_CLIENT_SECRET
 unset ARM_SUBSCRIPTION_ID
 unset ARM_TENANT_ID
-unset TF_VAR_sas_token
 
 end_time=$(date +%s)  # Capture end time
 duration=$((end_time - start_time))  # Calculate script duration

@@ -48,7 +48,7 @@ destroy-plan
 # terraform scripts
 Azure/shellscripts/*
 AzureFinal/shellscripts/*
-
+AzureLakehouse/shellscripts/*
 
 bin
 obj

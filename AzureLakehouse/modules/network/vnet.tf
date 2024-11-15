@@ -39,6 +39,18 @@ resource "azurerm_network_security_group" "secgr" {
   }
 }
 
+resource "azurerm_private_dns_zone" "dns_auth_front" {
+  name                = "privatelink.azuredatabricks.net"
+  resource_group_name = azurerm_resource_group.vnet.name
+}
+
+resource "azurerm_private_dns_zone_virtual_network_link" "transitdnszonevnetlink" {
+  name                  = "dpcpspokevnetconnection"
+  resource_group_name   = azurerm_virtual_network.vnet.name
+  private_dns_zone_name = azurerm_private_dns_zone.dns_auth_front.name
+  virtual_network_id    = azurerm_virtual_network.transit_vnet.id
+}
+
 resource "azurerm_route_table" "rtable" {
   name                = "${var.route_table}-${local.environment}"
   location            = azurerm_resource_group.vnet.location
